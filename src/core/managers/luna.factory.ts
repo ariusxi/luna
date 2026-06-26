@@ -27,6 +27,18 @@ export class LunaFactory {
     return contexts
   }
 
+  /**
+   * Bootstraps a Luna application from a root module.
+   *
+   * Scans the module tree, instantiates all providers (eager loading),
+   * and returns a `LunaApplication` ready to be started.
+   *
+   * @param rootModule - The top-level module that defines the application structure.
+   *
+   * @example
+   * const app = await LunaFactory.create(AppModule)
+   * await app.start()
+   */
   public static async create(rootModule: Function) {
     const scanner = new ModuleScanner()
     const modules = scanner.scan(rootModule)
