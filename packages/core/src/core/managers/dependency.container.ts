@@ -68,7 +68,7 @@ export class DependencyContainer {
 
     const injectTokens = Reflect.getMetadata('luna:inject', Token) ?? []
     const dependencies = Reflect.getMetadata('design:paramtypes', Token) ?? []
-    const params = dependencies.map((dependency: any, index: number) => this.resolve(injectTokens[index] ?? dependency))
+    const params = dependencies.map((dependency: any, index: number) => this.resolve(injectTokens[index] ?? dependency, token))
 
     const instance = new Token(...params)
     LifecycleManager.registerInstance(instance)

@@ -24,25 +24,26 @@ export class LunaFactory {
       })
     }
 
-    // segunda passagem — registra nos containers os providers exportados pelos módulos importados
+    // segunda passagem — propaga exports como ValueProvider com instância já resolvida
+    // módulos estão em ordem DFS (folhas primeiro), então boot pode rodar na mesma ordem
     for (const moduleClass of modules) {
       const metadata = ModuleManager.get(moduleClass)
       const context = contexts.get(moduleClass)!
 
-      for (const importedModule of metadata?.imports ?? []) {
-        const importedContext = contexts.get(importedModule)
-        if (!importedContext) continue
+      // boot do módulo atual antes de propagar
+      context.container.boot()
 
-        for (const token of importedContext.exports) {
-          const provider = importedContext.container.getProvider(token)
-          if (provider) context.container.register(provider)
+      for (const importingModule of modules) {
+        const importingMeta = ModuleManager.get(importingModule)
+        if (!importingMeta?.imports?.includes(moduleClass)) continue
+
+        const importingContext = contexts.get(importingModule)!
+
+        for (const token of context.exports) {
+          const instance = context.container.resolve(token)
+          importingContext.container.register({ provide: token, useValue: instance })
         }
       }
-    }
-
-    // terceira passagem — boot após todos os providers estarem registrados
-    for (const [, context] of contexts) {
-      context.container.boot()
     }
 
     return contexts

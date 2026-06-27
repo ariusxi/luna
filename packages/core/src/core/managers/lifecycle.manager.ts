@@ -9,7 +9,7 @@ export class LifecycleManager {
     try {
       await instance[method]()
     } catch (error) {
-      console.log(`Error on ${instance.constructor.name}.${method}`, error)
+      console.error(`[Luna] Error on ${instance.constructor.name}.${method}:`, error)
     }
   }
 
