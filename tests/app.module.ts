@@ -1,4 +1,4 @@
-import { Module } from '../src'
+import { Module } from '../packages/core'
 
 import { UserModule } from './user.module'
 

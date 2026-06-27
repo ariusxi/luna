@@ -1,4 +1,4 @@
-import { LunaFactory } from '../src'
+import { LunaFactory } from '../packages/core'
 
 import { AppModule } from './app.module'
 

@@ -9,19 +9,40 @@ export class LunaFactory {
   private static buildContexts(modules: Function[]): Map<Function, ModuleContext> {
     const contexts = new Map<Function, ModuleContext>()
 
+    // primeira passagem — cria os containers e registra os providers locais
     for (const moduleClass of modules) {
       const metadata = ModuleManager.get(moduleClass)
-      const container = new DependencyContainer()
+      const container = new DependencyContainer(moduleClass)
 
-      const moduleProviders = metadata?.providers ?? []
-      for (const provider of moduleProviders) {
+      for (const provider of metadata?.providers ?? []) {
         container.register(provider as any)
       }
 
-      container.boot()
+      contexts.set(moduleClass, {
+        container,
+        exports: metadata?.exports ?? [],
+      })
+    }
 
-      const exports = metadata?.exports ?? []
-      contexts.set(moduleClass, { container, exports })
+    // segunda passagem — registra nos containers os providers exportados pelos módulos importados
+    for (const moduleClass of modules) {
+      const metadata = ModuleManager.get(moduleClass)
+      const context = contexts.get(moduleClass)!
+
+      for (const importedModule of metadata?.imports ?? []) {
+        const importedContext = contexts.get(importedModule)
+        if (!importedContext) continue
+
+        for (const token of importedContext.exports) {
+          const provider = importedContext.container.getProvider(token)
+          if (provider) context.container.register(provider)
+        }
+      }
+    }
+
+    // terceira passagem — boot após todos os providers estarem registrados
+    for (const [, context] of contexts) {
+      context.container.boot()
     }
 
     return contexts

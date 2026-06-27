@@ -1,19 +1,4 @@
 {
-  "compilerOptions": {
-    "skipLibCheck": true,
-    "module": "commonjs",
-    "declaration": true,
-    "strictNullChecks": true,
-    "removeComments": false,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "allowSyntheticDefaultImports": true,
-    "target": "ES2019",
-    "sourceMap": true,
-    "outDir": "dist",
-    "esModuleInterop": true,
-    "types": ["node"]
-  },
-  "include": ["src/**/*", "tests/**/*"],
-  "exclude": []
+  "extends": "./tsconfig.base.json",
+  "include": ["tests/**/*", "packages/*/src/**/*"]
 }
