@@ -1,5 +1,5 @@
 {
-  "name": "@luna/core",
+  "name": "@lunafw/core",
   "version": "0.1.0",
   "description": "Core module system for the Luna framework",
   "main": "dist/index.cjs.js",
