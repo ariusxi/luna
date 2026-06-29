@@ -12,4 +12,13 @@ export const defineProvider = <T>(options: ProviderDefinitionOptions<T>): Provid
   provide: Symbol(),
   inject: options.inject?.map(normalizeToken),
   useFactory: options.useFactory,
+  when: options.when,
+})
+
+export const composeProviders = <T>(
+  inject: InjectableToken[],
+  useFactory: (...args: any[]) => T,
+): ProviderDefinitionFunction => defineProvider({
+  inject,
+  useFactory,
 })

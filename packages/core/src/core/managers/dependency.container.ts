@@ -21,6 +21,10 @@ export class DependencyContainer {
   }
 
   public register(provider: ProviderDefinition): void {
+    if ('when' in provider && typeof provider.when === 'function' && !provider.when()) {
+      return
+    }
+
     if (this.isClassProvider(provider) || this.isFactoryProvider(provider) || this.isValueProvider(provider)) {
       this.providers.set(provider.provide, provider)
       return
@@ -81,7 +85,8 @@ export class DependencyContainer {
   }
 
   public boot(): void {
-    for (const [token] of this.providers) {
+    for (const [token, provider] of this.providers) {
+      if ('lazy' in provider && provider.lazy) continue
       this.resolve(token)
     }
   }
