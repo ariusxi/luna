@@ -768,6 +768,11 @@
     "@jridgewell/resolve-uri" "^3.1.0"
     "@jridgewell/sourcemap-codec" "^1.4.14"
 
+"@lunafw/core@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@lunafw/core/-/core-1.1.0.tgz#5be7fb123e9431f585913a6c4930beabb322db83"
+  integrity sha512-+SKYwDkXkxxkzyiOozILRTsDw1ku8rg+zh2hENHxxAMr5WJSgdkEZ0g8DJANxlCoY2TcvTvIHyYjSY3HiUjdbg==
+
 "@napi-rs/wasm-runtime@^1.1.4":
   version "1.1.6"
   resolved "https://registry.yarnpkg.com/@napi-rs/wasm-runtime/-/wasm-runtime-1.1.6.tgz#ed33806d0f9be98dc76d0c3d4fd872fda701b5d5"
