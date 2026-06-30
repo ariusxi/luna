@@ -36,7 +36,15 @@ jobs:
       - name: Test
         run: yarn test
 
-      - name: Release
+      - name: Release @lunafw/core
+        working-directory: packages/core
+        run: npx semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Release @lunafw/common
+        working-directory: packages/common
         run: npx semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
