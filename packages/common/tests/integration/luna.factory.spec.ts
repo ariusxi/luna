@@ -3,12 +3,13 @@ import { Module, Injectable } from '@lunafw/core'
 import { LunaFactory } from '../../src/factory/luna.factory'
 import { LunaApplication } from '../../src/factory/luna.application'
 import { AbstractAdapter } from '../../src/types/adapter.abstract'
+import { HandlerMetadata } from '../../src/types/handler-metadata.interface'
 import { LunaHandler } from '../../src/types/handler.interface'
 
 class MockAdapter extends AbstractAdapter {
   public listening = false
   public closed = false
-  register(_handler: LunaHandler, _metadata: Record<string, unknown>): void {}
+  register(_handler: LunaHandler, _metadata: HandlerMetadata): void {}
   async listen() { this.listening = true }
   async close() { this.closed = true }
 }

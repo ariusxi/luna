@@ -1,13 +1,13 @@
 import { AbstractAdapter } from '../../src/types/adapter.abstract'
+import { HandlerMetadata } from '../../src/types/handler-metadata.interface'
 import { LunaHandler } from '../../src/types/handler.interface'
-import { LunaMessage } from '../../src/types/message.interface'
 
 class TestAdapter extends AbstractAdapter {
-  public registered: Array<{ handler: LunaHandler; metadata: Record<string, unknown> }> = []
+  public registered: Array<{ handler: LunaHandler; metadata: HandlerMetadata }> = []
   public listening = false
   public closed = false
 
-  register(handler: LunaHandler, metadata: Record<string, unknown>): void {
+  register(handler: LunaHandler, metadata: HandlerMetadata): void {
     this.registered.push({ handler, metadata })
   }
 
@@ -24,7 +24,7 @@ describe('AbstractAdapter', () => {
   it('can be extended and register is called with handler and metadata', () => {
     const adapter = new TestAdapter()
     const handler: LunaHandler = { handle: async () => 'ok' }
-    const metadata = { method: 'GET', path: '/users' }
+    const metadata: HandlerMetadata = { event: 'get', prefix: 'users', path: '/' }
 
     adapter.register(handler, metadata)
 
@@ -50,8 +50,8 @@ describe('AbstractAdapter', () => {
     const h1: LunaHandler = { handle: async () => 1 }
     const h2: LunaHandler = { handle: async () => 2 }
 
-    adapter.register(h1, { event: 'connect' })
-    adapter.register(h2, { event: 'message' })
+    adapter.register(h1, { event: 'get', prefix: 'users', path: '/' })
+    adapter.register(h2, { event: 'post', prefix: 'users', path: '/' })
 
     expect(adapter.registered).toHaveLength(2)
   })

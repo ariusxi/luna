@@ -1,16 +1,19 @@
 import { LunaApplication } from '../../src/factory/luna.application'
 import { AbstractAdapter } from '../../src/types/adapter.abstract'
+import { HandlerMetadata } from '../../src/types/handler-metadata.interface'
 import { LunaHandler } from '../../src/types/handler.interface'
 
 class MockCoreApplication {
   public started = false
   async start() { this.started = true }
+  getTokens() { return [] }
+  get<T>(_token: any): T { return {} as T }
 }
 
 class MockAdapter extends AbstractAdapter {
   public listening = false
   public closed = false
-  register(_handler: LunaHandler, _metadata: Record<string, unknown>): void {}
+  register(_handler: LunaHandler, _metadata: HandlerMetadata): void {}
   async listen() { this.listening = true }
   async close() { this.closed = true }
 }

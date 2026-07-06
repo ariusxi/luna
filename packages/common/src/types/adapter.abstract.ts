@@ -1,3 +1,4 @@
+import { HandlerMetadata } from './handler-metadata.interface'
 import { LunaHandler } from './handler.interface'
 
 /**
@@ -28,7 +29,7 @@ export abstract class AbstractAdapter {
    * @param handler - The handler instance to register.
    * @param metadata - Decorator-derived metadata describing how to route to this handler.
    */
-  public abstract register(handler: LunaHandler, metadata: Record<string, unknown>): void
+  public abstract register(handler: LunaHandler, metadata: HandlerMetadata): void
 
   /**
    * Starts the adapter and begins accepting incoming messages.

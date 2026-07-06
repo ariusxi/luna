@@ -46,6 +46,17 @@ export class LunaApplication {
    * const userService = app.get(UserService)
    * const apiKey = app.get<string>('API_KEY')
    */
+  /**
+   * Returns all registered tokens in the root module's container.
+   *
+   * Used by `@lunafw/common` to scan for controllers and register handlers
+   * with protocol adapters during application bootstrap.
+   */
+  public getTokens(): Token[] {
+    const context = this.contexts.get(this.rootModule)!
+    return context.container.getTokens()
+  }
+
   public get<T>(token: Token): T {
     const context = this.contexts.get(this.rootModule)!
     return context.container.resolve<T>(token)

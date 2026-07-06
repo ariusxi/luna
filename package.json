@@ -10,6 +10,7 @@
   "author": "Alef Felix",
   "license": "MIT",
   "scripts": {
+    "start:dev": "ts-node tests/main.ts",
     "build": "yarn workspaces run build",
     "test": "yarn workspaces run test",
     "test:coverage": "yarn workspaces run test:coverage"

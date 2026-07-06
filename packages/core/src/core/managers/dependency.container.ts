@@ -84,6 +84,10 @@ export class DependencyContainer {
     return instance
   }
 
+  public getTokens(): Token[] {
+    return Array.from(this.providers.keys())
+  }
+
   public boot(): void {
     for (const [token, provider] of this.providers) {
       if ('lazy' in provider && provider.lazy) continue
