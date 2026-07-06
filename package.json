@@ -11,7 +11,7 @@
   "license": "MIT",
   "scripts": {
     "start:dev": "ts-node tests/main.ts",
-    "build": "yarn workspaces run build",
+    "build": "yarn workspace @lunafw/core build && yarn workspace @lunafw/common build && yarn workspace @lunafw/platform-express build",
     "test": "yarn workspaces run test",
     "test:coverage": "yarn workspaces run test:coverage"
   },
