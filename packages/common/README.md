@@ -261,12 +261,117 @@ export class PostController {
 
 Execution order: **controller interceptors → method interceptors → handler → method interceptors (return) → controller interceptors (return)**.
 
+## Exception Filters
+
+Filters catch exceptions thrown by any stage of the pipeline and convert them into a response. Use `@Catch` to declare which exception types a filter handles. Omit the argument for a catch-all.
+
+```ts
+import { Injectable } from '@lunafw/core'
+import { Catch, LunaExceptionFilter, LunaMessage, UseFilters } from '@lunafw/common'
+import { NotFoundException } from '@lunafw/platform-express'
+
+class UserNotFoundError extends Error {}
+
+@Catch(UserNotFoundError)
+@Injectable()
+export class UserNotFoundFilter implements LunaExceptionFilter<UserNotFoundError> {
+  catch(exception: UserNotFoundError, _message: LunaMessage) {
+    // throw an HttpException to control HTTP status code
+    throw new NotFoundException(exception.message)
+  }
+}
+
+@UseFilters(UserNotFoundFilter)
+@Controller('users')
+export class UserController {
+  @UseFilters(new UserNotFoundFilter())  // instance also accepted
+  @On('get', '/:id')
+  findOne(message: LunaMessage) { ... }
+}
+```
+
+Filter lookup order for a request: **method filters → controller filters → global filters**. The first matching filter wins.
+
+## Parameter decorators
+
+Inject specific values from `LunaMessage` directly into handler parameters instead of accessing the message manually.
+
+```ts
+import { Body, Headers, Message, Param, Query } from '@lunafw/common'
+
+@On('get', '/:id')
+findOne(
+  @Param('id') id: string,           // message.metadata.params.id
+  @Query('expand') expand: string,   // message.metadata.query.expand
+  @Headers('authorization') token: string, // message.metadata.headers.authorization
+) { ... }
+
+@On('post', '/')
+create(
+  @Body() dto: CreateUserDto,   // full message.payload
+  @Body('name') name: string,   // message.payload.name
+) { ... }
+
+@On('delete', '/:id')
+remove(@Param('id') id: string, @Message() message: LunaMessage) { ... }
+```
+
+When no parameter decorators are used the full `LunaMessage` is passed as the first argument (backward-compatible).
+
+## Global middleware
+
+Apply guards, pipes, interceptors, and filters to every route without decorating each controller.
+
+```ts
+const app = await LunaFactory.createApplication(AppModule, adapter)
+app
+  .useGlobalGuards(new AuthGuard())
+  .useGlobalPipes(new ValidationPipe())
+  .useGlobalInterceptors(new LoggingInterceptor())
+  .useGlobalFilters(new DomainExceptionFilter())
+await app.start()
+```
+
+Execution order: **global → controller → method** for each stage.
+
+## @SetMetadata + Reflector
+
+Attach arbitrary metadata to a class or method and read it inside guards, interceptors, or filters.
+
+```ts
+import { SetMetadata } from '@lunafw/common'
+
+// define a shorthand decorator
+const Roles = (...roles: string[]) => SetMetadata('roles', roles)
+
+@Roles('admin')
+@On('delete', '/:id')
+remove(message: LunaMessage) { ... }
+```
+
+```ts
+import { Injectable } from '@lunafw/core'
+import { LunaGuard, LunaMessage, Reflector } from '@lunafw/common'
+
+@Injectable()
+export class RolesGuard implements LunaGuard {
+  constructor(private readonly reflector: Reflector) {}
+
+  canActivate(message: LunaMessage): boolean {
+    // read from method first, fall back to class
+    const roles = this.reflector.getWithFallback<string[]>('roles', /* prototype */, 'methodName')
+    return roles?.includes('admin') ?? true
+  }
+}
+```
+
 ## Middleware pipeline
 
 For every incoming request the pipeline runs in this order:
 
 ```
 Guards → Pipes → Interceptors → Handler
+                                        ↑ Exception Filters wrap everything
 ```
 
 ## License

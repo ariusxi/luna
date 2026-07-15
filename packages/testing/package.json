@@ -1,0 +1,31 @@
+{
+  "name": "@lunafw/testing",
+  "version": "0.1.0",
+  "description": "Testing utilities for the Luna framework",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/index.cjs.js",
+      "import": "./dist/index.esm.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "rollup -c",
+    "build:watch": "rollup -c --watch",
+    "test": "jest",
+    "test:coverage": "jest --coverage"
+  },
+  "peerDependencies": {
+    "@lunafw/common": "*",
+    "@lunafw/core": "*",
+    "reflect-metadata": "^0.2.2"
+  },
+  "devDependencies": {
+    "@types/jest": "^30.0.0",
+    "jest": "^30.4.2",
+    "ts-jest": "^29.4.11"
+  }
+}
