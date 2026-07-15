@@ -7,7 +7,7 @@ class MockCoreApplication {
   public started = false
   async start() { this.started = true }
   getTokens() { return [] }
-  get<T>(_token: any): T { return {} as T }
+  get<T>(_token: unknown): T { return {} as T }
 }
 
 class MockAdapter extends AbstractAdapter {

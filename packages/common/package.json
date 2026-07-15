@@ -1,7 +1,7 @@
 {
   "name": "@lunafw/common",
   "version": "0.1.0",
-  "description": "Common abstractions and factory for the Luna framework",
+  "description": "Common abstractions, decorators, guards, pipes and interceptors for the Luna framework",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
@@ -38,7 +38,25 @@
   "publishConfig": {
     "access": "public"
   },
+  "keywords": [
+    "luna",
+    "lunafw",
+    "framework",
+    "backend",
+    "typescript",
+    "decorators",
+    "guards",
+    "pipes",
+    "interceptors",
+    "controller",
+    "protocol-agnostic",
+    "reflect-metadata"
+  ],
   "license": "MIT",
+  "author": "Alef Felix <alef.developerweb@gmail.com>",
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "dependencies": {
     "@lunafw/core": "*"
   },

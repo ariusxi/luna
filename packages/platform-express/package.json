@@ -44,7 +44,25 @@
   "publishConfig": {
     "access": "public"
   },
+  "keywords": [
+    "luna",
+    "lunafw",
+    "framework",
+    "backend",
+    "typescript",
+    "express",
+    "http",
+    "adapter",
+    "rest",
+    "routing",
+    "http-exceptions",
+    "reflect-metadata"
+  ],
   "license": "MIT",
+  "author": "Alef Felix <alef.developerweb@gmail.com>",
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "homepage": "https://github.com/ariusxi/luna#readme",
   "repository": {
     "type": "git",

@@ -1,11 +1,25 @@
 import { Server } from 'http'
 import express, { Application, Request, Response, Router } from 'express'
-import { AbstractAdapter, HandlerMetadata, LunaHandler } from '@lunafw/common'
+import { AbstractAdapter, GuardRejectionError, HandlerMetadata, LunaHandler } from '@lunafw/common'
 
 import { ExpressAdapterOptions, ExpressHandler } from '../types'
 import { HttpException } from '../exceptions'
 import { HttpMethod } from '../types/http-method.type'
 
+/**
+ * HTTP adapter for Luna based on Express.
+ *
+ * Translates incoming HTTP requests into `LunaMessage` instances, dispatches
+ * them to the registered handlers, and writes the response back to the client.
+ *
+ * HTTP exceptions (`HttpException` subclasses) thrown from handlers are mapped
+ * to the appropriate HTTP status codes. Guard rejections become 401. Any other
+ * unhandled error becomes 500.
+ *
+ * @example
+ * const app = await LunaFactory.createApplication(AppModule, new ExpressAdapter({ port: 3000 }))
+ * await app.start()
+ */
 export class ExpressAdapter extends AbstractAdapter {
   private server?: Server
   private handlers: ExpressHandler[] = []
@@ -16,10 +30,23 @@ export class ExpressAdapter extends AbstractAdapter {
     this.app.use(express.json())
   }
 
+  /**
+   * Queues a handler for registration.
+   *
+   * Routes are not mounted until `listen()` is called so that all handlers are
+   * registered before the Express application starts accepting requests.
+   */
   public register(handler: LunaHandler, metadata: HandlerMetadata): void {
     this.handlers.push({ handler, metadata })
   }
 
+  /**
+   * Mounts all queued routes and starts the HTTP server.
+   *
+   * Each handler is mounted under `/<prefix><path>` using the `event` value as
+   * the Express HTTP method. After all routes are mounted the server begins
+   * accepting connections on the configured port.
+   */
   public async listen(): Promise<void> {
     for (const { handler, metadata } of this.handlers) {
       const { event, prefix, path } = metadata
@@ -44,7 +71,13 @@ export class ExpressAdapter extends AbstractAdapter {
               statusCode: error.statusCode,
               message: error.message,
             })
-          } 
+          }
+          if (error instanceof GuardRejectionError) {
+            return response.status(401).json({
+              statusCode: 401,
+              message: 'Unauthorized',
+            })
+          }
           return response.status(500).json({
             statusCode: 500,
             message: 'Internal Server Error',
@@ -62,6 +95,13 @@ export class ExpressAdapter extends AbstractAdapter {
     })
   }
 
+  /**
+   * Returns the TCP port the server is currently bound to.
+   *
+   * Useful when the adapter was created with `port: 0` (OS-assigned port).
+   *
+   * @throws {Error} If the server has not started yet.
+   */
   public getPort(): number {
     const address = this.server?.address()
     if (!address || typeof address === 'string') {
@@ -70,10 +110,12 @@ export class ExpressAdapter extends AbstractAdapter {
     return address.port
   }
 
+  /** Returns the list of handlers registered so far (before or after `listen()`). */
   public getHandlers(): ExpressHandler[] {
     return this.handlers
   }
 
+  /** Closes the HTTP server and releases the port. */
   public async close(): Promise<void> {
     this.server?.close()
     await new Promise<void>((resolve, reject) => {

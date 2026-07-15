@@ -51,6 +51,10 @@ export class LunaApplication {
     }
   }
 
+  /**
+   * Resolves instances of the given classes from the DI container, falling back
+   * to direct instantiation when a class is not registered as a provider.
+   */
   private resolve<T>(classes: ClassConstructor<T>[]): T[] {
     return classes.map((Cls) => {
       try {
@@ -61,6 +65,10 @@ export class LunaApplication {
     })
   }
 
+  /**
+   * Builds a `LunaHandler` that runs the full middleware pipeline for one
+   * controller method: guards → pipes → interceptors → handler.
+   */
   private buildHandler(
     instance: Record<string, (message: LunaMessage) => unknown>,
     methodName: string,
@@ -104,6 +112,11 @@ export class LunaApplication {
     }
   }
 
+  /**
+   * Scans all DI tokens for `@Controller`-decorated classes, reads their `@On`
+   * handler methods, collects guard/pipe/interceptor metadata, and registers
+   * one `LunaHandler` per method on every adapter.
+   */
   private registerControllers(): void {
     const tokens = this.core.getTokens()
 
