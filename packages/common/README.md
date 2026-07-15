@@ -105,10 +105,27 @@ export class AuthGuard implements LunaGuard {
 @UseGuards(AuthGuard)
 @Controller('users')
 export class UserController {
+  // class resolved via DI
   @UseGuards(RolesGuard)
   @On('delete', '/:id')
   remove(message: LunaMessage) { ... }
 }
+```
+
+Guards also accept pre-built **instances**, which is useful when the guard needs configuration:
+
+```ts
+export class RolesGuard implements LunaGuard {
+  constructor(private readonly role: string) {}
+  canActivate(message: LunaMessage): boolean {
+    const headers = message.metadata.headers as Record<string, string>
+    return headers['x-role'] === this.role
+  }
+}
+
+@UseGuards(new RolesGuard('admin'))
+@On('delete', '/:id')
+remove(message: LunaMessage) { ... }
 ```
 
 Execution order: **controller guards → method guards**.
@@ -139,6 +156,81 @@ export class ItemController {
 ```
 
 Execution order: **controller pipes → method pipes**.
+
+### Zod validation
+
+```ts
+import { z, ZodSchema } from 'zod'
+import { LunaMessage, LunaPipe, UsePipes } from '@lunafw/common'
+import { BadRequestException } from '@lunafw/platform-express'
+
+class ZodPipe<T> implements LunaPipe {
+  constructor(private readonly schema: ZodSchema<T>) {}
+
+  transform(message: LunaMessage): LunaMessage {
+    const result = this.schema.safeParse(message.payload)
+    if (!result.success) {
+      throw new BadRequestException(result.error.issues[0]?.message ?? 'Validation failed')
+    }
+    return { ...message, payload: result.data }
+  }
+}
+
+const CreatePostSchema = z.object({
+  title: z.string().min(3),
+  body: z.string().min(1),
+})
+
+@Controller('posts')
+export class PostController {
+  // instance passed directly — schema available at decoration time
+  @UsePipes(new ZodPipe(CreatePostSchema))
+  @On('post', '/')
+  create(message: LunaMessage) {
+    return message.payload  // already validated and typed
+  }
+}
+```
+
+### class-validator / class-transformer validation
+
+```ts
+import { plainToInstance } from 'class-transformer'
+import { IsString, MinLength, validateOrReject } from 'class-validator'
+import { LunaMessage, LunaPipe, UsePipes } from '@lunafw/common'
+import { BadRequestException } from '@lunafw/platform-express'
+
+class ClassValidatorPipe<T extends object> implements LunaPipe {
+  constructor(private readonly cls: new () => T) {}
+
+  async transform(message: LunaMessage): Promise<LunaMessage> {
+    const instance = plainToInstance(this.cls, message.payload)
+    try {
+      await validateOrReject(instance)
+    } catch (errors) {
+      const first = (errors as { constraints?: Record<string, string> }[])[0]
+      const msg = Object.values(first?.constraints ?? {})[0] ?? 'Validation failed'
+      throw new BadRequestException(msg)
+    }
+    return { ...message, payload: instance }
+  }
+}
+
+class CreateUserDto {
+  @IsString()
+  @MinLength(3)
+  name!: string
+}
+
+@Controller('users')
+export class UserController {
+  @UsePipes(new ClassValidatorPipe(CreateUserDto))
+  @On('post', '/')
+  create(message: LunaMessage) {
+    return message.payload
+  }
+}
+```
 
 ## Interceptors
 

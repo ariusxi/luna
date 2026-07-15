@@ -5,9 +5,7 @@ import { ON_METADATA } from '../decorators/on.decorator'
 import { GuardRejectionError, LunaGuard, USE_GUARDS_METADATA } from '../guards'
 import { LunaExecutionContext, LunaInterceptor, USE_INTERCEPTORS_METADATA } from '../interceptors'
 import { LunaPipe, USE_PIPES_METADATA } from '../pipes'
-import { AbstractAdapter, HandlerMetadata, LunaHandler, LunaMessage } from '../types'
-
-type ClassConstructor<T> = new (...args: unknown[]) => T
+import { AbstractAdapter, ClassConstructor, ClassOrInstance, HandlerMetadata, LunaHandler, LunaMessage } from '../types'
 
 /**
  * The running Luna application instance returned by `LunaFactory.createApplication`.
@@ -52,16 +50,23 @@ export class LunaApplication {
   }
 
   /**
-   * Resolves instances of the given classes from the DI container, falling back
-   * to direct instantiation when a class is not registered as a provider.
+   * Resolves a list of `ClassOrInstance` values into live instances.
+   *
+   * - **Instance** — returned as-is; no DI lookup or instantiation.
+   * - **Class** — resolved from the DI container; falls back to `new Class()`
+   *   when the class is not registered as a provider.
    */
-  private resolve<T>(classes: ClassConstructor<T>[]): T[] {
-    return classes.map((Cls) => {
-      try {
-        return this.core.get<T>(Cls)
-      } catch {
-        return new Cls()
+  private resolve<T>(items: ClassOrInstance<T>[]): T[] {
+    return items.map((item) => {
+      if (typeof item === 'function') {
+        const Cls = item as ClassConstructor<T>
+        try {
+          return this.core.get<T>(Cls)
+        } catch {
+          return new Cls()
+        }
       }
+      return item as T
     })
   }
 
@@ -72,12 +77,12 @@ export class LunaApplication {
   private buildHandler(
     instance: Record<string, (message: LunaMessage) => unknown>,
     methodName: string,
-    controllerGuards: ClassConstructor<LunaGuard>[],
-    methodGuards: ClassConstructor<LunaGuard>[],
-    controllerPipes: ClassConstructor<LunaPipe>[],
-    methodPipes: ClassConstructor<LunaPipe>[],
-    controllerInterceptors: ClassConstructor<LunaInterceptor>[],
-    methodInterceptors: ClassConstructor<LunaInterceptor>[],
+    controllerGuards: ClassOrInstance<LunaGuard>[],
+    methodGuards: ClassOrInstance<LunaGuard>[],
+    controllerPipes: ClassOrInstance<LunaPipe>[],
+    methodPipes: ClassOrInstance<LunaPipe>[],
+    controllerInterceptors: ClassOrInstance<LunaInterceptor>[],
+    methodInterceptors: ClassOrInstance<LunaInterceptor>[],
   ): LunaHandler {
     const guards = this.resolve<LunaGuard>([...controllerGuards, ...methodGuards])
     const pipes = this.resolve<LunaPipe>([...controllerPipes, ...methodPipes])
@@ -129,22 +134,22 @@ export class LunaApplication {
       const instance = this.core.get<Record<string, (message: LunaMessage) => unknown>>(token)
       const prototype = Object.getPrototypeOf(instance) as object
 
-      const controllerGuards: ClassConstructor<LunaGuard>[] =
+      const controllerGuards: ClassOrInstance<LunaGuard>[] =
         Reflect.getMetadata(USE_GUARDS_METADATA, token) ?? []
-      const controllerPipes: ClassConstructor<LunaPipe>[] =
+      const controllerPipes: ClassOrInstance<LunaPipe>[] =
         Reflect.getMetadata(USE_PIPES_METADATA, token) ?? []
-      const controllerInterceptors: ClassConstructor<LunaInterceptor>[] =
+      const controllerInterceptors: ClassOrInstance<LunaInterceptor>[] =
         Reflect.getMetadata(USE_INTERCEPTORS_METADATA, token) ?? []
 
       for (const methodName of Object.getOwnPropertyNames(prototype)) {
         const onMetadata = Reflect.getMetadata(ON_METADATA, prototype, methodName) as { event: string; path: string } | undefined
         if (!onMetadata) continue
 
-        const methodGuards: ClassConstructor<LunaGuard>[] =
+        const methodGuards: ClassOrInstance<LunaGuard>[] =
           Reflect.getMetadata(USE_GUARDS_METADATA, prototype, methodName) ?? []
-        const methodPipes: ClassConstructor<LunaPipe>[] =
+        const methodPipes: ClassOrInstance<LunaPipe>[] =
           Reflect.getMetadata(USE_PIPES_METADATA, prototype, methodName) ?? []
-        const methodInterceptors: ClassConstructor<LunaInterceptor>[] =
+        const methodInterceptors: ClassOrInstance<LunaInterceptor>[] =
           Reflect.getMetadata(USE_INTERCEPTORS_METADATA, prototype, methodName) ?? []
 
         const metadata: HandlerMetadata = {

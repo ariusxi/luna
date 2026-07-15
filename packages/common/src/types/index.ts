@@ -1,4 +1,5 @@
 export * from './adapter.abstract'
+export * from './class-or-instance.type'
 export * from './handler.interface'
 export * from './handler-metadata.interface'
 export * from './message.interface'
