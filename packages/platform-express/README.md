@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="../../.github/assets/logo.png" width="120" alt="Luna Logo" />
+  <img src="https://raw.githubusercontent.com/ariusxi/luna/main/.github/assets/logo.png" width="120" alt="Luna Logo" />
 </p>
 
 <h1 align="center">@lunafw/platform-express</h1>
