@@ -37,5 +37,14 @@
   "publishConfig": {
     "access": "public"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "homepage": "https://github.com/ariusxi/luna#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ariusxi/luna.git",
+    "directory": "packages/core"
+  },
+  "bugs": {
+    "url": "https://github.com/ariusxi/luna/issues"
+  }
 }
