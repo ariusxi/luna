@@ -3,6 +3,12 @@ import { LunaFactory as CoreFactory } from '@lunafw/core'
 import { AbstractAdapter } from '../types'
 import { LunaApplication } from './luna.application'
 
+/**
+ * Entry point for bootstrapping a Luna application with one or more protocol adapters.
+ *
+ * Delegates DI container creation to `@lunafw/core` and wraps the result in a
+ * `LunaApplication` that manages the adapter lifecycle.
+ */
 export class LunaFactory {
   /**
    * Bootstraps a Luna application with one or more protocol adapters.

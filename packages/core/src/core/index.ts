@@ -1,3 +1,5 @@
 export * from './decorators'
+export * from './handlers'
 export * from './managers'
 export * from './providers'
+export * from './types'

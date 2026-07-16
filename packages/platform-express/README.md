@@ -10,7 +10,7 @@
 
 <p align="center">
   <a href="https://www.npmjs.com/package/@lunafw/platform-express" target="_blank"><img src="https://img.shields.io/npm/v/@lunafw/platform-express?color=7c3aed" alt="npm version" /></a>
-  <a href="https://github.com/ariusxi/luna/blob/main/LICENSE" target="_blank"><img src="https://img.shields.io/npm/l/@lunafw/common" alt="License" /></a>
+  <a href="https://github.com/ariusxi/luna/blob/main/LICENSE" target="_blank"><img src="https://img.shields.io/npm/l/@lunafw/platform-express" alt="License" /></a>
 </p>
 
 ## Installation
@@ -72,21 +72,34 @@ export class UserController {
 
 ## HTTP Exceptions
 
+Throw any exception subclass from a handler and the adapter maps it to the correct HTTP status automatically.
+
 ```ts
 import {
   BadRequestException,          // 400
   UnauthorizedException,        // 401
   ForbiddenException,           // 403
   NotFoundException,            // 404
+  MethodNotAllowedException,    // 405
+  RequestTimeoutException,      // 408
   ConflictException,            // 409
+  GoneException,                // 410
   UnprocessableEntityException, // 422
   TooManyRequestsException,     // 429
   InternalServerErrorException, // 500
+  NotImplementedException,      // 501
   ServiceUnavailableException,  // 503
 } from '@lunafw/platform-express'
 
 throw new NotFoundException('User not found')
 // → 404 { statusCode: 404, message: 'User not found' }
+```
+
+All exceptions accept an optional custom message:
+
+```ts
+throw new ConflictException('Email already in use')
+// → 409 { statusCode: 409, message: 'Email already in use' }
 ```
 
 ### Custom Exceptions
@@ -99,6 +112,24 @@ export class PaymentRequiredException extends HttpException {
     super(402, message)
   }
 }
+```
+
+## API
+
+### `new ExpressAdapter(options)`
+
+| Option | Type | Description |
+|--------|------|-------------|
+| `port` | `number` | Port to listen on. Pass `0` to let the OS assign a free port. |
+
+### `adapter.getPort(): number`
+
+Returns the TCP port the server is currently bound to. Useful when `port: 0` was passed.
+
+```ts
+const adapter = new ExpressAdapter({ port: 0 })
+await app.start()
+console.log(adapter.getPort()) // e.g. 54321
 ```
 
 ## License

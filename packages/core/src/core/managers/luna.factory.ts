@@ -4,6 +4,21 @@ import { LunaApplication } from './luna.application'
 import { ModuleManager } from './module.manager'
 import { ModuleScanner } from './module.scanner'
 
+/**
+ * Entry point for bootstrapping a Luna application from the `@lunafw/core` level.
+ *
+ * Scans the module tree, builds per-module DI containers, propagates exported
+ * providers across module boundaries, and returns a `LunaApplication`.
+ *
+ * In most setups you will use `LunaFactory` from `@lunafw/common` instead,
+ * which wraps this and adds protocol adapter management.
+ *
+ * @example
+ * import { LunaFactory } from '@lunafw/core'
+ *
+ * const app = await LunaFactory.create(AppModule)
+ * await app.start()
+ */
 export class LunaFactory {
 
   private static buildContexts(modules: Function[]): Map<Function, ModuleContext> {

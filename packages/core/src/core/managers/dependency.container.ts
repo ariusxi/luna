@@ -2,8 +2,20 @@ import { ClassProvider, FactoryProvider, ProviderDefinition, ProviderScope, Toke
 import { LifecycleManager } from './lifecycle.manager'
 import { DependencyResolutionError } from '../handlers'
 
+/**
+ * IoC container for a single Luna module.
+ *
+ * Stores provider definitions and resolves them on demand, handling singleton
+ * scoping, transient instantiation, value providers, and factory providers.
+ * Lifecycle hooks are registered on every class instance that is created here.
+ *
+ * Consumers should not use this class directly — interact with the container
+ * through `LunaApplication.get()` and `LunaApplication.inspect()`.
+ */
 export class DependencyContainer {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private readonly providers = new Map<Token, ProviderDefinition>()
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private readonly instances = new Map<Token, any>()
 
   constructor(private readonly moduleClass: Function) {}
@@ -20,6 +32,15 @@ export class DependencyContainer {
     return typeof provider === 'object' && 'useValue' in provider
   }
 
+  /**
+   * Registers a provider definition in this container.
+   *
+   * Supports class constructors decorated with `@Injectable`, as well as
+   * `ClassProvider`, `FactoryProvider`, and `ValueProvider` objects.
+   * Providers with a failing `when()` guard are silently skipped.
+   *
+   * @throws {Error} If a plain class is passed that is not decorated with `@Injectable`.
+   */
   public register(provider: ProviderDefinition): void {
     if ('when' in provider && typeof provider.when === 'function' && !provider.when()) {
       return
@@ -37,10 +58,26 @@ export class DependencyContainer {
     this.providers.set(provider, provider)
   }
 
+  /**
+   * Returns the raw provider definition for `token`, or `undefined` if not
+   * registered. Prefer `resolve()` to get a live instance.
+   */
   public getProvider(token: Token): ProviderDefinition | undefined {
     return this.providers.get(token)
   }
 
+  /**
+   * Resolves a provider to a live instance.
+   *
+   * For singleton-scoped classes the same instance is returned on every call.
+   * Transient classes produce a new instance each time. Factory and value
+   * providers follow their own semantics.
+   *
+   * @param token        - The token to resolve.
+   * @param dependencyOf - The token that triggered this resolution (used in error messages).
+   * @throws {DependencyResolutionError} If the token is not registered.
+   */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public resolve<T>(token: Token, dependencyOf?: Token): T {
     if (!this.providers.has(token)) {
       throw new DependencyResolutionError(token, this.moduleClass, dependencyOf)
@@ -58,23 +95,25 @@ export class DependencyContainer {
 
       const injections = provider.inject ?? []
       const dependencies = injections.map((dependency) => this.resolve(dependency, token))
-      const instance = provider.useFactory(...dependencies)
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const instance = (provider.useFactory as (...args: any[]) => T)(...dependencies)
 
       this.instances.set(token, instance)
-      
       return instance
     }
 
-    const Token = this.isClassProvider(provider) ? provider.useClass : provider as new (...args: any[]) => T
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const Cls = this.isClassProvider(provider) ? provider.useClass : provider as new (...args: any[]) => T
 
-    const scope = Reflect.getMetadata('luna:scope', Token)
+    const scope = Reflect.getMetadata('luna:scope', Cls)
     if (existing && scope === ProviderScope.Singleton) return existing
 
-    const injectTokens = Reflect.getMetadata('luna:inject', Token) ?? []
-    const dependencies = Reflect.getMetadata('design:paramtypes', Token) ?? []
-    const params = dependencies.map((dependency: any, index: number) => this.resolve(injectTokens[index] ?? dependency, token))
+    const injectTokens: Token[] = Reflect.getMetadata('luna:inject', Cls) ?? []
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const dependencies: any[] = Reflect.getMetadata('design:paramtypes', Cls) ?? []
+    const params = dependencies.map((dep, index: number) => this.resolve(injectTokens[index] ?? dep, token))
 
-    const instance = new Token(...params)
+    const instance = new Cls(...params)
     LifecycleManager.registerInstance(instance)
 
     if (scope === ProviderScope.Singleton) {
@@ -84,10 +123,15 @@ export class DependencyContainer {
     return instance
   }
 
+  /** Returns all registered tokens in this container. */
   public getTokens(): Token[] {
     return Array.from(this.providers.keys())
   }
 
+  /**
+   * Eagerly instantiates all non-lazy providers in registration order.
+   * Called automatically during application bootstrap.
+   */
   public boot(): void {
     for (const [token, provider] of this.providers) {
       if ('lazy' in provider && provider.lazy) continue
@@ -95,21 +139,29 @@ export class DependencyContainer {
     }
   }
 
+  /**
+   * Returns the dependency tree of a registered provider without instantiating anything.
+   * Useful for debugging the injection graph.
+   *
+   * @param token - The token to inspect.
+   */
   public inspect(token: Token): object {
     const provider = this.providers.get(token)
     if (!provider) return { name: String(token), dependencies: [] }
 
-    const Token = this.isClassProvider(provider)
+    const Cls = this.isClassProvider(provider)
       ? provider.useClass
       : typeof provider === 'function'
         ? provider
         : null
 
-    if (!Token) return { name: String(token), dependencies: [] }
+    if (!Cls) return { name: String(token), dependencies: [] }
 
-    const dependencies = Reflect.getMetadata('design:paramtypes', Token) ?? []
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const dependencies: any[] = Reflect.getMetadata('design:paramtypes', Cls) ?? []
     return {
-      name: Token.name,
+      name: Cls.name,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       dependencies: dependencies.map((dep: any) => this.inspect(dep)),
     }
   }

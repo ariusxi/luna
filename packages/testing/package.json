@@ -1,7 +1,7 @@
 {
   "name": "@lunafw/testing",
   "version": "0.1.0",
-  "description": "Testing utilities for the Luna framework",
+  "description": "Testing utilities for the Luna framework — DI resolution and in-memory handler dispatch without a server",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
@@ -18,14 +18,51 @@
     "test": "jest",
     "test:coverage": "jest --coverage"
   },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "luna",
+    "lunafw",
+    "framework",
+    "testing",
+    "typescript",
+    "test-utilities",
+    "unit-testing",
+    "dependency-injection",
+    "mock",
+    "reflect-metadata"
+  ],
+  "author": "Alef Felix <alef.developerweb@gmail.com>",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "homepage": "https://github.com/ariusxi/luna#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ariusxi/luna.git",
+    "directory": "packages/testing"
+  },
+  "bugs": {
+    "url": "https://github.com/ariusxi/luna/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "peerDependencies": {
     "@lunafw/common": "*",
     "@lunafw/core": "*",
     "reflect-metadata": "^0.2.2"
   },
   "devDependencies": {
+    "@rollup/plugin-typescript": "^12.1.4",
     "@types/jest": "^30.0.0",
     "jest": "^30.4.2",
-    "ts-jest": "^29.4.11"
+    "rollup": "^4.41.1",
+    "rollup-plugin-dts": "^5.3.1",
+    "ts-jest": "^29.4.11",
+    "tslib": "^2.8.1",
+    "typescript": "^6.0.3"
   }
 }

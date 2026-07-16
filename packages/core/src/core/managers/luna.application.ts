@@ -1,6 +1,16 @@
 import { ModuleContext, Token } from '../types'
 import { LifecycleManager } from './lifecycle.manager'
 
+/**
+ * The running application instance returned by `LunaFactory.create()`.
+ *
+ * Provides access to the DI container for resolving providers, and manages
+ * the application lifecycle (startup hooks, graceful shutdown on OS signals).
+ *
+ * In most cases you will not use `LunaApplication` from `@lunafw/core` directly.
+ * `@lunafw/common`'s `LunaFactory.createApplication()` wraps it and adds adapter
+ * management, returning its own `LunaApplication` that exposes `start()` and `close()`.
+ */
 export class LunaApplication {
   constructor(
     private readonly contexts: Map<Function, ModuleContext>,
@@ -46,6 +56,11 @@ export class LunaApplication {
    * const userService = app.get(UserService)
    * const apiKey = app.get<string>('API_KEY')
    */
+  public get<T>(token: Token): T {
+    const context = this.contexts.get(this.rootModule)!
+    return context.container.resolve<T>(token)
+  }
+
   /**
    * Returns all registered tokens in the root module's container.
    *
@@ -55,11 +70,6 @@ export class LunaApplication {
   public getTokens(): Token[] {
     const context = this.contexts.get(this.rootModule)!
     return context.container.getTokens()
-  }
-
-  public get<T>(token: Token): T {
-    const context = this.contexts.get(this.rootModule)!
-    return context.container.resolve<T>(token)
   }
 
   /**

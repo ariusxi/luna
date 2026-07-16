@@ -1,7 +1,7 @@
 {
   "name": "@lunafw/platform-ws",
   "version": "0.1.0",
-  "description": "WebSocket adapter for the Luna framework",
+  "description": "WebSocket adapter for the Luna framework — protocol-agnostic WS routing over the ws library",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
@@ -17,6 +17,39 @@
     "build:watch": "rollup -c --watch",
     "test": "jest",
     "test:coverage": "jest --coverage"
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "luna",
+    "lunafw",
+    "framework",
+    "backend",
+    "typescript",
+    "websocket",
+    "ws",
+    "adapter",
+    "real-time",
+    "protocol-agnostic",
+    "reflect-metadata"
+  ],
+  "author": "Alef Felix <alef.developerweb@gmail.com>",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "homepage": "https://github.com/ariusxi/luna#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ariusxi/luna.git",
+    "directory": "packages/platform-ws"
+  },
+  "bugs": {
+    "url": "https://github.com/ariusxi/luna/issues"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "peerDependencies": {
     "@lunafw/common": "*",
