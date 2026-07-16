@@ -359,7 +359,13 @@ export class RolesGuard implements LunaGuard {
 
   canActivate(message: LunaMessage): boolean {
     // read from method first, fall back to class
-    const roles = this.reflector.getWithFallback<string[]>('roles', /* prototype */, 'methodName')
+    // prototype and handler name come from LunaExecutionContext in an interceptor,
+    // or can be obtained via Object.getPrototypeOf(controllerInstance)
+    const roles = this.reflector.getWithFallback<string[]>(
+      'roles',
+      Object.getPrototypeOf(this),
+      'remove',
+    )
     return roles?.includes('admin') ?? true
   }
 }

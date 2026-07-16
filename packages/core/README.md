@@ -80,6 +80,22 @@ import { Injectable, ProviderScope } from '@lunafw/core'
 export class AppModule {}
 ```
 
+### @Inject
+
+Use `@Inject` when a dependency token is a string or symbol (cases where TypeScript cannot infer the type automatically):
+
+```ts
+import { Inject, Injectable } from '@lunafw/core'
+
+@Injectable()
+export class UserController {
+  constructor(
+    private readonly userService: UserService,           // resolved by type
+    @Inject('API_KEY') private readonly apiKey: string,  // resolved by token
+  ) {}
+}
+```
+
 ### Functional Providers
 
 ```ts
@@ -105,6 +121,31 @@ defineProvider({
   useFactory: () => new HeavyService(),
   lazy: true,
 })
+```
+
+## Error handling
+
+`DependencyResolutionError` is thrown when a provider token cannot be resolved (missing registration, circular dependency, etc.):
+
+```ts
+import { DependencyResolutionError } from '@lunafw/core'
+
+try {
+  const service = app.get(UnregisteredService)
+} catch (e) {
+  if (e instanceof DependencyResolutionError) {
+    console.error('DI error:', e.message)
+  }
+}
+```
+
+## Debugging
+
+`app.inspect(token)` returns a serialisable snapshot of the provider registered under `token`:
+
+```ts
+const app = await LunaFactory.create(AppModule)
+console.log(JSON.stringify(app.inspect(UserController), null, 2))
 ```
 
 ## Lifecycle Hooks

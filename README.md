@@ -12,6 +12,8 @@
   <a href="https://www.npmjs.com/package/@lunafw/core" target="_blank"><img src="https://img.shields.io/npm/v/@lunafw/core?label=%40lunafw%2Fcore&color=7c3aed" alt="@lunafw/core" /></a>
   <a href="https://www.npmjs.com/package/@lunafw/common" target="_blank"><img src="https://img.shields.io/npm/v/@lunafw/common?label=%40lunafw%2Fcommon&color=7c3aed" alt="@lunafw/common" /></a>
   <a href="https://www.npmjs.com/package/@lunafw/platform-express" target="_blank"><img src="https://img.shields.io/npm/v/@lunafw/platform-express?label=%40lunafw%2Fplatform-express&color=7c3aed" alt="@lunafw/platform-express" /></a>
+  <a href="https://www.npmjs.com/package/@lunafw/platform-ws" target="_blank"><img src="https://img.shields.io/npm/v/@lunafw/platform-ws?label=%40lunafw%2Fplatform-ws&color=7c3aed" alt="@lunafw/platform-ws" /></a>
+  <a href="https://www.npmjs.com/package/@lunafw/testing" target="_blank"><img src="https://img.shields.io/npm/v/@lunafw/testing?label=%40lunafw%2Ftesting&color=7c3aed" alt="@lunafw/testing" /></a>
   <a href="https://github.com/ariusxi/luna/actions" target="_blank"><img src="https://img.shields.io/github/actions/workflow/status/ariusxi/luna/ci.yml?branch=main&label=CI" alt="CI" /></a>
   <a href="https://github.com/ariusxi/luna/blob/main/LICENSE" target="_blank"><img src="https://img.shields.io/npm/l/@lunafw/core" alt="License" /></a>
 </p>
@@ -34,11 +36,13 @@ The core idea is simple: a **handler** receives a **message** and returns a resp
 
 Choose the packages you need:
 
-| Package                                                    | Install                                  | Description                                                        |
-| ---------------------------------------------------------- | ---------------------------------------- | ------------------------------------------------------------------ |
-| [`@lunafw/core`](./packages/core)                         | `npm install @lunafw/core`             | Required. DI container, module system, and lifecycle hooks         |
-| [`@lunafw/common`](./packages/common)                     | `npm install @lunafw/common`           | Required.`LunaFactory`, `LunaMessage`, and protocol decorators |
-| [`@lunafw/platform-express`](./packages/platform-express) | `npm install @lunafw/platform-express` | HTTP adapter built on Express                                      |
+| Package                                                    | Install                                            | Description                                                                                    |
+| ---------------------------------------------------------- | -------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| [`@lunafw/core`](./packages/core)                         | `npm install @lunafw/core`                       | Required. DI container, module system, and lifecycle hooks                                     |
+| [`@lunafw/common`](./packages/common)                     | `npm install @lunafw/common`                     | Required. `LunaFactory`, `LunaMessage`, decorators, and the full middleware pipeline           |
+| [`@lunafw/platform-express`](./packages/platform-express) | `npm install @lunafw/platform-express`           | HTTP adapter built on Express                                                                  |
+| [`@lunafw/platform-ws`](./packages/platform-ws)           | `npm install @lunafw/platform-ws`                | WebSocket adapter built on the `ws` library                                                    |
+| [`@lunafw/testing`](./packages/testing)                   | `npm install --save-dev @lunafw/testing`         | Testing utilities — DI resolution and in-memory handler dispatch without starting a server     |
 
 ## Issues
 

@@ -70,6 +70,34 @@ export class UserController {
 }
 ```
 
+## Parameter decorators
+
+Instead of accessing `message.metadata` manually, inject values directly into handler parameters:
+
+```ts
+import { Body, Headers, On, Param, Query } from '@lunafw/common'
+
+@Injectable()
+@Controller('users')
+export class UserController {
+  @On('get', '/:id')
+  findOne(
+    @Param('id') id: string,
+    @Query('expand') expand?: string,
+    @Headers('authorization') token?: string,
+  ) {
+    return this.userService.findOne(id)
+  }
+
+  @On('post', '/')
+  create(@Body() dto: CreateUserDto) {
+    return this.userService.create(dto)
+  }
+}
+```
+
+When no parameter decorators are used the full `LunaMessage` is passed as the first argument (backward-compatible).
+
 ## HTTP Exceptions
 
 Throw any exception subclass from a handler and the adapter maps it to the correct HTTP status automatically.
