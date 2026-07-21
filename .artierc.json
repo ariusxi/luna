@@ -55,7 +55,57 @@
       }
     }
   },
-  "rules": [],
+  "rules": [
+    {
+      "from": "packages/core/src/**",
+      "cannotImport": [
+        "packages/common/src/**",
+        "packages/platform-express/src/**",
+        "packages/platform-ws/src/**",
+        "packages/platform-grpc/src/**",
+        "packages/config/src/**",
+        "packages/testing/src/**"
+      ],
+      "message": "@lunafw/core is the foundation — it must not import from any other Luna package"
+    },
+    {
+      "from": "packages/common/src/**",
+      "cannotImport": [
+        "packages/platform-express/src/**",
+        "packages/platform-ws/src/**",
+        "packages/platform-grpc/src/**",
+        "packages/config/src/**",
+        "packages/testing/src/**"
+      ],
+      "message": "@lunafw/common must not import from platform adapters, config, or testing"
+    },
+    {
+      "from": "packages/config/src/**",
+      "cannotImport": [
+        "packages/common/src/**",
+        "packages/platform-express/src/**",
+        "packages/platform-ws/src/**",
+        "packages/platform-grpc/src/**",
+        "packages/testing/src/**"
+      ],
+      "message": "@lunafw/config must only depend on @lunafw/core"
+    },
+    {
+      "from": "packages/platform-express/src/**",
+      "cannotImport": ["packages/platform-ws/src/**", "packages/platform-grpc/src/**"],
+      "message": "Platform adapters must not depend on each other"
+    },
+    {
+      "from": "packages/platform-ws/src/**",
+      "cannotImport": ["packages/platform-express/src/**", "packages/platform-grpc/src/**"],
+      "message": "Platform adapters must not depend on each other"
+    },
+    {
+      "from": "packages/platform-grpc/src/**",
+      "cannotImport": ["packages/platform-express/src/**", "packages/platform-ws/src/**"],
+      "message": "Platform adapters must not depend on each other"
+    }
+  ],
   "includes": [
     "packages/*/src/**/*.ts"
   ],

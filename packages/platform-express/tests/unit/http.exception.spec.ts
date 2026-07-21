@@ -15,9 +15,13 @@ import {
   UnprocessableEntityException,
 } from '@lunafw/common'
 
+class TeapotException extends HttpException {
+  constructor() { super(418, "I'm a teapot") }
+}
+
 describe('HttpException', () => {
   it('sets statusCode and message', () => {
-    const error = new HttpException(418, "I'm a teapot")
+    const error = new TeapotException()
     expect(error.statusCode).toBe(418)
     expect(error.message).toBe("I'm a teapot")
     expect(error).toBeInstanceOf(Error)

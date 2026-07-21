@@ -1,5 +1,15 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@lunafw/core": ["packages/core/src/index.ts"],
+      "@lunafw/common": ["packages/common/src/index.ts"],
+      "@lunafw/config": ["packages/config/src/index.ts"],
+      "@lunafw/testing": ["packages/testing/src/index.ts"],
+      "@lunafw/platform-express": ["packages/platform-express/src/index.ts"],
+      "@lunafw/platform-ws": ["packages/platform-ws/src/index.ts"],
+      "@lunafw/platform-grpc": ["packages/platform-grpc/src/index.ts"]
+    },
     "skipLibCheck": true,
     "module": "commonjs",
     "declaration": true,
