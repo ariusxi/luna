@@ -6,7 +6,8 @@ import { LunaExceptionFilter } from '../filters/filter.interface'
 import { LunaGuard } from '../guards'
 import { LunaInterceptor } from '../interceptors'
 import { LunaPipe } from '../pipes'
-import { AbstractAdapter, ClassConstructor, ClassOrInstance, HandlerMetadata, LunaMessage } from '../types'
+import { AbstractAdapter, ClassConstructor, ClassOrInstance, HandlerMetadata } from '../types'
+import { HandlerBuilder } from './handler.builder'
 import { MiddlewareRegistry } from './middleware.registry'
 
 /**
@@ -19,13 +20,14 @@ import { MiddlewareRegistry } from './middleware.registry'
  * route in the application.
  */
 export class LunaApplication {
-  private readonly middlewareRegistry: MiddlewareRegistry
+  private readonly middlewareRegistry = new MiddlewareRegistry()
+  private readonly handlerBuilder: HandlerBuilder
 
   constructor(
     private readonly core: CoreApplication,
     private readonly adapters: AbstractAdapter[],
   ) {
-    this.middlewareRegistry = new MiddlewareRegistry((items) => this.resolve(items))
+    this.handlerBuilder = new HandlerBuilder((items) => this.resolve(items))
   }
 
   /**
@@ -107,13 +109,6 @@ export class LunaApplication {
     return this
   }
 
-  /**
-   * Resolves a list of `ClassOrInstance` values into live instances.
-   *
-   * - **Instance** — returned as-is; no DI lookup or instantiation.
-   * - **Class** — resolved from the DI container; falls back to `new Class()`
-   *   when the class is not registered as a provider.
-   */
   private resolve<T>(items: ClassOrInstance<T>[]): T[] {
     return items.map((item) => {
       if (typeof item === 'function') {
@@ -128,11 +123,6 @@ export class LunaApplication {
     })
   }
 
-  /**
-   * Scans all DI tokens for `@Controller`-decorated classes, reads their `@On`
-   * handler methods, collects guard/pipe/interceptor/filter metadata, and
-   * registers one `LunaHandler` per method on every adapter.
-   */
   private registerControllers(): void {
     const tokens = this.core.getAllTokens()
 
@@ -159,13 +149,7 @@ export class LunaApplication {
           path: onMetadata.path,
         }
 
-        const handler = this.middlewareRegistry.buildHandler(
-          instance,
-          methodName,
-          prototype,
-          middleware,
-          handlerMetadata,
-        )
+        const handler = this.handlerBuilder.build(instance, methodName, prototype, middleware)
 
         for (const adapter of this.adapters) {
           adapter.register(handler, handlerMetadata)

@@ -3,11 +3,11 @@
     {
       "metric": "lcom",
       "summary": {
-        "total": 56,
+        "total": 45,
         "max": 16,
         "min": 0,
-        "average": "1.51",
-        "deviation": "3.74"
+        "average": "1.15",
+        "deviation": "3.13"
       },
       "classes": [
         {
@@ -33,24 +33,6 @@
           "label": "OK",
           "value": "TestingModule",
           "file": "packages/testing/src/testing.module.ts"
-        },
-        {
-          "total": 0,
-          "label": "OK",
-          "value": "LunaApplication",
-          "file": "packages/common/src/factory/luna.application.ts"
-        },
-        {
-          "total": 0,
-          "label": "OK",
-          "value": "LunaFactory",
-          "file": "packages/common/src/factory/luna.factory.ts"
-        },
-        {
-          "total": 13,
-          "label": "CRITICAL",
-          "value": "MiddlewareRegistry",
-          "file": "packages/common/src/factory/middleware.registry.ts"
         },
         {
           "total": 0,
@@ -137,16 +119,28 @@
           "file": "packages/common/src/exceptions/http.exception.ts"
         },
         {
-          "total": 0,
+          "total": 1,
           "label": "OK",
-          "value": "ValidationPipe",
-          "file": "packages/common/src/pipes/validation.pipe.ts"
+          "value": "HandlerBuilder",
+          "file": "packages/common/src/factory/handler.builder.ts"
         },
         {
           "total": 0,
           "label": "OK",
-          "value": "AbstractAdapter",
-          "file": "packages/common/src/types/adapter.abstract.ts"
+          "value": "LunaApplication",
+          "file": "packages/common/src/factory/luna.application.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "LunaFactory",
+          "file": "packages/common/src/factory/luna.factory.ts"
+        },
+        {
+          "total": 2,
+          "label": "OK",
+          "value": "MiddlewareRegistry",
+          "file": "packages/common/src/factory/middleware.registry.ts"
         },
         {
           "total": 0,
@@ -161,10 +155,16 @@
           "file": "packages/common/src/metadata/reflector.ts"
         },
         {
-          "total": 2,
+          "total": 0,
           "label": "OK",
-          "value": "WsAdapter",
-          "file": "packages/platform-ws/src/adapters/ws.adapter.ts"
+          "value": "ValidationPipe",
+          "file": "packages/common/src/pipes/validation.pipe.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "AbstractAdapter",
+          "file": "packages/common/src/types/adapter.abstract.ts"
         },
         {
           "total": 3,
@@ -179,16 +179,34 @@
           "file": "packages/platform-grpc/src/adapters/grpc.handler.registry.ts"
         },
         {
+          "total": 8,
+          "label": "WARNING",
+          "value": "TestAdapter",
+          "file": "packages/testing/src/adapters/test.adapter.ts"
+        },
+        {
           "total": 16,
           "label": "CRITICAL",
           "value": "ExpressAdapter",
           "file": "packages/platform-express/src/adapters/express.adapter.ts"
         },
         {
-          "total": 8,
-          "label": "WARNING",
-          "value": "TestAdapter",
-          "file": "packages/testing/src/adapters/test.adapter.ts"
+          "total": 0,
+          "label": "OK",
+          "value": "WsAdapter",
+          "file": "packages/platform-ws/src/adapters/ws.adapter.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "WsHandlerRegistry",
+          "file": "packages/platform-ws/src/adapters/ws.handler.registry.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "DependencyResolutionError",
+          "file": "packages/core/src/core/handlers/dependency-resolution.handler.ts"
         },
         {
           "total": 6,
@@ -225,23 +243,17 @@
           "label": "OK",
           "value": "ModuleScanner",
           "file": "packages/core/src/core/managers/module.scanner.ts"
-        },
-        {
-          "total": 0,
-          "label": "OK",
-          "value": "DependencyResolutionError",
-          "file": "packages/core/src/core/handlers/dependency-resolution.handler.ts"
         }
       ]
     },
     {
       "metric": "wmc",
       "summary": {
-        "total": 232,
+        "total": 235,
         "max": 40,
         "min": 0,
-        "average": "6.27",
-        "deviation": "8.27"
+        "average": "6.03",
+        "deviation": "7.50"
       },
       "classes": [
         {
@@ -267,24 +279,6 @@
           "label": "OK",
           "value": "TestingModule",
           "file": "packages/testing/src/testing.module.ts"
-        },
-        {
-          "total": 19,
-          "label": "WARNING",
-          "value": "LunaApplication",
-          "file": "packages/common/src/factory/luna.application.ts"
-        },
-        {
-          "total": 2,
-          "label": "OK",
-          "value": "LunaFactory",
-          "file": "packages/common/src/factory/luna.factory.ts"
-        },
-        {
-          "total": 25,
-          "label": "CRITICAL",
-          "value": "MiddlewareRegistry",
-          "file": "packages/common/src/factory/middleware.registry.ts"
         },
         {
           "total": 1,
@@ -371,16 +365,28 @@
           "file": "packages/common/src/exceptions/http.exception.ts"
         },
         {
-          "total": 5,
-          "label": "OK",
-          "value": "ValidationPipe",
-          "file": "packages/common/src/pipes/validation.pipe.ts"
+          "total": 12,
+          "label": "WARNING",
+          "value": "HandlerBuilder",
+          "file": "packages/common/src/factory/handler.builder.ts"
         },
         {
-          "total": 0,
+          "total": 19,
+          "label": "WARNING",
+          "value": "LunaApplication",
+          "file": "packages/common/src/factory/luna.application.ts"
+        },
+        {
+          "total": 2,
           "label": "OK",
-          "value": "AbstractAdapter",
-          "file": "packages/common/src/types/adapter.abstract.ts"
+          "value": "LunaFactory",
+          "file": "packages/common/src/factory/luna.factory.ts"
+        },
+        {
+          "total": 13,
+          "label": "WARNING",
+          "value": "MiddlewareRegistry",
+          "file": "packages/common/src/factory/middleware.registry.ts"
         },
         {
           "total": 1,
@@ -395,10 +401,16 @@
           "file": "packages/common/src/metadata/reflector.ts"
         },
         {
-          "total": 15,
-          "label": "WARNING",
-          "value": "WsAdapter",
-          "file": "packages/platform-ws/src/adapters/ws.adapter.ts"
+          "total": 5,
+          "label": "OK",
+          "value": "ValidationPipe",
+          "file": "packages/common/src/pipes/validation.pipe.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "AbstractAdapter",
+          "file": "packages/common/src/types/adapter.abstract.ts"
         },
         {
           "total": 12,
@@ -413,16 +425,34 @@
           "file": "packages/platform-grpc/src/adapters/grpc.handler.registry.ts"
         },
         {
+          "total": 6,
+          "label": "OK",
+          "value": "TestAdapter",
+          "file": "packages/testing/src/adapters/test.adapter.ts"
+        },
+        {
           "total": 19,
           "label": "WARNING",
           "value": "ExpressAdapter",
           "file": "packages/platform-express/src/adapters/express.adapter.ts"
         },
         {
+          "total": 8,
+          "label": "OK",
+          "value": "WsAdapter",
+          "file": "packages/platform-ws/src/adapters/ws.adapter.ts"
+        },
+        {
+          "total": 10,
+          "label": "WARNING",
+          "value": "WsHandlerRegistry",
+          "file": "packages/platform-ws/src/adapters/ws.handler.registry.ts"
+        },
+        {
           "total": 6,
           "label": "OK",
-          "value": "TestAdapter",
-          "file": "packages/testing/src/adapters/test.adapter.ts"
+          "value": "DependencyResolutionError",
+          "file": "packages/core/src/core/handlers/dependency-resolution.handler.ts"
         },
         {
           "total": 40,
@@ -459,23 +489,17 @@
           "label": "OK",
           "value": "ModuleScanner",
           "file": "packages/core/src/core/managers/module.scanner.ts"
-        },
-        {
-          "total": 6,
-          "label": "OK",
-          "value": "DependencyResolutionError",
-          "file": "packages/core/src/core/handlers/dependency-resolution.handler.ts"
         }
       ]
     },
     {
       "metric": "rfc",
       "summary": {
-        "total": 144,
+        "total": 148,
         "max": 17,
         "min": 0,
-        "average": "3.89",
-        "deviation": "4.42"
+        "average": "3.79",
+        "deviation": "4.06"
       },
       "classes": [
         {
@@ -501,24 +525,6 @@
           "label": "OK",
           "value": "TestingModule",
           "file": "packages/testing/src/testing.module.ts"
-        },
-        {
-          "total": 17,
-          "label": "WARNING",
-          "value": "LunaApplication",
-          "file": "packages/common/src/factory/luna.application.ts"
-        },
-        {
-          "total": 1,
-          "label": "OK",
-          "value": "LunaFactory",
-          "file": "packages/common/src/factory/luna.factory.ts"
-        },
-        {
-          "total": 15,
-          "label": "WARNING",
-          "value": "MiddlewareRegistry",
-          "file": "packages/common/src/factory/middleware.registry.ts"
         },
         {
           "total": 0,
@@ -605,16 +611,28 @@
           "file": "packages/common/src/exceptions/http.exception.ts"
         },
         {
-          "total": 4,
+          "total": 10,
           "label": "OK",
-          "value": "ValidationPipe",
-          "file": "packages/common/src/pipes/validation.pipe.ts"
+          "value": "HandlerBuilder",
+          "file": "packages/common/src/factory/handler.builder.ts"
         },
         {
-          "total": 0,
+          "total": 17,
+          "label": "WARNING",
+          "value": "LunaApplication",
+          "file": "packages/common/src/factory/luna.application.ts"
+        },
+        {
+          "total": 1,
           "label": "OK",
-          "value": "AbstractAdapter",
-          "file": "packages/common/src/types/adapter.abstract.ts"
+          "value": "LunaFactory",
+          "file": "packages/common/src/factory/luna.factory.ts"
+        },
+        {
+          "total": 5,
+          "label": "OK",
+          "value": "MiddlewareRegistry",
+          "file": "packages/common/src/factory/middleware.registry.ts"
         },
         {
           "total": 0,
@@ -629,10 +647,16 @@
           "file": "packages/common/src/metadata/reflector.ts"
         },
         {
-          "total": 7,
+          "total": 4,
           "label": "OK",
-          "value": "WsAdapter",
-          "file": "packages/platform-ws/src/adapters/ws.adapter.ts"
+          "value": "ValidationPipe",
+          "file": "packages/common/src/pipes/validation.pipe.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "AbstractAdapter",
+          "file": "packages/common/src/types/adapter.abstract.ts"
         },
         {
           "total": 10,
@@ -647,16 +671,34 @@
           "file": "packages/platform-grpc/src/adapters/grpc.handler.registry.ts"
         },
         {
+          "total": 5,
+          "label": "OK",
+          "value": "TestAdapter",
+          "file": "packages/testing/src/adapters/test.adapter.ts"
+        },
+        {
           "total": 12,
           "label": "OK",
           "value": "ExpressAdapter",
           "file": "packages/platform-express/src/adapters/express.adapter.ts"
         },
         {
-          "total": 5,
+          "total": 8,
           "label": "OK",
-          "value": "TestAdapter",
-          "file": "packages/testing/src/adapters/test.adapter.ts"
+          "value": "WsAdapter",
+          "file": "packages/platform-ws/src/adapters/ws.adapter.ts"
+        },
+        {
+          "total": 3,
+          "label": "OK",
+          "value": "WsHandlerRegistry",
+          "file": "packages/platform-ws/src/adapters/ws.handler.registry.ts"
+        },
+        {
+          "total": 2,
+          "label": "OK",
+          "value": "DependencyResolutionError",
+          "file": "packages/core/src/core/handlers/dependency-resolution.handler.ts"
         },
         {
           "total": 12,
@@ -693,23 +735,17 @@
           "label": "OK",
           "value": "ModuleScanner",
           "file": "packages/core/src/core/managers/module.scanner.ts"
-        },
-        {
-          "total": 2,
-          "label": "OK",
-          "value": "DependencyResolutionError",
-          "file": "packages/core/src/core/handlers/dependency-resolution.handler.ts"
         }
       ]
     },
     {
       "metric": "cbo",
       "summary": {
-        "total": 30,
+        "total": 32,
         "max": 4,
         "min": 0,
-        "average": "0.81",
-        "deviation": "0.80"
+        "average": "0.82",
+        "deviation": "0.84"
       },
       "classes": [
         {
@@ -735,24 +771,6 @@
           "label": "OK",
           "value": "TestingModule",
           "file": "packages/testing/src/testing.module.ts"
-        },
-        {
-          "total": 2,
-          "label": "OK",
-          "value": "LunaApplication",
-          "file": "packages/common/src/factory/luna.application.ts"
-        },
-        {
-          "total": 2,
-          "label": "OK",
-          "value": "LunaFactory",
-          "file": "packages/common/src/factory/luna.factory.ts"
-        },
-        {
-          "total": 1,
-          "label": "OK",
-          "value": "MiddlewareRegistry",
-          "file": "packages/common/src/factory/middleware.registry.ts"
         },
         {
           "total": 0,
@@ -841,14 +859,26 @@
         {
           "total": 1,
           "label": "OK",
-          "value": "ValidationPipe",
-          "file": "packages/common/src/pipes/validation.pipe.ts"
+          "value": "HandlerBuilder",
+          "file": "packages/common/src/factory/handler.builder.ts"
+        },
+        {
+          "total": 3,
+          "label": "OK",
+          "value": "LunaApplication",
+          "file": "packages/common/src/factory/luna.application.ts"
+        },
+        {
+          "total": 2,
+          "label": "OK",
+          "value": "LunaFactory",
+          "file": "packages/common/src/factory/luna.factory.ts"
         },
         {
           "total": 0,
           "label": "OK",
-          "value": "AbstractAdapter",
-          "file": "packages/common/src/types/adapter.abstract.ts"
+          "value": "MiddlewareRegistry",
+          "file": "packages/common/src/factory/middleware.registry.ts"
         },
         {
           "total": 0,
@@ -863,10 +893,16 @@
           "file": "packages/common/src/metadata/reflector.ts"
         },
         {
+          "total": 1,
+          "label": "OK",
+          "value": "ValidationPipe",
+          "file": "packages/common/src/pipes/validation.pipe.ts"
+        },
+        {
           "total": 0,
           "label": "OK",
-          "value": "WsAdapter",
-          "file": "packages/platform-ws/src/adapters/ws.adapter.ts"
+          "value": "AbstractAdapter",
+          "file": "packages/common/src/types/adapter.abstract.ts"
         },
         {
           "total": 1,
@@ -883,14 +919,32 @@
         {
           "total": 0,
           "label": "OK",
-          "value": "ExpressAdapter",
-          "file": "packages/platform-express/src/adapters/express.adapter.ts"
+          "value": "TestAdapter",
+          "file": "packages/testing/src/adapters/test.adapter.ts"
         },
         {
           "total": 0,
           "label": "OK",
-          "value": "TestAdapter",
-          "file": "packages/testing/src/adapters/test.adapter.ts"
+          "value": "ExpressAdapter",
+          "file": "packages/platform-express/src/adapters/express.adapter.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "WsAdapter",
+          "file": "packages/platform-ws/src/adapters/ws.adapter.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "WsHandlerRegistry",
+          "file": "packages/platform-ws/src/adapters/ws.handler.registry.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "DependencyResolutionError",
+          "file": "packages/core/src/core/handlers/dependency-resolution.handler.ts"
         },
         {
           "total": 2,
@@ -927,12 +981,6 @@
           "label": "OK",
           "value": "ModuleScanner",
           "file": "packages/core/src/core/managers/module.scanner.ts"
-        },
-        {
-          "total": 0,
-          "label": "OK",
-          "value": "DependencyResolutionError",
-          "file": "packages/core/src/core/handlers/dependency-resolution.handler.ts"
         }
       ]
     },
@@ -942,7 +990,7 @@
         "total": 17,
         "max": 1,
         "min": 0,
-        "average": "0.46",
+        "average": "0.44",
         "deviation": "0.50"
       },
       "classes": [
@@ -969,24 +1017,6 @@
           "label": "OK",
           "value": "TestingModule",
           "file": "packages/testing/src/testing.module.ts"
-        },
-        {
-          "total": 0,
-          "label": "OK",
-          "value": "LunaApplication",
-          "file": "packages/common/src/factory/luna.application.ts"
-        },
-        {
-          "total": 0,
-          "label": "OK",
-          "value": "LunaFactory",
-          "file": "packages/common/src/factory/luna.factory.ts"
-        },
-        {
-          "total": 0,
-          "label": "OK",
-          "value": "MiddlewareRegistry",
-          "file": "packages/common/src/factory/middleware.registry.ts"
         },
         {
           "total": 0,
@@ -1075,14 +1105,26 @@
         {
           "total": 0,
           "label": "OK",
-          "value": "ValidationPipe",
-          "file": "packages/common/src/pipes/validation.pipe.ts"
+          "value": "HandlerBuilder",
+          "file": "packages/common/src/factory/handler.builder.ts"
         },
         {
           "total": 0,
           "label": "OK",
-          "value": "AbstractAdapter",
-          "file": "packages/common/src/types/adapter.abstract.ts"
+          "value": "LunaApplication",
+          "file": "packages/common/src/factory/luna.application.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "LunaFactory",
+          "file": "packages/common/src/factory/luna.factory.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "MiddlewareRegistry",
+          "file": "packages/common/src/factory/middleware.registry.ts"
         },
         {
           "total": 0,
@@ -1097,10 +1139,16 @@
           "file": "packages/common/src/metadata/reflector.ts"
         },
         {
-          "total": 1,
+          "total": 0,
           "label": "OK",
-          "value": "WsAdapter",
-          "file": "packages/platform-ws/src/adapters/ws.adapter.ts"
+          "value": "ValidationPipe",
+          "file": "packages/common/src/pipes/validation.pipe.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "AbstractAdapter",
+          "file": "packages/common/src/types/adapter.abstract.ts"
         },
         {
           "total": 1,
@@ -1117,14 +1165,32 @@
         {
           "total": 1,
           "label": "OK",
+          "value": "TestAdapter",
+          "file": "packages/testing/src/adapters/test.adapter.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
           "value": "ExpressAdapter",
           "file": "packages/platform-express/src/adapters/express.adapter.ts"
         },
         {
           "total": 1,
           "label": "OK",
-          "value": "TestAdapter",
-          "file": "packages/testing/src/adapters/test.adapter.ts"
+          "value": "WsAdapter",
+          "file": "packages/platform-ws/src/adapters/ws.adapter.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "WsHandlerRegistry",
+          "file": "packages/platform-ws/src/adapters/ws.handler.registry.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "DependencyResolutionError",
+          "file": "packages/core/src/core/handlers/dependency-resolution.handler.ts"
         },
         {
           "total": 0,
@@ -1161,12 +1227,6 @@
           "label": "OK",
           "value": "ModuleScanner",
           "file": "packages/core/src/core/managers/module.scanner.ts"
-        },
-        {
-          "total": 0,
-          "label": "OK",
-          "value": "DependencyResolutionError",
-          "file": "packages/core/src/core/handlers/dependency-resolution.handler.ts"
         }
       ]
     },
@@ -1176,8 +1236,8 @@
         "total": 13,
         "max": 13,
         "min": 0,
-        "average": "0.35",
-        "deviation": "2.11"
+        "average": "0.33",
+        "deviation": "2.05"
       },
       "classes": [
         {
@@ -1203,24 +1263,6 @@
           "label": "OK",
           "value": "TestingModule",
           "file": "packages/testing/src/testing.module.ts"
-        },
-        {
-          "total": 0,
-          "label": "OK",
-          "value": "LunaApplication",
-          "file": "packages/common/src/factory/luna.application.ts"
-        },
-        {
-          "total": 0,
-          "label": "OK",
-          "value": "LunaFactory",
-          "file": "packages/common/src/factory/luna.factory.ts"
-        },
-        {
-          "total": 0,
-          "label": "OK",
-          "value": "MiddlewareRegistry",
-          "file": "packages/common/src/factory/middleware.registry.ts"
         },
         {
           "total": 13,
@@ -1309,14 +1351,26 @@
         {
           "total": 0,
           "label": "OK",
-          "value": "ValidationPipe",
-          "file": "packages/common/src/pipes/validation.pipe.ts"
+          "value": "HandlerBuilder",
+          "file": "packages/common/src/factory/handler.builder.ts"
         },
         {
           "total": 0,
           "label": "OK",
-          "value": "AbstractAdapter",
-          "file": "packages/common/src/types/adapter.abstract.ts"
+          "value": "LunaApplication",
+          "file": "packages/common/src/factory/luna.application.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "LunaFactory",
+          "file": "packages/common/src/factory/luna.factory.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "MiddlewareRegistry",
+          "file": "packages/common/src/factory/middleware.registry.ts"
         },
         {
           "total": 0,
@@ -1333,8 +1387,14 @@
         {
           "total": 0,
           "label": "OK",
-          "value": "WsAdapter",
-          "file": "packages/platform-ws/src/adapters/ws.adapter.ts"
+          "value": "ValidationPipe",
+          "file": "packages/common/src/pipes/validation.pipe.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "AbstractAdapter",
+          "file": "packages/common/src/types/adapter.abstract.ts"
         },
         {
           "total": 0,
@@ -1351,14 +1411,32 @@
         {
           "total": 0,
           "label": "OK",
+          "value": "TestAdapter",
+          "file": "packages/testing/src/adapters/test.adapter.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
           "value": "ExpressAdapter",
           "file": "packages/platform-express/src/adapters/express.adapter.ts"
         },
         {
           "total": 0,
           "label": "OK",
-          "value": "TestAdapter",
-          "file": "packages/testing/src/adapters/test.adapter.ts"
+          "value": "WsAdapter",
+          "file": "packages/platform-ws/src/adapters/ws.adapter.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "WsHandlerRegistry",
+          "file": "packages/platform-ws/src/adapters/ws.handler.registry.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "DependencyResolutionError",
+          "file": "packages/core/src/core/handlers/dependency-resolution.handler.ts"
         },
         {
           "total": 0,
@@ -1395,36 +1473,30 @@
           "label": "OK",
           "value": "ModuleScanner",
           "file": "packages/core/src/core/managers/module.scanner.ts"
-        },
-        {
-          "total": 0,
-          "label": "OK",
-          "value": "DependencyResolutionError",
-          "file": "packages/core/src/core/handlers/dependency-resolution.handler.ts"
         }
       ]
     },
     {
       "metric": "ce",
       "summary": {
-        "total": 138,
+        "total": 146,
         "max": 16,
         "min": 0,
-        "average": "1.73",
-        "deviation": "2.27"
+        "average": "1.78",
+        "deviation": "2.33"
       },
       "classes": [
-        {
-          "total": 1,
-          "label": "OK",
-          "value": "packages/core/src/index.ts",
-          "file": "packages/core/src/index.ts"
-        },
         {
           "total": 16,
           "label": "CRITICAL",
           "value": "packages/common/src/index.ts",
           "file": "packages/common/src/index.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "packages/core/src/index.ts",
+          "file": "packages/core/src/index.ts"
         },
         {
           "total": 2,
@@ -1451,22 +1523,16 @@
           "file": "packages/config/src/index.ts"
         },
         {
-          "total": 3,
-          "label": "OK",
-          "value": "packages/platform-express/src/index.ts",
-          "file": "packages/platform-express/src/index.ts"
-        },
-        {
-          "total": 2,
-          "label": "OK",
-          "value": "packages/platform-ws/src/index.ts",
-          "file": "packages/platform-ws/src/index.ts"
-        },
-        {
           "total": 2,
           "label": "OK",
           "value": "packages/platform-grpc/src/index.ts",
           "file": "packages/platform-grpc/src/index.ts"
+        },
+        {
+          "total": 3,
+          "label": "OK",
+          "value": "packages/platform-express/src/index.ts",
+          "file": "packages/platform-express/src/index.ts"
         },
         {
           "total": 3,
@@ -1487,10 +1553,10 @@
           "file": "packages/testing/src/testing.module.ts"
         },
         {
-          "total": 5,
+          "total": 2,
           "label": "OK",
-          "value": "packages/core/src/core/index.ts",
-          "file": "packages/core/src/core/index.ts"
+          "value": "packages/platform-ws/src/index.ts",
+          "file": "packages/platform-ws/src/index.ts"
         },
         {
           "total": 0,
@@ -1519,6 +1585,12 @@
         {
           "total": 8,
           "label": "WARNING",
+          "value": "packages/common/src/factory/handler.builder.ts",
+          "file": "packages/common/src/factory/handler.builder.ts"
+        },
+        {
+          "total": 9,
+          "label": "WARNING",
           "value": "packages/common/src/factory/luna.application.ts",
           "file": "packages/common/src/factory/luna.application.ts"
         },
@@ -1529,8 +1601,8 @@
           "file": "packages/common/src/factory/luna.factory.ts"
         },
         {
-          "total": 8,
-          "label": "WARNING",
+          "total": 6,
+          "label": "OK",
           "value": "packages/common/src/factory/middleware.registry.ts",
           "file": "packages/common/src/factory/middleware.registry.ts"
         },
@@ -1691,6 +1763,42 @@
           "file": "packages/common/src/types/message.interface.ts"
         },
         {
+          "total": 5,
+          "label": "OK",
+          "value": "packages/core/src/core/index.ts",
+          "file": "packages/core/src/core/index.ts"
+        },
+        {
+          "total": 2,
+          "label": "OK",
+          "value": "packages/platform-grpc/src/adapters/grpc.adapter.ts",
+          "file": "packages/platform-grpc/src/adapters/grpc.adapter.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/platform-grpc/src/adapters/grpc.handler.registry.ts",
+          "file": "packages/platform-grpc/src/adapters/grpc.handler.registry.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "packages/platform-grpc/src/adapters/index.ts",
+          "file": "packages/platform-grpc/src/adapters/index.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/platform-grpc/src/types/grpc-adapter-options.interface.ts",
+          "file": "packages/platform-grpc/src/types/grpc-adapter-options.interface.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "packages/platform-grpc/src/types/index.ts",
+          "file": "packages/platform-grpc/src/types/index.ts"
+        },
+        {
           "total": 2,
           "label": "OK",
           "value": "packages/platform-express/src/adapters/express.adapter.ts",
@@ -1733,10 +1841,22 @@
           "file": "packages/platform-express/src/types/index.ts"
         },
         {
-          "total": 1,
+          "total": 0,
+          "label": "OK",
+          "value": "packages/testing/src/adapters/test.adapter.ts",
+          "file": "packages/testing/src/adapters/test.adapter.ts"
+        },
+        {
+          "total": 2,
           "label": "OK",
           "value": "packages/platform-ws/src/adapters/ws.adapter.ts",
           "file": "packages/platform-ws/src/adapters/ws.adapter.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/platform-ws/src/adapters/ws.handler.registry.ts",
+          "file": "packages/platform-ws/src/adapters/ws.handler.registry.ts"
         },
         {
           "total": 1,
@@ -1749,42 +1869,6 @@
           "label": "OK",
           "value": "packages/platform-ws/src/types/ws-adapter-options.interface.ts",
           "file": "packages/platform-ws/src/types/ws-adapter-options.interface.ts"
-        },
-        {
-          "total": 2,
-          "label": "OK",
-          "value": "packages/platform-grpc/src/adapters/grpc.adapter.ts",
-          "file": "packages/platform-grpc/src/adapters/grpc.adapter.ts"
-        },
-        {
-          "total": 0,
-          "label": "OK",
-          "value": "packages/platform-grpc/src/adapters/grpc.handler.registry.ts",
-          "file": "packages/platform-grpc/src/adapters/grpc.handler.registry.ts"
-        },
-        {
-          "total": 1,
-          "label": "OK",
-          "value": "packages/platform-grpc/src/adapters/index.ts",
-          "file": "packages/platform-grpc/src/adapters/index.ts"
-        },
-        {
-          "total": 0,
-          "label": "OK",
-          "value": "packages/platform-grpc/src/types/grpc-adapter-options.interface.ts",
-          "file": "packages/platform-grpc/src/types/grpc-adapter-options.interface.ts"
-        },
-        {
-          "total": 1,
-          "label": "OK",
-          "value": "packages/platform-grpc/src/types/index.ts",
-          "file": "packages/platform-grpc/src/types/index.ts"
-        },
-        {
-          "total": 0,
-          "label": "OK",
-          "value": "packages/testing/src/adapters/test.adapter.ts",
-          "file": "packages/testing/src/adapters/test.adapter.ts"
         },
         {
           "total": 3,
@@ -1909,14 +1993,14 @@
         {
           "total": 0,
           "label": "OK",
-          "value": "packages/core/src/index.ts",
-          "file": "packages/core/src/index.ts"
+          "value": "packages/common/src/index.ts",
+          "file": "packages/common/src/index.ts"
         },
         {
           "total": 0,
           "label": "OK",
-          "value": "packages/common/src/index.ts",
-          "file": "packages/common/src/index.ts"
+          "value": "packages/core/src/index.ts",
+          "file": "packages/core/src/index.ts"
         },
         {
           "total": 0,
@@ -1945,20 +2029,14 @@
         {
           "total": 0,
           "label": "OK",
-          "value": "packages/platform-express/src/index.ts",
-          "file": "packages/platform-express/src/index.ts"
-        },
-        {
-          "total": 0,
-          "label": "OK",
-          "value": "packages/platform-ws/src/index.ts",
-          "file": "packages/platform-ws/src/index.ts"
-        },
-        {
-          "total": 0,
-          "label": "OK",
           "value": "packages/platform-grpc/src/index.ts",
           "file": "packages/platform-grpc/src/index.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/platform-express/src/index.ts",
+          "file": "packages/platform-express/src/index.ts"
         },
         {
           "total": 0,
@@ -1981,8 +2059,8 @@
         {
           "total": 0,
           "label": "OK",
-          "value": "packages/core/src/core/index.ts",
-          "file": "packages/core/src/core/index.ts"
+          "value": "packages/platform-ws/src/index.ts",
+          "file": "packages/platform-ws/src/index.ts"
         },
         {
           "total": 0,
@@ -2007,6 +2085,12 @@
           "label": "OK",
           "value": "packages/common/src/exceptions/index.ts",
           "file": "packages/common/src/exceptions/index.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/common/src/factory/handler.builder.ts",
+          "file": "packages/common/src/factory/handler.builder.ts"
         },
         {
           "total": 0,
@@ -2185,6 +2269,42 @@
         {
           "total": 0,
           "label": "OK",
+          "value": "packages/core/src/core/index.ts",
+          "file": "packages/core/src/core/index.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/platform-grpc/src/adapters/grpc.adapter.ts",
+          "file": "packages/platform-grpc/src/adapters/grpc.adapter.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/platform-grpc/src/adapters/grpc.handler.registry.ts",
+          "file": "packages/platform-grpc/src/adapters/grpc.handler.registry.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/platform-grpc/src/adapters/index.ts",
+          "file": "packages/platform-grpc/src/adapters/index.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/platform-grpc/src/types/grpc-adapter-options.interface.ts",
+          "file": "packages/platform-grpc/src/types/grpc-adapter-options.interface.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/platform-grpc/src/types/index.ts",
+          "file": "packages/platform-grpc/src/types/index.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
           "value": "packages/platform-express/src/adapters/express.adapter.ts",
           "file": "packages/platform-express/src/adapters/express.adapter.ts"
         },
@@ -2227,8 +2347,20 @@
         {
           "total": 0,
           "label": "OK",
+          "value": "packages/testing/src/adapters/test.adapter.ts",
+          "file": "packages/testing/src/adapters/test.adapter.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
           "value": "packages/platform-ws/src/adapters/ws.adapter.ts",
           "file": "packages/platform-ws/src/adapters/ws.adapter.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/platform-ws/src/adapters/ws.handler.registry.ts",
+          "file": "packages/platform-ws/src/adapters/ws.handler.registry.ts"
         },
         {
           "total": 0,
@@ -2241,42 +2373,6 @@
           "label": "OK",
           "value": "packages/platform-ws/src/types/ws-adapter-options.interface.ts",
           "file": "packages/platform-ws/src/types/ws-adapter-options.interface.ts"
-        },
-        {
-          "total": 0,
-          "label": "OK",
-          "value": "packages/platform-grpc/src/adapters/grpc.adapter.ts",
-          "file": "packages/platform-grpc/src/adapters/grpc.adapter.ts"
-        },
-        {
-          "total": 0,
-          "label": "OK",
-          "value": "packages/platform-grpc/src/adapters/grpc.handler.registry.ts",
-          "file": "packages/platform-grpc/src/adapters/grpc.handler.registry.ts"
-        },
-        {
-          "total": 0,
-          "label": "OK",
-          "value": "packages/platform-grpc/src/adapters/index.ts",
-          "file": "packages/platform-grpc/src/adapters/index.ts"
-        },
-        {
-          "total": 0,
-          "label": "OK",
-          "value": "packages/platform-grpc/src/types/grpc-adapter-options.interface.ts",
-          "file": "packages/platform-grpc/src/types/grpc-adapter-options.interface.ts"
-        },
-        {
-          "total": 0,
-          "label": "OK",
-          "value": "packages/platform-grpc/src/types/index.ts",
-          "file": "packages/platform-grpc/src/types/index.ts"
-        },
-        {
-          "total": 0,
-          "label": "OK",
-          "value": "packages/testing/src/adapters/test.adapter.ts",
-          "file": "packages/testing/src/adapters/test.adapter.ts"
         },
         {
           "total": 0,
@@ -2391,24 +2487,24 @@
     {
       "metric": "distance",
       "summary": {
-        "total": 3552,
+        "total": 3620,
         "max": 100,
         "min": 0,
-        "average": "44.40",
-        "deviation": "31.86"
+        "average": "44.15",
+        "deviation": "31.80"
       },
       "classes": [
         {
           "total": 0,
           "label": "OK",
-          "value": "packages/core/src/index.ts",
-          "file": "packages/core/src/index.ts"
+          "value": "packages/common/src/index.ts",
+          "file": "packages/common/src/index.ts"
         },
         {
           "total": 0,
           "label": "OK",
-          "value": "packages/common/src/index.ts",
-          "file": "packages/common/src/index.ts"
+          "value": "packages/core/src/index.ts",
+          "file": "packages/core/src/index.ts"
         },
         {
           "total": 33,
@@ -2437,20 +2533,14 @@
         {
           "total": 0,
           "label": "OK",
-          "value": "packages/platform-express/src/index.ts",
-          "file": "packages/platform-express/src/index.ts"
-        },
-        {
-          "total": 0,
-          "label": "OK",
-          "value": "packages/platform-ws/src/index.ts",
-          "file": "packages/platform-ws/src/index.ts"
-        },
-        {
-          "total": 0,
-          "label": "OK",
           "value": "packages/platform-grpc/src/index.ts",
           "file": "packages/platform-grpc/src/index.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/platform-express/src/index.ts",
+          "file": "packages/platform-express/src/index.ts"
         },
         {
           "total": 0,
@@ -2471,10 +2561,10 @@
           "file": "packages/testing/src/testing.module.ts"
         },
         {
-          "total": 17,
+          "total": 0,
           "label": "OK",
-          "value": "packages/core/src/core/index.ts",
-          "file": "packages/core/src/core/index.ts"
+          "value": "packages/platform-ws/src/index.ts",
+          "file": "packages/platform-ws/src/index.ts"
         },
         {
           "total": 100,
@@ -2501,7 +2591,13 @@
           "file": "packages/common/src/exceptions/index.ts"
         },
         {
-          "total": 20,
+          "total": 11,
+          "label": "OK",
+          "value": "packages/common/src/factory/handler.builder.ts",
+          "file": "packages/common/src/factory/handler.builder.ts"
+        },
+        {
+          "total": 18,
           "label": "OK",
           "value": "packages/common/src/factory/luna.application.ts",
           "file": "packages/common/src/factory/luna.application.ts"
@@ -2513,7 +2609,7 @@
           "file": "packages/common/src/factory/luna.factory.ts"
         },
         {
-          "total": 39,
+          "total": 25,
           "label": "OK",
           "value": "packages/common/src/factory/middleware.registry.ts",
           "file": "packages/common/src/factory/middleware.registry.ts"
@@ -2525,7 +2621,7 @@
           "file": "packages/common/src/filters/catch.decorator.ts"
         },
         {
-          "total": 20,
+          "total": 17,
           "label": "OK",
           "value": "packages/common/src/filters/filter.interface.ts",
           "file": "packages/common/src/filters/filter.interface.ts"
@@ -2555,7 +2651,7 @@
           "file": "packages/common/src/guards/guard.interface.ts"
         },
         {
-          "total": 50,
+          "total": 57,
           "label": "WARNING",
           "value": "packages/common/src/guards/index.ts",
           "file": "packages/common/src/guards/index.ts"
@@ -2567,7 +2663,7 @@
           "file": "packages/common/src/guards/use-guards.decorator.ts"
         },
         {
-          "total": 60,
+          "total": 67,
           "label": "WARNING",
           "value": "packages/common/src/interceptors/index.ts",
           "file": "packages/common/src/interceptors/index.ts"
@@ -2615,7 +2711,7 @@
           "file": "packages/common/src/params/param.decorator.ts"
         },
         {
-          "total": 50,
+          "total": 57,
           "label": "WARNING",
           "value": "packages/common/src/pipes/index.ts",
           "file": "packages/common/src/pipes/index.ts"
@@ -2663,7 +2759,7 @@
           "file": "packages/common/src/types/handler.interface.ts"
         },
         {
-          "total": 38,
+          "total": 44,
           "label": "OK",
           "value": "packages/common/src/types/index.ts",
           "file": "packages/common/src/types/index.ts"
@@ -2673,6 +2769,42 @@
           "label": "OK",
           "value": "packages/common/src/types/message.interface.ts",
           "file": "packages/common/src/types/message.interface.ts"
+        },
+        {
+          "total": 17,
+          "label": "OK",
+          "value": "packages/core/src/core/index.ts",
+          "file": "packages/core/src/core/index.ts"
+        },
+        {
+          "total": 33,
+          "label": "OK",
+          "value": "packages/platform-grpc/src/adapters/grpc.adapter.ts",
+          "file": "packages/platform-grpc/src/adapters/grpc.adapter.ts"
+        },
+        {
+          "total": 50,
+          "label": "WARNING",
+          "value": "packages/platform-grpc/src/adapters/grpc.handler.registry.ts",
+          "file": "packages/platform-grpc/src/adapters/grpc.handler.registry.ts"
+        },
+        {
+          "total": 50,
+          "label": "WARNING",
+          "value": "packages/platform-grpc/src/adapters/index.ts",
+          "file": "packages/platform-grpc/src/adapters/index.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/platform-grpc/src/types/grpc-adapter-options.interface.ts",
+          "file": "packages/platform-grpc/src/types/grpc-adapter-options.interface.ts"
+        },
+        {
+          "total": 67,
+          "label": "WARNING",
+          "value": "packages/platform-grpc/src/types/index.ts",
+          "file": "packages/platform-grpc/src/types/index.ts"
         },
         {
           "total": 33,
@@ -2717,10 +2849,22 @@
           "file": "packages/platform-express/src/types/index.ts"
         },
         {
-          "total": 17,
+          "total": 100,
+          "label": "CRITICAL",
+          "value": "packages/testing/src/adapters/test.adapter.ts",
+          "file": "packages/testing/src/adapters/test.adapter.ts"
+        },
+        {
+          "total": 33,
           "label": "OK",
           "value": "packages/platform-ws/src/adapters/ws.adapter.ts",
           "file": "packages/platform-ws/src/adapters/ws.adapter.ts"
+        },
+        {
+          "total": 33,
+          "label": "OK",
+          "value": "packages/platform-ws/src/adapters/ws.handler.registry.ts",
+          "file": "packages/platform-ws/src/adapters/ws.handler.registry.ts"
         },
         {
           "total": 67,
@@ -2733,42 +2877,6 @@
           "label": "OK",
           "value": "packages/platform-ws/src/types/ws-adapter-options.interface.ts",
           "file": "packages/platform-ws/src/types/ws-adapter-options.interface.ts"
-        },
-        {
-          "total": 33,
-          "label": "OK",
-          "value": "packages/platform-grpc/src/adapters/grpc.adapter.ts",
-          "file": "packages/platform-grpc/src/adapters/grpc.adapter.ts"
-        },
-        {
-          "total": 50,
-          "label": "WARNING",
-          "value": "packages/platform-grpc/src/adapters/grpc.handler.registry.ts",
-          "file": "packages/platform-grpc/src/adapters/grpc.handler.registry.ts"
-        },
-        {
-          "total": 50,
-          "label": "WARNING",
-          "value": "packages/platform-grpc/src/adapters/index.ts",
-          "file": "packages/platform-grpc/src/adapters/index.ts"
-        },
-        {
-          "total": 0,
-          "label": "OK",
-          "value": "packages/platform-grpc/src/types/grpc-adapter-options.interface.ts",
-          "file": "packages/platform-grpc/src/types/grpc-adapter-options.interface.ts"
-        },
-        {
-          "total": 67,
-          "label": "WARNING",
-          "value": "packages/platform-grpc/src/types/index.ts",
-          "file": "packages/platform-grpc/src/types/index.ts"
-        },
-        {
-          "total": 100,
-          "label": "CRITICAL",
-          "value": "packages/testing/src/adapters/test.adapter.ts",
-          "file": "packages/testing/src/adapters/test.adapter.ts"
         },
         {
           "total": 25,
