@@ -13,6 +13,7 @@ module.exports = {
         strictNullChecks: true,
         target: 'ES2019',
         module: 'commonjs',
+        types: ['node', 'jest', 'reflect-metadata'],
       },
     }],
   },

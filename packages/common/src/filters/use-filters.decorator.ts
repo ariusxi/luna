@@ -30,9 +30,8 @@ export const USE_FILTERS_METADATA = 'luna:filters'
 export const UseFilters = (...filters: ClassOrInstance<LunaExceptionFilter>[]): ClassDecorator & MethodDecorator => {
   return (target: object, propertyKey?: string | symbol) => {
     if (propertyKey !== undefined) {
-      Reflect.defineMetadata(USE_FILTERS_METADATA, filters, target, propertyKey)
-    } else {
-      Reflect.defineMetadata(USE_FILTERS_METADATA, filters, target)
+      return Reflect.defineMetadata(USE_FILTERS_METADATA, filters, target, propertyKey)
     }
+    Reflect.defineMetadata(USE_FILTERS_METADATA, filters, target)
   }
 }

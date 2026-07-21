@@ -4,7 +4,14 @@
     "outDir": "dist",
     "rootDir": "src",
     "declarationDir": "dist",
-    "types": ["node", "jest"]
+    "types": [
+      "node",
+      "jest",
+      "reflect-metadata"
+    ]
   },
-  "include": ["src/**/*", "tests/**/*"]
+  "include": [
+    "src/**/*",
+    "tests/**/*"
+  ]
 }

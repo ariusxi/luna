@@ -30,9 +30,8 @@ export const USE_PIPES_METADATA = 'luna:pipes'
 export const UsePipes = (...pipes: ClassOrInstance<LunaPipe>[]): ClassDecorator & MethodDecorator => {
   return (target: object, propertyKey?: string | symbol) => {
     if (propertyKey !== undefined) {
-      Reflect.defineMetadata(USE_PIPES_METADATA, pipes, target, propertyKey)
-    } else {
-      Reflect.defineMetadata(USE_PIPES_METADATA, pipes, target)
+      return Reflect.defineMetadata(USE_PIPES_METADATA, pipes, target, propertyKey)
     }
+    Reflect.defineMetadata(USE_PIPES_METADATA, pipes, target)
   }
 }

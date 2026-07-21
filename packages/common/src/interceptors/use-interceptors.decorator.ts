@@ -31,9 +31,8 @@ export const USE_INTERCEPTORS_METADATA = 'luna:interceptors'
 export const UseInterceptors = (...interceptors: ClassOrInstance<LunaInterceptor>[]): ClassDecorator & MethodDecorator => {
   return (target: object, propertyKey?: string | symbol) => {
     if (propertyKey !== undefined) {
-      Reflect.defineMetadata(USE_INTERCEPTORS_METADATA, interceptors, target, propertyKey)
-    } else {
-      Reflect.defineMetadata(USE_INTERCEPTORS_METADATA, interceptors, target)
+      return Reflect.defineMetadata(USE_INTERCEPTORS_METADATA, interceptors, target, propertyKey)
     }
+    Reflect.defineMetadata(USE_INTERCEPTORS_METADATA, interceptors, target)
   }
 }

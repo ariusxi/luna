@@ -1,10 +1,8 @@
 import { ProviderDefinitionOptions, ProviderDefinitionFunction, InjectableToken } from '../types'
 import { Token } from '../types'
 
-function normalizeToken(token: InjectableToken): Token {
-  if (typeof token === 'object' && 'provide' in token) {
-    return token.provide
-  }
+const normalizeToken = (token: InjectableToken): Token => {
+  if (typeof token === 'object' && 'provide' in token) return token.provide
   return token as Token
 }
 

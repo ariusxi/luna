@@ -71,60 +71,20 @@ export class GrpcAdapter extends AbstractAdapter {
     const grpcObject = grpc.loadPackageDefinition(packageDef)
     const pkg = grpcObject[this.options.packageName] as Record<string, unknown>
 
-    if (!pkg) {
-      throw new Error(`gRPC package "${this.options.packageName}" not found in proto definition`)
-    }
+    if (!pkg) throw new Error(`gRPC package "${this.options.packageName}" not found in proto definition`)
 
     this.server = new grpc.Server()
 
     const servicesByName = this.groupByService()
-
     for (const [serviceName, methods] of Object.entries(servicesByName)) {
       const ServiceCtor = pkg[serviceName] as grpc.ServiceClientConstructor | undefined
+      if (!ServiceCtor?.service) continue
 
-      if (!ServiceCtor || !ServiceCtor.service) {
-        continue
-      }
-
-      const impl: grpc.UntypedServiceImplementation = {}
-
-      for (const [methodName, handler] of Object.entries(methods)) {
-        impl[methodName] = async (
-          call: grpc.ServerUnaryCall<unknown, unknown>,
-          callback: grpc.sendUnaryData<unknown>,
-        ) => {
-          try {
-            const result = await handler.handle({
-              context: 'grpc',
-              payload: call.request,
-              metadata: {
-                grpcMetadata: call.metadata.getMap(),
-              },
-            })
-            callback(null, result as object)
-          } catch (error) {
-            callback({
-              code: grpc.status.INTERNAL,
-              message: error instanceof Error ? error.message : 'Internal error',
-            })
-          }
-        }
-      }
-
+      const impl = this.buildServiceImpl(methods)
       this.server.addService(ServiceCtor.service, impl)
     }
 
-    await new Promise<void>((resolve, reject) => {
-      this.server!.bindAsync(
-        `0.0.0.0:${this.options.port}`,
-        grpc.ServerCredentials.createInsecure(),
-        (error, port) => {
-          if (error) return reject(error)
-          this.boundPort = port
-          resolve()
-        },
-      )
-    })
+    await this.bindServer()
   }
 
   /**
@@ -134,9 +94,7 @@ export class GrpcAdapter extends AbstractAdapter {
    * @throws {Error} If the server has not started yet.
    */
   public getPort(): number {
-    if (this.boundPort === undefined) {
-      throw new Error('gRPC server is not listening')
-    }
+    if (!this.boundPort) throw new Error('gRPC server is not listening')
     return this.boundPort
   }
 
@@ -146,6 +104,46 @@ export class GrpcAdapter extends AbstractAdapter {
   public async close(): Promise<void> {
     await new Promise<void>((resolve, reject) => {
       this.server?.tryShutdown((error) => (error ? reject(error) : resolve()))
+    })
+  }
+
+  private buildUnaryHandler(handler: LunaHandler): grpc.handleUnaryCall<unknown, unknown> {
+    return async (call, callback) => {
+      try {
+        const result = await handler.handle({
+          context: 'grpc',
+          payload: call.request,
+          metadata: { grpcMetadata: call.metadata.getMap() },
+        })
+        callback(null, result as object)
+      } catch (error) {
+        callback({
+          code: grpc.status.INTERNAL,
+          message: error instanceof Error ? error.message : 'Internal error',
+        })
+      }
+    }
+  }
+
+  private buildServiceImpl(methods: Record<string, LunaHandler>): grpc.UntypedServiceImplementation {
+    const impl: grpc.UntypedServiceImplementation = {}
+    for (const [methodName, handler] of Object.entries(methods)) {
+      impl[methodName] = this.buildUnaryHandler(handler)
+    }
+    return impl
+  }
+
+  private bindServer(): Promise<void> {
+    return new Promise((resolve, reject) => {
+      this.server!.bindAsync(
+        `0.0.0.0:${this.options.port}`,
+        grpc.ServerCredentials.createInsecure(),
+        (error, port) => {
+          if (error) return reject(error)
+          this.boundPort = port
+          resolve()
+        },
+      )
     })
   }
 

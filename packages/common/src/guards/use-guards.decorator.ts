@@ -29,9 +29,8 @@ export const USE_GUARDS_METADATA = 'luna:guards'
 export const UseGuards = (...guards: ClassOrInstance<LunaGuard>[]): ClassDecorator & MethodDecorator => {
   return (target: object, propertyKey?: string | symbol) => {
     if (propertyKey !== undefined) {
-      Reflect.defineMetadata(USE_GUARDS_METADATA, guards, target, propertyKey)
-    } else {
-      Reflect.defineMetadata(USE_GUARDS_METADATA, guards, target)
+      return Reflect.defineMetadata(USE_GUARDS_METADATA, guards, target, propertyKey)
     }
+    Reflect.defineMetadata(USE_GUARDS_METADATA, guards, target)
   }
 }
