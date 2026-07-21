@@ -24,7 +24,6 @@ npm install --save-dev @lunafw/testing
 ### Testing services (DI resolution)
 
 ```ts
-import 'reflect-metadata'
 import { Injectable, Module } from '@lunafw/core'
 import { TestingFactory } from '@lunafw/testing'
 
@@ -48,7 +47,6 @@ describe('UserService', () => {
 ### Testing controllers (handler dispatch)
 
 ```ts
-import 'reflect-metadata'
 import { Injectable, Module } from '@lunafw/core'
 import { Controller, LunaMessage, On } from '@lunafw/common'
 import { TestingFactory } from '@lunafw/testing'

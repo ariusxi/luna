@@ -16,7 +16,7 @@
 ## Installation
 
 ```bash
-npm install @lunafw/core @lunafw/common reflect-metadata
+npm install @lunafw/core @lunafw/common
 ```
 
 ## LunaFactory

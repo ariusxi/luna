@@ -1,0 +1,27 @@
+{
+  "name": "luna-example-http-and-ws",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Luna framework example — HTTP + WebSocket with full middleware pipeline",
+  "scripts": {
+    "start": "ts-node -r tsconfig-paths/register src/main.ts",
+    "start:dev": "ts-node-dev --respawn -r tsconfig-paths/register src/main.ts"
+  },
+  "dependencies": {
+    "@lunafw/common": "file:../../packages/common",
+    "@lunafw/core": "file:../../packages/core",
+    "@lunafw/platform-express": "file:../../packages/platform-express",
+    "@lunafw/platform-ws": "file:../../packages/platform-ws",
+    "express": "^5.2.1",
+    "reflect-metadata": "^0.2.2",
+    "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
+    "ws": "^8.21.1",
+    "zod": "^3.24.4"
+  },
+  "devDependencies": {
+    "ts-node-dev": "^2.0.0",
+    "tsx": "^4.22.4",
+    "typescript": "^6.0.3"
+  }
+}

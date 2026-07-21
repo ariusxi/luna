@@ -47,9 +47,16 @@ export class ExpressAdapter extends AbstractAdapter {
    * the Express HTTP method. After all routes are mounted the server begins
    * accepting connections on the configured port.
    */
+  private static readonly HTTP_METHODS: ReadonlySet<string> = new Set([
+    'get', 'post', 'put', 'patch', 'delete', 'options', 'head',
+  ])
+
   public async listen(): Promise<void> {
     for (const { handler, metadata } of this.handlers) {
       const { event, prefix, path } = metadata
+
+      if (!ExpressAdapter.HTTP_METHODS.has(event)) continue
+
       const router = Router()
 
       router[event as HttpMethod](path, async (request: Request, response: Response) => {
@@ -78,6 +85,7 @@ export class ExpressAdapter extends AbstractAdapter {
               message: 'Unauthorized',
             })
           }
+          console.error('[LunaAdapter] Unhandled error:', error)
           return response.status(500).json({
             statusCode: 500,
             message: 'Internal Server Error',

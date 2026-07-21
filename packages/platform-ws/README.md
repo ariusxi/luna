@@ -16,7 +16,7 @@
 ## Installation
 
 ```bash
-npm install @lunafw/core @lunafw/common @lunafw/platform-ws reflect-metadata ws
+npm install @lunafw/core @lunafw/common @lunafw/platform-ws
 ```
 
 ## Usage
@@ -113,9 +113,9 @@ All middleware from `@lunafw/common` works identically over WebSocket — the sa
 
 ### `new WsAdapter(options)`
 
-| Option | Type | Description |
-|--------|------|-------------|
-| `port` | `number` | Port to listen on. Pass `0` to let the OS assign a free port. |
+| Option   | Type       | Description                                                    |
+| -------- | ---------- | -------------------------------------------------------------- |
+| `port` | `number` | Port to listen on. Pass`0` to let the OS assign a free port. |
 
 ### `adapter.getPort(): number`
 

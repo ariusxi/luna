@@ -16,7 +16,7 @@
 ## Installation
 
 ```bash
-npm install @lunafw/core reflect-metadata
+npm install @lunafw/core
 ```
 
 Add to your `tsconfig.json`:
