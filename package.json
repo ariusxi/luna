@@ -13,9 +13,12 @@
     "start:dev": "ts-node tests/main.ts",
     "build": "yarn workspace @lunafw/core build && yarn workspace @lunafw/common build && yarn workspace @lunafw/config build && yarn workspace @lunafw/platform-express build && yarn workspace @lunafw/platform-ws build && yarn workspace @lunafw/platform-grpc build && yarn workspace @lunafw/testing build",
     "test": "yarn workspaces run test",
-    "test:coverage": "yarn workspaces run test:coverage"
+    "test:coverage": "yarn workspaces run test:coverage",
+    "quality": "artie run .",
+    "quality:baseline": "artie run . --save-baseline"
   },
   "devDependencies": {
+    "artie-lens": "^1.18.0",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/commit-analyzer": "^13.0.1",
     "@semantic-release/github": "^12.0.8",

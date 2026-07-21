@@ -28,3 +28,21 @@ jobs:
 
       - name: Test
         run: yarn test
+
+  design-quality:
+    name: Design Quality (artie-lens)
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: ariusxi/artie-lens@v1
+        with:
+          baseline: 'true'
+          fail-on: warning
+          comment: 'true'

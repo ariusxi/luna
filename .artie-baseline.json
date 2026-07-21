@@ -1,0 +1,2776 @@
+{
+  "metrics": [
+    {
+      "metric": "lcom",
+      "summary": {
+        "total": 87,
+        "max": 37,
+        "min": 0,
+        "average": "2.49",
+        "deviation": "7.24"
+      },
+      "classes": [
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "ConfigModule",
+          "file": "packages/config/src/config.module.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "ConfigService",
+          "file": "packages/config/src/config.service.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "TestingFactory",
+          "file": "packages/testing/src/testing.factory.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "TestingModule",
+          "file": "packages/testing/src/testing.module.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "HttpException",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "BadRequestException",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "UnauthorizedException",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "ForbiddenException",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "NotFoundException",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "MethodNotAllowedException",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "RequestTimeoutException",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "ConflictException",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "GoneException",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "UnprocessableEntityException",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "TooManyRequestsException",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "InternalServerErrorException",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "NotImplementedException",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "ServiceUnavailableException",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 37,
+          "label": "CRITICAL",
+          "value": "LunaApplication",
+          "file": "packages/common/src/factory/luna.application.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "LunaFactory",
+          "file": "packages/common/src/factory/luna.factory.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "GuardRejectionError",
+          "file": "packages/common/src/guards/guard-rejection.error.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "Reflector",
+          "file": "packages/common/src/metadata/reflector.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "AbstractAdapter",
+          "file": "packages/common/src/types/adapter.abstract.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "ValidationPipe",
+          "file": "packages/common/src/pipes/validation.pipe.ts"
+        },
+        {
+          "total": 18,
+          "label": "CRITICAL",
+          "value": "GrpcAdapter",
+          "file": "packages/platform-grpc/src/adapters/grpc.adapter.ts"
+        },
+        {
+          "total": 16,
+          "label": "CRITICAL",
+          "value": "ExpressAdapter",
+          "file": "packages/platform-express/src/adapters/express.adapter.ts"
+        },
+        {
+          "total": 8,
+          "label": "WARNING",
+          "value": "TestAdapter",
+          "file": "packages/testing/src/adapters/test.adapter.ts"
+        },
+        {
+          "total": 2,
+          "label": "OK",
+          "value": "WsAdapter",
+          "file": "packages/platform-ws/src/adapters/ws.adapter.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "DependencyResolutionError",
+          "file": "packages/core/src/core/handlers/dependency-resolution.handler.ts"
+        },
+        {
+          "total": 6,
+          "label": "WARNING",
+          "value": "DependencyContainer",
+          "file": "packages/core/src/core/managers/dependency.container.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "LifecycleManager",
+          "file": "packages/core/src/core/managers/lifecycle.manager.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "LunaApplication",
+          "file": "packages/core/src/core/managers/luna.application.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "LunaFactory",
+          "file": "packages/core/src/core/managers/luna.factory.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "ModuleManager",
+          "file": "packages/core/src/core/managers/module.manager.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "ModuleScanner",
+          "file": "packages/core/src/core/managers/module.scanner.ts"
+        }
+      ]
+    },
+    {
+      "metric": "wmc",
+      "summary": {
+        "total": 224,
+        "max": 40,
+        "min": 0,
+        "average": "6.40",
+        "deviation": "9.62"
+      },
+      "classes": [
+        {
+          "total": 6,
+          "label": "OK",
+          "value": "ConfigModule",
+          "file": "packages/config/src/config.module.ts"
+        },
+        {
+          "total": 2,
+          "label": "OK",
+          "value": "ConfigService",
+          "file": "packages/config/src/config.service.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "TestingFactory",
+          "file": "packages/testing/src/testing.factory.ts"
+        },
+        {
+          "total": 4,
+          "label": "OK",
+          "value": "TestingModule",
+          "file": "packages/testing/src/testing.module.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "HttpException",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "BadRequestException",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "UnauthorizedException",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "ForbiddenException",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "NotFoundException",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "MethodNotAllowedException",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "RequestTimeoutException",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "ConflictException",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "GoneException",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "UnprocessableEntityException",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "TooManyRequestsException",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "InternalServerErrorException",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "NotImplementedException",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "ServiceUnavailableException",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 39,
+          "label": "CRITICAL",
+          "value": "LunaApplication",
+          "file": "packages/common/src/factory/luna.application.ts"
+        },
+        {
+          "total": 2,
+          "label": "OK",
+          "value": "LunaFactory",
+          "file": "packages/common/src/factory/luna.factory.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "GuardRejectionError",
+          "file": "packages/common/src/guards/guard-rejection.error.ts"
+        },
+        {
+          "total": 5,
+          "label": "OK",
+          "value": "Reflector",
+          "file": "packages/common/src/metadata/reflector.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "AbstractAdapter",
+          "file": "packages/common/src/types/adapter.abstract.ts"
+        },
+        {
+          "total": 5,
+          "label": "OK",
+          "value": "ValidationPipe",
+          "file": "packages/common/src/pipes/validation.pipe.ts"
+        },
+        {
+          "total": 21,
+          "label": "WARNING",
+          "value": "GrpcAdapter",
+          "file": "packages/platform-grpc/src/adapters/grpc.adapter.ts"
+        },
+        {
+          "total": 19,
+          "label": "WARNING",
+          "value": "ExpressAdapter",
+          "file": "packages/platform-express/src/adapters/express.adapter.ts"
+        },
+        {
+          "total": 6,
+          "label": "OK",
+          "value": "TestAdapter",
+          "file": "packages/testing/src/adapters/test.adapter.ts"
+        },
+        {
+          "total": 15,
+          "label": "WARNING",
+          "value": "WsAdapter",
+          "file": "packages/platform-ws/src/adapters/ws.adapter.ts"
+        },
+        {
+          "total": 6,
+          "label": "OK",
+          "value": "DependencyResolutionError",
+          "file": "packages/core/src/core/handlers/dependency-resolution.handler.ts"
+        },
+        {
+          "total": 40,
+          "label": "CRITICAL",
+          "value": "DependencyContainer",
+          "file": "packages/core/src/core/managers/dependency.container.ts"
+        },
+        {
+          "total": 5,
+          "label": "OK",
+          "value": "LifecycleManager",
+          "file": "packages/core/src/core/managers/lifecycle.manager.ts"
+        },
+        {
+          "total": 11,
+          "label": "WARNING",
+          "value": "LunaApplication",
+          "file": "packages/core/src/core/managers/luna.application.ts"
+        },
+        {
+          "total": 10,
+          "label": "WARNING",
+          "value": "LunaFactory",
+          "file": "packages/core/src/core/managers/luna.factory.ts"
+        },
+        {
+          "total": 4,
+          "label": "OK",
+          "value": "ModuleManager",
+          "file": "packages/core/src/core/managers/module.manager.ts"
+        },
+        {
+          "total": 8,
+          "label": "OK",
+          "value": "ModuleScanner",
+          "file": "packages/core/src/core/managers/module.scanner.ts"
+        }
+      ]
+    },
+    {
+      "metric": "rfc",
+      "summary": {
+        "total": 127,
+        "max": 21,
+        "min": 0,
+        "average": "3.63",
+        "deviation": "4.53"
+      },
+      "classes": [
+        {
+          "total": 2,
+          "label": "OK",
+          "value": "ConfigModule",
+          "file": "packages/config/src/config.module.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "ConfigService",
+          "file": "packages/config/src/config.service.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "TestingFactory",
+          "file": "packages/testing/src/testing.factory.ts"
+        },
+        {
+          "total": 3,
+          "label": "OK",
+          "value": "TestingModule",
+          "file": "packages/testing/src/testing.module.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "HttpException",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "BadRequestException",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "UnauthorizedException",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "ForbiddenException",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "NotFoundException",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "MethodNotAllowedException",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "RequestTimeoutException",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "ConflictException",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "GoneException",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "UnprocessableEntityException",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "TooManyRequestsException",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "InternalServerErrorException",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "NotImplementedException",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "ServiceUnavailableException",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 21,
+          "label": "WARNING",
+          "value": "LunaApplication",
+          "file": "packages/common/src/factory/luna.application.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "LunaFactory",
+          "file": "packages/common/src/factory/luna.factory.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "GuardRejectionError",
+          "file": "packages/common/src/guards/guard-rejection.error.ts"
+        },
+        {
+          "total": 3,
+          "label": "OK",
+          "value": "Reflector",
+          "file": "packages/common/src/metadata/reflector.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "AbstractAdapter",
+          "file": "packages/common/src/types/adapter.abstract.ts"
+        },
+        {
+          "total": 4,
+          "label": "OK",
+          "value": "ValidationPipe",
+          "file": "packages/common/src/pipes/validation.pipe.ts"
+        },
+        {
+          "total": 11,
+          "label": "OK",
+          "value": "GrpcAdapter",
+          "file": "packages/platform-grpc/src/adapters/grpc.adapter.ts"
+        },
+        {
+          "total": 12,
+          "label": "OK",
+          "value": "ExpressAdapter",
+          "file": "packages/platform-express/src/adapters/express.adapter.ts"
+        },
+        {
+          "total": 5,
+          "label": "OK",
+          "value": "TestAdapter",
+          "file": "packages/testing/src/adapters/test.adapter.ts"
+        },
+        {
+          "total": 7,
+          "label": "OK",
+          "value": "WsAdapter",
+          "file": "packages/platform-ws/src/adapters/ws.adapter.ts"
+        },
+        {
+          "total": 2,
+          "label": "OK",
+          "value": "DependencyResolutionError",
+          "file": "packages/core/src/core/handlers/dependency-resolution.handler.ts"
+        },
+        {
+          "total": 12,
+          "label": "OK",
+          "value": "DependencyContainer",
+          "file": "packages/core/src/core/managers/dependency.container.ts"
+        },
+        {
+          "total": 4,
+          "label": "OK",
+          "value": "LifecycleManager",
+          "file": "packages/core/src/core/managers/lifecycle.manager.ts"
+        },
+        {
+          "total": 10,
+          "label": "OK",
+          "value": "LunaApplication",
+          "file": "packages/core/src/core/managers/luna.application.ts"
+        },
+        {
+          "total": 7,
+          "label": "OK",
+          "value": "LunaFactory",
+          "file": "packages/core/src/core/managers/luna.factory.ts"
+        },
+        {
+          "total": 4,
+          "label": "OK",
+          "value": "ModuleManager",
+          "file": "packages/core/src/core/managers/module.manager.ts"
+        },
+        {
+          "total": 4,
+          "label": "OK",
+          "value": "ModuleScanner",
+          "file": "packages/core/src/core/managers/module.scanner.ts"
+        }
+      ]
+    },
+    {
+      "metric": "cbo",
+      "summary": {
+        "total": 29,
+        "max": 4,
+        "min": 0,
+        "average": "0.83",
+        "deviation": "0.84"
+      },
+      "classes": [
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "ConfigModule",
+          "file": "packages/config/src/config.module.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "ConfigService",
+          "file": "packages/config/src/config.service.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "TestingFactory",
+          "file": "packages/testing/src/testing.factory.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "TestingModule",
+          "file": "packages/testing/src/testing.module.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "HttpException",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "BadRequestException",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "UnauthorizedException",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "ForbiddenException",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "NotFoundException",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "MethodNotAllowedException",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "RequestTimeoutException",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "ConflictException",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "GoneException",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "UnprocessableEntityException",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "TooManyRequestsException",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "InternalServerErrorException",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "NotImplementedException",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "ServiceUnavailableException",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 2,
+          "label": "OK",
+          "value": "LunaApplication",
+          "file": "packages/common/src/factory/luna.application.ts"
+        },
+        {
+          "total": 2,
+          "label": "OK",
+          "value": "LunaFactory",
+          "file": "packages/common/src/factory/luna.factory.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "GuardRejectionError",
+          "file": "packages/common/src/guards/guard-rejection.error.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "Reflector",
+          "file": "packages/common/src/metadata/reflector.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "AbstractAdapter",
+          "file": "packages/common/src/types/adapter.abstract.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "ValidationPipe",
+          "file": "packages/common/src/pipes/validation.pipe.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "GrpcAdapter",
+          "file": "packages/platform-grpc/src/adapters/grpc.adapter.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "ExpressAdapter",
+          "file": "packages/platform-express/src/adapters/express.adapter.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "TestAdapter",
+          "file": "packages/testing/src/adapters/test.adapter.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "WsAdapter",
+          "file": "packages/platform-ws/src/adapters/ws.adapter.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "DependencyResolutionError",
+          "file": "packages/core/src/core/handlers/dependency-resolution.handler.ts"
+        },
+        {
+          "total": 2,
+          "label": "OK",
+          "value": "DependencyContainer",
+          "file": "packages/core/src/core/managers/dependency.container.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "LifecycleManager",
+          "file": "packages/core/src/core/managers/lifecycle.manager.ts"
+        },
+        {
+          "total": 2,
+          "label": "OK",
+          "value": "LunaApplication",
+          "file": "packages/core/src/core/managers/luna.application.ts"
+        },
+        {
+          "total": 4,
+          "label": "OK",
+          "value": "LunaFactory",
+          "file": "packages/core/src/core/managers/luna.factory.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "ModuleManager",
+          "file": "packages/core/src/core/managers/module.manager.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "ModuleScanner",
+          "file": "packages/core/src/core/managers/module.scanner.ts"
+        }
+      ]
+    },
+    {
+      "metric": "dit",
+      "summary": {
+        "total": 17,
+        "max": 1,
+        "min": 0,
+        "average": "0.49",
+        "deviation": "0.50"
+      },
+      "classes": [
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "ConfigModule",
+          "file": "packages/config/src/config.module.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "ConfigService",
+          "file": "packages/config/src/config.service.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "TestingFactory",
+          "file": "packages/testing/src/testing.factory.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "TestingModule",
+          "file": "packages/testing/src/testing.module.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "HttpException",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "BadRequestException",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "UnauthorizedException",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "ForbiddenException",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "NotFoundException",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "MethodNotAllowedException",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "RequestTimeoutException",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "ConflictException",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "GoneException",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "UnprocessableEntityException",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "TooManyRequestsException",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "InternalServerErrorException",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "NotImplementedException",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "ServiceUnavailableException",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "LunaApplication",
+          "file": "packages/common/src/factory/luna.application.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "LunaFactory",
+          "file": "packages/common/src/factory/luna.factory.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "GuardRejectionError",
+          "file": "packages/common/src/guards/guard-rejection.error.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "Reflector",
+          "file": "packages/common/src/metadata/reflector.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "AbstractAdapter",
+          "file": "packages/common/src/types/adapter.abstract.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "ValidationPipe",
+          "file": "packages/common/src/pipes/validation.pipe.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "GrpcAdapter",
+          "file": "packages/platform-grpc/src/adapters/grpc.adapter.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "ExpressAdapter",
+          "file": "packages/platform-express/src/adapters/express.adapter.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "TestAdapter",
+          "file": "packages/testing/src/adapters/test.adapter.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "WsAdapter",
+          "file": "packages/platform-ws/src/adapters/ws.adapter.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "DependencyResolutionError",
+          "file": "packages/core/src/core/handlers/dependency-resolution.handler.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "DependencyContainer",
+          "file": "packages/core/src/core/managers/dependency.container.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "LifecycleManager",
+          "file": "packages/core/src/core/managers/lifecycle.manager.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "LunaApplication",
+          "file": "packages/core/src/core/managers/luna.application.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "LunaFactory",
+          "file": "packages/core/src/core/managers/luna.factory.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "ModuleManager",
+          "file": "packages/core/src/core/managers/module.manager.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "ModuleScanner",
+          "file": "packages/core/src/core/managers/module.scanner.ts"
+        }
+      ]
+    },
+    {
+      "metric": "noc",
+      "summary": {
+        "total": 13,
+        "max": 13,
+        "min": 0,
+        "average": "0.37",
+        "deviation": "2.17"
+      },
+      "classes": [
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "ConfigModule",
+          "file": "packages/config/src/config.module.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "ConfigService",
+          "file": "packages/config/src/config.service.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "TestingFactory",
+          "file": "packages/testing/src/testing.factory.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "TestingModule",
+          "file": "packages/testing/src/testing.module.ts"
+        },
+        {
+          "total": 13,
+          "label": "WARNING",
+          "value": "HttpException",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "BadRequestException",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "UnauthorizedException",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "ForbiddenException",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "NotFoundException",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "MethodNotAllowedException",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "RequestTimeoutException",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "ConflictException",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "GoneException",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "UnprocessableEntityException",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "TooManyRequestsException",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "InternalServerErrorException",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "NotImplementedException",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "ServiceUnavailableException",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "LunaApplication",
+          "file": "packages/common/src/factory/luna.application.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "LunaFactory",
+          "file": "packages/common/src/factory/luna.factory.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "GuardRejectionError",
+          "file": "packages/common/src/guards/guard-rejection.error.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "Reflector",
+          "file": "packages/common/src/metadata/reflector.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "AbstractAdapter",
+          "file": "packages/common/src/types/adapter.abstract.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "ValidationPipe",
+          "file": "packages/common/src/pipes/validation.pipe.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "GrpcAdapter",
+          "file": "packages/platform-grpc/src/adapters/grpc.adapter.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "ExpressAdapter",
+          "file": "packages/platform-express/src/adapters/express.adapter.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "TestAdapter",
+          "file": "packages/testing/src/adapters/test.adapter.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "WsAdapter",
+          "file": "packages/platform-ws/src/adapters/ws.adapter.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "DependencyResolutionError",
+          "file": "packages/core/src/core/handlers/dependency-resolution.handler.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "DependencyContainer",
+          "file": "packages/core/src/core/managers/dependency.container.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "LifecycleManager",
+          "file": "packages/core/src/core/managers/lifecycle.manager.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "LunaApplication",
+          "file": "packages/core/src/core/managers/luna.application.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "LunaFactory",
+          "file": "packages/core/src/core/managers/luna.factory.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "ModuleManager",
+          "file": "packages/core/src/core/managers/module.manager.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "ModuleScanner",
+          "file": "packages/core/src/core/managers/module.scanner.ts"
+        }
+      ]
+    },
+    {
+      "metric": "ce",
+      "summary": {
+        "total": 132,
+        "max": 16,
+        "min": 0,
+        "average": "1.69",
+        "deviation": "2.25"
+      },
+      "classes": [
+        {
+          "total": 16,
+          "label": "CRITICAL",
+          "value": "packages/common/src/index.ts",
+          "file": "packages/common/src/index.ts"
+        },
+        {
+          "total": 2,
+          "label": "OK",
+          "value": "packages/config/src/config.module.ts",
+          "file": "packages/config/src/config.module.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/config/src/config.service.ts",
+          "file": "packages/config/src/config.service.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/config/src/config.types.ts",
+          "file": "packages/config/src/config.types.ts"
+        },
+        {
+          "total": 3,
+          "label": "OK",
+          "value": "packages/config/src/index.ts",
+          "file": "packages/config/src/index.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "packages/core/src/index.ts",
+          "file": "packages/core/src/index.ts"
+        },
+        {
+          "total": 2,
+          "label": "OK",
+          "value": "packages/platform-grpc/src/index.ts",
+          "file": "packages/platform-grpc/src/index.ts"
+        },
+        {
+          "total": 3,
+          "label": "OK",
+          "value": "packages/platform-express/src/index.ts",
+          "file": "packages/platform-express/src/index.ts"
+        },
+        {
+          "total": 3,
+          "label": "OK",
+          "value": "packages/testing/src/index.ts",
+          "file": "packages/testing/src/index.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "packages/testing/src/testing.factory.ts",
+          "file": "packages/testing/src/testing.factory.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "packages/testing/src/testing.module.ts",
+          "file": "packages/testing/src/testing.module.ts"
+        },
+        {
+          "total": 2,
+          "label": "OK",
+          "value": "packages/platform-ws/src/index.ts",
+          "file": "packages/platform-ws/src/index.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/common/src/decorators/controller.decorator.ts",
+          "file": "packages/common/src/decorators/controller.decorator.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/common/src/decorators/on.decorator.ts",
+          "file": "packages/common/src/decorators/on.decorator.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/common/src/exceptions/http.exception.ts",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "packages/common/src/exceptions/index.ts",
+          "file": "packages/common/src/exceptions/index.ts"
+        },
+        {
+          "total": 10,
+          "label": "WARNING",
+          "value": "packages/common/src/factory/luna.application.ts",
+          "file": "packages/common/src/factory/luna.application.ts"
+        },
+        {
+          "total": 2,
+          "label": "OK",
+          "value": "packages/common/src/factory/luna.factory.ts",
+          "file": "packages/common/src/factory/luna.factory.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/common/src/filters/catch.decorator.ts",
+          "file": "packages/common/src/filters/catch.decorator.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "packages/common/src/filters/filter.interface.ts",
+          "file": "packages/common/src/filters/filter.interface.ts"
+        },
+        {
+          "total": 3,
+          "label": "OK",
+          "value": "packages/common/src/filters/index.ts",
+          "file": "packages/common/src/filters/index.ts"
+        },
+        {
+          "total": 2,
+          "label": "OK",
+          "value": "packages/common/src/filters/use-filters.decorator.ts",
+          "file": "packages/common/src/filters/use-filters.decorator.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/common/src/guards/guard-rejection.error.ts",
+          "file": "packages/common/src/guards/guard-rejection.error.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "packages/common/src/guards/guard.interface.ts",
+          "file": "packages/common/src/guards/guard.interface.ts"
+        },
+        {
+          "total": 3,
+          "label": "OK",
+          "value": "packages/common/src/guards/index.ts",
+          "file": "packages/common/src/guards/index.ts"
+        },
+        {
+          "total": 2,
+          "label": "OK",
+          "value": "packages/common/src/guards/use-guards.decorator.ts",
+          "file": "packages/common/src/guards/use-guards.decorator.ts"
+        },
+        {
+          "total": 2,
+          "label": "OK",
+          "value": "packages/common/src/interceptors/index.ts",
+          "file": "packages/common/src/interceptors/index.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "packages/common/src/interceptors/interceptor.interface.ts",
+          "file": "packages/common/src/interceptors/interceptor.interface.ts"
+        },
+        {
+          "total": 2,
+          "label": "OK",
+          "value": "packages/common/src/interceptors/use-interceptors.decorator.ts",
+          "file": "packages/common/src/interceptors/use-interceptors.decorator.ts"
+        },
+        {
+          "total": 2,
+          "label": "OK",
+          "value": "packages/common/src/metadata/index.ts",
+          "file": "packages/common/src/metadata/index.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/common/src/metadata/reflector.ts",
+          "file": "packages/common/src/metadata/reflector.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/common/src/metadata/set-metadata.decorator.ts",
+          "file": "packages/common/src/metadata/set-metadata.decorator.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "packages/common/src/params/index.ts",
+          "file": "packages/common/src/params/index.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "packages/common/src/params/param.decorator.ts",
+          "file": "packages/common/src/params/param.decorator.ts"
+        },
+        {
+          "total": 3,
+          "label": "OK",
+          "value": "packages/common/src/pipes/index.ts",
+          "file": "packages/common/src/pipes/index.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "packages/common/src/pipes/pipe.interface.ts",
+          "file": "packages/common/src/pipes/pipe.interface.ts"
+        },
+        {
+          "total": 2,
+          "label": "OK",
+          "value": "packages/common/src/pipes/use-pipes.decorator.ts",
+          "file": "packages/common/src/pipes/use-pipes.decorator.ts"
+        },
+        {
+          "total": 3,
+          "label": "OK",
+          "value": "packages/common/src/pipes/validation.pipe.ts",
+          "file": "packages/common/src/pipes/validation.pipe.ts"
+        },
+        {
+          "total": 2,
+          "label": "OK",
+          "value": "packages/common/src/types/adapter.abstract.ts",
+          "file": "packages/common/src/types/adapter.abstract.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/common/src/types/class-or-instance.type.ts",
+          "file": "packages/common/src/types/class-or-instance.type.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/common/src/types/handler-metadata.interface.ts",
+          "file": "packages/common/src/types/handler-metadata.interface.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "packages/common/src/types/handler.interface.ts",
+          "file": "packages/common/src/types/handler.interface.ts"
+        },
+        {
+          "total": 5,
+          "label": "OK",
+          "value": "packages/common/src/types/index.ts",
+          "file": "packages/common/src/types/index.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/common/src/types/message.interface.ts",
+          "file": "packages/common/src/types/message.interface.ts"
+        },
+        {
+          "total": 5,
+          "label": "OK",
+          "value": "packages/core/src/core/index.ts",
+          "file": "packages/core/src/core/index.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "packages/platform-grpc/src/adapters/grpc.adapter.ts",
+          "file": "packages/platform-grpc/src/adapters/grpc.adapter.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "packages/platform-grpc/src/adapters/index.ts",
+          "file": "packages/platform-grpc/src/adapters/index.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/platform-grpc/src/types/grpc-adapter-options.interface.ts",
+          "file": "packages/platform-grpc/src/types/grpc-adapter-options.interface.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "packages/platform-grpc/src/types/index.ts",
+          "file": "packages/platform-grpc/src/types/index.ts"
+        },
+        {
+          "total": 2,
+          "label": "OK",
+          "value": "packages/platform-express/src/adapters/express.adapter.ts",
+          "file": "packages/platform-express/src/adapters/express.adapter.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "packages/platform-express/src/adapters/index.ts",
+          "file": "packages/platform-express/src/adapters/index.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/platform-express/src/exceptions/http.exception.ts",
+          "file": "packages/platform-express/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "packages/platform-express/src/exceptions/index.ts",
+          "file": "packages/platform-express/src/exceptions/index.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/platform-express/src/types/express.interface.ts",
+          "file": "packages/platform-express/src/types/express.interface.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/platform-express/src/types/http-method.type.ts",
+          "file": "packages/platform-express/src/types/http-method.type.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "packages/platform-express/src/types/index.ts",
+          "file": "packages/platform-express/src/types/index.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/testing/src/adapters/test.adapter.ts",
+          "file": "packages/testing/src/adapters/test.adapter.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "packages/platform-ws/src/adapters/ws.adapter.ts",
+          "file": "packages/platform-ws/src/adapters/ws.adapter.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "packages/platform-ws/src/types/index.ts",
+          "file": "packages/platform-ws/src/types/index.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/platform-ws/src/types/ws-adapter-options.interface.ts",
+          "file": "packages/platform-ws/src/types/ws-adapter-options.interface.ts"
+        },
+        {
+          "total": 3,
+          "label": "OK",
+          "value": "packages/core/src/core/decorators/index.ts",
+          "file": "packages/core/src/core/decorators/index.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "packages/core/src/core/decorators/inject.decorator.ts",
+          "file": "packages/core/src/core/decorators/inject.decorator.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "packages/core/src/core/decorators/injectable.decorator.ts",
+          "file": "packages/core/src/core/decorators/injectable.decorator.ts"
+        },
+        {
+          "total": 2,
+          "label": "OK",
+          "value": "packages/core/src/core/decorators/module.decorator.ts",
+          "file": "packages/core/src/core/decorators/module.decorator.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "packages/core/src/core/handlers/dependency-resolution.handler.ts",
+          "file": "packages/core/src/core/handlers/dependency-resolution.handler.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "packages/core/src/core/handlers/index.ts",
+          "file": "packages/core/src/core/handlers/index.ts"
+        },
+        {
+          "total": 3,
+          "label": "OK",
+          "value": "packages/core/src/core/managers/dependency.container.ts",
+          "file": "packages/core/src/core/managers/dependency.container.ts"
+        },
+        {
+          "total": 4,
+          "label": "OK",
+          "value": "packages/core/src/core/managers/index.ts",
+          "file": "packages/core/src/core/managers/index.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/core/src/core/managers/lifecycle.manager.ts",
+          "file": "packages/core/src/core/managers/lifecycle.manager.ts"
+        },
+        {
+          "total": 2,
+          "label": "OK",
+          "value": "packages/core/src/core/managers/luna.application.ts",
+          "file": "packages/core/src/core/managers/luna.application.ts"
+        },
+        {
+          "total": 5,
+          "label": "OK",
+          "value": "packages/core/src/core/managers/luna.factory.ts",
+          "file": "packages/core/src/core/managers/luna.factory.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "packages/core/src/core/managers/module.manager.ts",
+          "file": "packages/core/src/core/managers/module.manager.ts"
+        },
+        {
+          "total": 2,
+          "label": "OK",
+          "value": "packages/core/src/core/managers/module.scanner.ts",
+          "file": "packages/core/src/core/managers/module.scanner.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "packages/core/src/core/providers/define-provider.ts",
+          "file": "packages/core/src/core/providers/define-provider.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "packages/core/src/core/providers/index.ts",
+          "file": "packages/core/src/core/providers/index.ts"
+        },
+        {
+          "total": 2,
+          "label": "OK",
+          "value": "packages/core/src/core/types/index.ts",
+          "file": "packages/core/src/core/types/index.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "packages/core/src/core/types/module.interface.ts",
+          "file": "packages/core/src/core/types/module.interface.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "packages/core/src/core/types/provider.interface.ts",
+          "file": "packages/core/src/core/types/provider.interface.ts"
+        }
+      ]
+    },
+    {
+      "metric": "cyclic",
+      "summary": {
+        "total": 36,
+        "max": 6,
+        "min": 0,
+        "average": "0.46",
+        "deviation": "1.60"
+      },
+      "classes": [
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/common/src/index.ts",
+          "file": "packages/common/src/index.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/config/src/config.module.ts",
+          "file": "packages/config/src/config.module.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/config/src/config.service.ts",
+          "file": "packages/config/src/config.service.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/config/src/config.types.ts",
+          "file": "packages/config/src/config.types.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/config/src/index.ts",
+          "file": "packages/config/src/index.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/core/src/index.ts",
+          "file": "packages/core/src/index.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/platform-grpc/src/index.ts",
+          "file": "packages/platform-grpc/src/index.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/platform-express/src/index.ts",
+          "file": "packages/platform-express/src/index.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/testing/src/index.ts",
+          "file": "packages/testing/src/index.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/testing/src/testing.factory.ts",
+          "file": "packages/testing/src/testing.factory.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/testing/src/testing.module.ts",
+          "file": "packages/testing/src/testing.module.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/platform-ws/src/index.ts",
+          "file": "packages/platform-ws/src/index.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/common/src/decorators/controller.decorator.ts",
+          "file": "packages/common/src/decorators/controller.decorator.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/common/src/decorators/on.decorator.ts",
+          "file": "packages/common/src/decorators/on.decorator.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/common/src/exceptions/http.exception.ts",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/common/src/exceptions/index.ts",
+          "file": "packages/common/src/exceptions/index.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/common/src/factory/luna.application.ts",
+          "file": "packages/common/src/factory/luna.application.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/common/src/factory/luna.factory.ts",
+          "file": "packages/common/src/factory/luna.factory.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/common/src/filters/catch.decorator.ts",
+          "file": "packages/common/src/filters/catch.decorator.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/common/src/filters/filter.interface.ts",
+          "file": "packages/common/src/filters/filter.interface.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/common/src/filters/index.ts",
+          "file": "packages/common/src/filters/index.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/common/src/filters/use-filters.decorator.ts",
+          "file": "packages/common/src/filters/use-filters.decorator.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/common/src/guards/guard-rejection.error.ts",
+          "file": "packages/common/src/guards/guard-rejection.error.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/common/src/guards/guard.interface.ts",
+          "file": "packages/common/src/guards/guard.interface.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/common/src/guards/index.ts",
+          "file": "packages/common/src/guards/index.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/common/src/guards/use-guards.decorator.ts",
+          "file": "packages/common/src/guards/use-guards.decorator.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/common/src/interceptors/index.ts",
+          "file": "packages/common/src/interceptors/index.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/common/src/interceptors/interceptor.interface.ts",
+          "file": "packages/common/src/interceptors/interceptor.interface.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/common/src/interceptors/use-interceptors.decorator.ts",
+          "file": "packages/common/src/interceptors/use-interceptors.decorator.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/common/src/metadata/index.ts",
+          "file": "packages/common/src/metadata/index.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/common/src/metadata/reflector.ts",
+          "file": "packages/common/src/metadata/reflector.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/common/src/metadata/set-metadata.decorator.ts",
+          "file": "packages/common/src/metadata/set-metadata.decorator.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/common/src/params/index.ts",
+          "file": "packages/common/src/params/index.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/common/src/params/param.decorator.ts",
+          "file": "packages/common/src/params/param.decorator.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/common/src/pipes/index.ts",
+          "file": "packages/common/src/pipes/index.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/common/src/pipes/pipe.interface.ts",
+          "file": "packages/common/src/pipes/pipe.interface.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/common/src/pipes/use-pipes.decorator.ts",
+          "file": "packages/common/src/pipes/use-pipes.decorator.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/common/src/pipes/validation.pipe.ts",
+          "file": "packages/common/src/pipes/validation.pipe.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/common/src/types/adapter.abstract.ts",
+          "file": "packages/common/src/types/adapter.abstract.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/common/src/types/class-or-instance.type.ts",
+          "file": "packages/common/src/types/class-or-instance.type.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/common/src/types/handler-metadata.interface.ts",
+          "file": "packages/common/src/types/handler-metadata.interface.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/common/src/types/handler.interface.ts",
+          "file": "packages/common/src/types/handler.interface.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/common/src/types/index.ts",
+          "file": "packages/common/src/types/index.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/common/src/types/message.interface.ts",
+          "file": "packages/common/src/types/message.interface.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/core/src/core/index.ts",
+          "file": "packages/core/src/core/index.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/platform-grpc/src/adapters/grpc.adapter.ts",
+          "file": "packages/platform-grpc/src/adapters/grpc.adapter.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/platform-grpc/src/adapters/index.ts",
+          "file": "packages/platform-grpc/src/adapters/index.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/platform-grpc/src/types/grpc-adapter-options.interface.ts",
+          "file": "packages/platform-grpc/src/types/grpc-adapter-options.interface.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/platform-grpc/src/types/index.ts",
+          "file": "packages/platform-grpc/src/types/index.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/platform-express/src/adapters/express.adapter.ts",
+          "file": "packages/platform-express/src/adapters/express.adapter.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/platform-express/src/adapters/index.ts",
+          "file": "packages/platform-express/src/adapters/index.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/platform-express/src/exceptions/http.exception.ts",
+          "file": "packages/platform-express/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/platform-express/src/exceptions/index.ts",
+          "file": "packages/platform-express/src/exceptions/index.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/platform-express/src/types/express.interface.ts",
+          "file": "packages/platform-express/src/types/express.interface.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/platform-express/src/types/http-method.type.ts",
+          "file": "packages/platform-express/src/types/http-method.type.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/platform-express/src/types/index.ts",
+          "file": "packages/platform-express/src/types/index.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/testing/src/adapters/test.adapter.ts",
+          "file": "packages/testing/src/adapters/test.adapter.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/platform-ws/src/adapters/ws.adapter.ts",
+          "file": "packages/platform-ws/src/adapters/ws.adapter.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/platform-ws/src/types/index.ts",
+          "file": "packages/platform-ws/src/types/index.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/platform-ws/src/types/ws-adapter-options.interface.ts",
+          "file": "packages/platform-ws/src/types/ws-adapter-options.interface.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/core/src/core/decorators/index.ts",
+          "file": "packages/core/src/core/decorators/index.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/core/src/core/decorators/inject.decorator.ts",
+          "file": "packages/core/src/core/decorators/inject.decorator.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/core/src/core/decorators/injectable.decorator.ts",
+          "file": "packages/core/src/core/decorators/injectable.decorator.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/core/src/core/decorators/module.decorator.ts",
+          "file": "packages/core/src/core/decorators/module.decorator.ts"
+        },
+        {
+          "total": 6,
+          "label": "CRITICAL",
+          "value": "packages/core/src/core/handlers/dependency-resolution.handler.ts",
+          "file": "packages/core/src/core/handlers/dependency-resolution.handler.ts"
+        },
+        {
+          "total": 6,
+          "label": "CRITICAL",
+          "value": "packages/core/src/core/handlers/index.ts",
+          "file": "packages/core/src/core/handlers/index.ts"
+        },
+        {
+          "total": 6,
+          "label": "CRITICAL",
+          "value": "packages/core/src/core/managers/dependency.container.ts",
+          "file": "packages/core/src/core/managers/dependency.container.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/core/src/core/managers/index.ts",
+          "file": "packages/core/src/core/managers/index.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/core/src/core/managers/lifecycle.manager.ts",
+          "file": "packages/core/src/core/managers/lifecycle.manager.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/core/src/core/managers/luna.application.ts",
+          "file": "packages/core/src/core/managers/luna.application.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/core/src/core/managers/luna.factory.ts",
+          "file": "packages/core/src/core/managers/luna.factory.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/core/src/core/managers/module.manager.ts",
+          "file": "packages/core/src/core/managers/module.manager.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/core/src/core/managers/module.scanner.ts",
+          "file": "packages/core/src/core/managers/module.scanner.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/core/src/core/providers/define-provider.ts",
+          "file": "packages/core/src/core/providers/define-provider.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/core/src/core/providers/index.ts",
+          "file": "packages/core/src/core/providers/index.ts"
+        },
+        {
+          "total": 6,
+          "label": "CRITICAL",
+          "value": "packages/core/src/core/types/index.ts",
+          "file": "packages/core/src/core/types/index.ts"
+        },
+        {
+          "total": 6,
+          "label": "CRITICAL",
+          "value": "packages/core/src/core/types/module.interface.ts",
+          "file": "packages/core/src/core/types/module.interface.ts"
+        },
+        {
+          "total": 6,
+          "label": "CRITICAL",
+          "value": "packages/core/src/core/types/provider.interface.ts",
+          "file": "packages/core/src/core/types/provider.interface.ts"
+        }
+      ]
+    },
+    {
+      "metric": "distance",
+      "summary": {
+        "total": 3457,
+        "max": 100,
+        "min": 0,
+        "average": "44.32",
+        "deviation": "32.04"
+      },
+      "classes": [
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/common/src/index.ts",
+          "file": "packages/common/src/index.ts"
+        },
+        {
+          "total": 33,
+          "label": "OK",
+          "value": "packages/config/src/config.module.ts",
+          "file": "packages/config/src/config.module.ts"
+        },
+        {
+          "total": 100,
+          "label": "CRITICAL",
+          "value": "packages/config/src/config.service.ts",
+          "file": "packages/config/src/config.service.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/config/src/config.types.ts",
+          "file": "packages/config/src/config.types.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/config/src/index.ts",
+          "file": "packages/config/src/index.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/core/src/index.ts",
+          "file": "packages/core/src/index.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/platform-grpc/src/index.ts",
+          "file": "packages/platform-grpc/src/index.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/platform-express/src/index.ts",
+          "file": "packages/platform-express/src/index.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/testing/src/index.ts",
+          "file": "packages/testing/src/index.ts"
+        },
+        {
+          "total": 50,
+          "label": "WARNING",
+          "value": "packages/testing/src/testing.factory.ts",
+          "file": "packages/testing/src/testing.factory.ts"
+        },
+        {
+          "total": 67,
+          "label": "WARNING",
+          "value": "packages/testing/src/testing.module.ts",
+          "file": "packages/testing/src/testing.module.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/platform-ws/src/index.ts",
+          "file": "packages/platform-ws/src/index.ts"
+        },
+        {
+          "total": 100,
+          "label": "CRITICAL",
+          "value": "packages/common/src/decorators/controller.decorator.ts",
+          "file": "packages/common/src/decorators/controller.decorator.ts"
+        },
+        {
+          "total": 100,
+          "label": "CRITICAL",
+          "value": "packages/common/src/decorators/on.decorator.ts",
+          "file": "packages/common/src/decorators/on.decorator.ts"
+        },
+        {
+          "total": 100,
+          "label": "CRITICAL",
+          "value": "packages/common/src/exceptions/http.exception.ts",
+          "file": "packages/common/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 50,
+          "label": "WARNING",
+          "value": "packages/common/src/exceptions/index.ts",
+          "file": "packages/common/src/exceptions/index.ts"
+        },
+        {
+          "total": 33,
+          "label": "OK",
+          "value": "packages/common/src/factory/luna.application.ts",
+          "file": "packages/common/src/factory/luna.application.ts"
+        },
+        {
+          "total": 33,
+          "label": "OK",
+          "value": "packages/common/src/factory/luna.factory.ts",
+          "file": "packages/common/src/factory/luna.factory.ts"
+        },
+        {
+          "total": 100,
+          "label": "CRITICAL",
+          "value": "packages/common/src/filters/catch.decorator.ts",
+          "file": "packages/common/src/filters/catch.decorator.ts"
+        },
+        {
+          "total": 25,
+          "label": "OK",
+          "value": "packages/common/src/filters/filter.interface.ts",
+          "file": "packages/common/src/filters/filter.interface.ts"
+        },
+        {
+          "total": 25,
+          "label": "OK",
+          "value": "packages/common/src/filters/index.ts",
+          "file": "packages/common/src/filters/index.ts"
+        },
+        {
+          "total": 50,
+          "label": "WARNING",
+          "value": "packages/common/src/filters/use-filters.decorator.ts",
+          "file": "packages/common/src/filters/use-filters.decorator.ts"
+        },
+        {
+          "total": 100,
+          "label": "CRITICAL",
+          "value": "packages/common/src/guards/guard-rejection.error.ts",
+          "file": "packages/common/src/guards/guard-rejection.error.ts"
+        },
+        {
+          "total": 33,
+          "label": "OK",
+          "value": "packages/common/src/guards/guard.interface.ts",
+          "file": "packages/common/src/guards/guard.interface.ts"
+        },
+        {
+          "total": 40,
+          "label": "OK",
+          "value": "packages/common/src/guards/index.ts",
+          "file": "packages/common/src/guards/index.ts"
+        },
+        {
+          "total": 33,
+          "label": "OK",
+          "value": "packages/common/src/guards/use-guards.decorator.ts",
+          "file": "packages/common/src/guards/use-guards.decorator.ts"
+        },
+        {
+          "total": 50,
+          "label": "WARNING",
+          "value": "packages/common/src/interceptors/index.ts",
+          "file": "packages/common/src/interceptors/index.ts"
+        },
+        {
+          "total": 33,
+          "label": "OK",
+          "value": "packages/common/src/interceptors/interceptor.interface.ts",
+          "file": "packages/common/src/interceptors/interceptor.interface.ts"
+        },
+        {
+          "total": 33,
+          "label": "OK",
+          "value": "packages/common/src/interceptors/use-interceptors.decorator.ts",
+          "file": "packages/common/src/interceptors/use-interceptors.decorator.ts"
+        },
+        {
+          "total": 33,
+          "label": "OK",
+          "value": "packages/common/src/metadata/index.ts",
+          "file": "packages/common/src/metadata/index.ts"
+        },
+        {
+          "total": 100,
+          "label": "CRITICAL",
+          "value": "packages/common/src/metadata/reflector.ts",
+          "file": "packages/common/src/metadata/reflector.ts"
+        },
+        {
+          "total": 100,
+          "label": "CRITICAL",
+          "value": "packages/common/src/metadata/set-metadata.decorator.ts",
+          "file": "packages/common/src/metadata/set-metadata.decorator.ts"
+        },
+        {
+          "total": 50,
+          "label": "WARNING",
+          "value": "packages/common/src/params/index.ts",
+          "file": "packages/common/src/params/index.ts"
+        },
+        {
+          "total": 33,
+          "label": "OK",
+          "value": "packages/common/src/params/param.decorator.ts",
+          "file": "packages/common/src/params/param.decorator.ts"
+        },
+        {
+          "total": 40,
+          "label": "OK",
+          "value": "packages/common/src/pipes/index.ts",
+          "file": "packages/common/src/pipes/index.ts"
+        },
+        {
+          "total": 25,
+          "label": "OK",
+          "value": "packages/common/src/pipes/pipe.interface.ts",
+          "file": "packages/common/src/pipes/pipe.interface.ts"
+        },
+        {
+          "total": 33,
+          "label": "OK",
+          "value": "packages/common/src/pipes/use-pipes.decorator.ts",
+          "file": "packages/common/src/pipes/use-pipes.decorator.ts"
+        },
+        {
+          "total": 25,
+          "label": "OK",
+          "value": "packages/common/src/pipes/validation.pipe.ts",
+          "file": "packages/common/src/pipes/validation.pipe.ts"
+        },
+        {
+          "total": 50,
+          "label": "WARNING",
+          "value": "packages/common/src/types/adapter.abstract.ts",
+          "file": "packages/common/src/types/adapter.abstract.ts"
+        },
+        {
+          "total": 100,
+          "label": "CRITICAL",
+          "value": "packages/common/src/types/class-or-instance.type.ts",
+          "file": "packages/common/src/types/class-or-instance.type.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/common/src/types/handler-metadata.interface.ts",
+          "file": "packages/common/src/types/handler-metadata.interface.ts"
+        },
+        {
+          "total": 25,
+          "label": "OK",
+          "value": "packages/common/src/types/handler.interface.ts",
+          "file": "packages/common/src/types/handler.interface.ts"
+        },
+        {
+          "total": 29,
+          "label": "OK",
+          "value": "packages/common/src/types/index.ts",
+          "file": "packages/common/src/types/index.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/common/src/types/message.interface.ts",
+          "file": "packages/common/src/types/message.interface.ts"
+        },
+        {
+          "total": 17,
+          "label": "OK",
+          "value": "packages/core/src/core/index.ts",
+          "file": "packages/core/src/core/index.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/platform-grpc/src/adapters/grpc.adapter.ts",
+          "file": "packages/platform-grpc/src/adapters/grpc.adapter.ts"
+        },
+        {
+          "total": 50,
+          "label": "WARNING",
+          "value": "packages/platform-grpc/src/adapters/index.ts",
+          "file": "packages/platform-grpc/src/adapters/index.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/platform-grpc/src/types/grpc-adapter-options.interface.ts",
+          "file": "packages/platform-grpc/src/types/grpc-adapter-options.interface.ts"
+        },
+        {
+          "total": 67,
+          "label": "WARNING",
+          "value": "packages/platform-grpc/src/types/index.ts",
+          "file": "packages/platform-grpc/src/types/index.ts"
+        },
+        {
+          "total": 33,
+          "label": "OK",
+          "value": "packages/platform-express/src/adapters/express.adapter.ts",
+          "file": "packages/platform-express/src/adapters/express.adapter.ts"
+        },
+        {
+          "total": 50,
+          "label": "WARNING",
+          "value": "packages/platform-express/src/adapters/index.ts",
+          "file": "packages/platform-express/src/adapters/index.ts"
+        },
+        {
+          "total": 100,
+          "label": "CRITICAL",
+          "value": "packages/platform-express/src/exceptions/http.exception.ts",
+          "file": "packages/platform-express/src/exceptions/http.exception.ts"
+        },
+        {
+          "total": 50,
+          "label": "WARNING",
+          "value": "packages/platform-express/src/exceptions/index.ts",
+          "file": "packages/platform-express/src/exceptions/index.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/platform-express/src/types/express.interface.ts",
+          "file": "packages/platform-express/src/types/express.interface.ts"
+        },
+        {
+          "total": 100,
+          "label": "CRITICAL",
+          "value": "packages/platform-express/src/types/http-method.type.ts",
+          "file": "packages/platform-express/src/types/http-method.type.ts"
+        },
+        {
+          "total": 67,
+          "label": "WARNING",
+          "value": "packages/platform-express/src/types/index.ts",
+          "file": "packages/platform-express/src/types/index.ts"
+        },
+        {
+          "total": 100,
+          "label": "CRITICAL",
+          "value": "packages/testing/src/adapters/test.adapter.ts",
+          "file": "packages/testing/src/adapters/test.adapter.ts"
+        },
+        {
+          "total": 17,
+          "label": "OK",
+          "value": "packages/platform-ws/src/adapters/ws.adapter.ts",
+          "file": "packages/platform-ws/src/adapters/ws.adapter.ts"
+        },
+        {
+          "total": 67,
+          "label": "WARNING",
+          "value": "packages/platform-ws/src/types/index.ts",
+          "file": "packages/platform-ws/src/types/index.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/platform-ws/src/types/ws-adapter-options.interface.ts",
+          "file": "packages/platform-ws/src/types/ws-adapter-options.interface.ts"
+        },
+        {
+          "total": 25,
+          "label": "OK",
+          "value": "packages/core/src/core/decorators/index.ts",
+          "file": "packages/core/src/core/decorators/index.ts"
+        },
+        {
+          "total": 50,
+          "label": "WARNING",
+          "value": "packages/core/src/core/decorators/inject.decorator.ts",
+          "file": "packages/core/src/core/decorators/inject.decorator.ts"
+        },
+        {
+          "total": 50,
+          "label": "WARNING",
+          "value": "packages/core/src/core/decorators/injectable.decorator.ts",
+          "file": "packages/core/src/core/decorators/injectable.decorator.ts"
+        },
+        {
+          "total": 33,
+          "label": "OK",
+          "value": "packages/core/src/core/decorators/module.decorator.ts",
+          "file": "packages/core/src/core/decorators/module.decorator.ts"
+        },
+        {
+          "total": 50,
+          "label": "WARNING",
+          "value": "packages/core/src/core/handlers/dependency-resolution.handler.ts",
+          "file": "packages/core/src/core/handlers/dependency-resolution.handler.ts"
+        },
+        {
+          "total": 67,
+          "label": "WARNING",
+          "value": "packages/core/src/core/handlers/index.ts",
+          "file": "packages/core/src/core/handlers/index.ts"
+        },
+        {
+          "total": 40,
+          "label": "OK",
+          "value": "packages/core/src/core/managers/dependency.container.ts",
+          "file": "packages/core/src/core/managers/dependency.container.ts"
+        },
+        {
+          "total": 33,
+          "label": "OK",
+          "value": "packages/core/src/core/managers/index.ts",
+          "file": "packages/core/src/core/managers/index.ts"
+        },
+        {
+          "total": 100,
+          "label": "CRITICAL",
+          "value": "packages/core/src/core/managers/lifecycle.manager.ts",
+          "file": "packages/core/src/core/managers/lifecycle.manager.ts"
+        },
+        {
+          "total": 50,
+          "label": "WARNING",
+          "value": "packages/core/src/core/managers/luna.application.ts",
+          "file": "packages/core/src/core/managers/luna.application.ts"
+        },
+        {
+          "total": 17,
+          "label": "OK",
+          "value": "packages/core/src/core/managers/luna.factory.ts",
+          "file": "packages/core/src/core/managers/luna.factory.ts"
+        },
+        {
+          "total": 75,
+          "label": "CRITICAL",
+          "value": "packages/core/src/core/managers/module.manager.ts",
+          "file": "packages/core/src/core/managers/module.manager.ts"
+        },
+        {
+          "total": 50,
+          "label": "WARNING",
+          "value": "packages/core/src/core/managers/module.scanner.ts",
+          "file": "packages/core/src/core/managers/module.scanner.ts"
+        },
+        {
+          "total": 50,
+          "label": "WARNING",
+          "value": "packages/core/src/core/providers/define-provider.ts",
+          "file": "packages/core/src/core/providers/define-provider.ts"
+        },
+        {
+          "total": 50,
+          "label": "WARNING",
+          "value": "packages/core/src/core/providers/index.ts",
+          "file": "packages/core/src/core/providers/index.ts"
+        },
+        {
+          "total": 85,
+          "label": "CRITICAL",
+          "value": "packages/core/src/core/types/index.ts",
+          "file": "packages/core/src/core/types/index.ts"
+        },
+        {
+          "total": 33,
+          "label": "OK",
+          "value": "packages/core/src/core/types/module.interface.ts",
+          "file": "packages/core/src/core/types/module.interface.ts"
+        },
+        {
+          "total": 50,
+          "label": "WARNING",
+          "value": "packages/core/src/core/types/provider.interface.ts",
+          "file": "packages/core/src/core/types/provider.interface.ts"
+        }
+      ]
+    }
+  ]
+}
