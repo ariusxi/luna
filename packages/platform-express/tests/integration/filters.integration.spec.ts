@@ -10,7 +10,7 @@ import {
   UseFilters,
 } from '@lunafw/common'
 import { ExpressAdapter } from '../../src'
-import { BadRequestException, NotFoundException } from '../../src/exceptions'
+import { BadRequestException, NotFoundException } from '@lunafw/common'
 
 // ── domain errors ─────────────────────────────────────────────────────────────
 

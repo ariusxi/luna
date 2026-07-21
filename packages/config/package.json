@@ -1,7 +1,7 @@
 {
-  "name": "@lunafw/common",
+  "name": "@lunafw/config",
   "version": "0.1.0",
-  "description": "Common abstractions, decorators, guards, pipes and interceptors for the Luna framework",
+  "description": "Environment-based configuration module for the Luna framework",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
@@ -20,17 +20,12 @@
   },
   "peerDependencies": {
     "@lunafw/core": "*",
-    "reflect-metadata": "^0.2.2",
-    "class-validator": ">=0.14.0",
-    "class-transformer": ">=0.5.0"
-  },
-  "peerDependenciesMeta": {
-    "class-validator": { "optional": true },
-    "class-transformer": { "optional": true }
+    "reflect-metadata": "^0.2.2"
   },
   "devDependencies": {
     "@rollup/plugin-typescript": "^12.1.4",
     "@types/jest": "^30.0.0",
+    "@types/node": "^22.0.0",
     "jest": "^30.4.2",
     "rollup": "^4.41.1",
     "rollup-plugin-dts": "^5.3.1",
@@ -50,27 +45,22 @@
     "framework",
     "backend",
     "typescript",
-    "decorators",
-    "guards",
-    "pipes",
-    "interceptors",
-    "controller",
-    "protocol-agnostic",
-    "reflect-metadata"
+    "config",
+    "configuration",
+    "env",
+    "dotenv",
+    "environment-variables"
   ],
   "license": "MIT",
   "author": "Alef Felix <alef.developerweb@gmail.com>",
   "engines": {
     "node": ">=18.0.0"
   },
-  "dependencies": {
-    "@lunafw/core": "*"
-  },
   "homepage": "https://github.com/ariusxi/luna#readme",
   "repository": {
     "type": "git",
     "url": "https://github.com/ariusxi/luna.git",
-    "directory": "packages/common"
+    "directory": "packages/config"
   },
   "bugs": {
     "url": "https://github.com/ariusxi/luna/issues"

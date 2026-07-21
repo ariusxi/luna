@@ -18,7 +18,7 @@ export default [
         sourcemap: true,
       },
     ],
-    external: ['reflect-metadata', '@lunafw/core', 'class-validator', 'class-transformer'],
+    external: ['fs', 'path', 'reflect-metadata', '@lunafw/core'],
     plugins: [
       typescript({ tsconfig: './tsconfig.json' }),
     ],

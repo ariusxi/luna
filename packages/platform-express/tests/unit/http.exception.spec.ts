@@ -13,7 +13,7 @@ import {
   TooManyRequestsException,
   UnauthorizedException,
   UnprocessableEntityException,
-} from '../../src/exceptions'
+} from '@lunafw/common'
 
 describe('HttpException', () => {
   it('sets statusCode and message', () => {

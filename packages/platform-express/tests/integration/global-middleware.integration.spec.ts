@@ -13,7 +13,7 @@ import {
   On,
 } from '@lunafw/common'
 import { ExpressAdapter } from '../../src'
-import { UnauthorizedException } from '../../src/exceptions'
+import { UnauthorizedException } from '@lunafw/common'
 
 // ── global guard ──────────────────────────────────────────────────────────────
 

@@ -1,9 +1,8 @@
 import { Server } from 'http'
 import express, { Application, Request, Response, Router } from 'express'
-import { AbstractAdapter, GuardRejectionError, HandlerMetadata, LunaHandler } from '@lunafw/common'
+import { AbstractAdapter, GuardRejectionError, HandlerMetadata, HttpException, LunaHandler } from '@lunafw/common'
 
 import { ExpressAdapterOptions, ExpressHandler } from '../types'
-import { HttpException } from '../exceptions'
 import { HttpMethod } from '../types/http-method.type'
 
 /**

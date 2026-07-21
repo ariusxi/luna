@@ -12,7 +12,7 @@ import { z, ZodSchema } from 'zod'
 import { plainToInstance } from 'class-transformer'
 import { IsString, MinLength, validateOrReject } from 'class-validator'
 import { ExpressAdapter } from '../../src'
-import { BadRequestException } from '../../src/exceptions'
+import { BadRequestException } from '@lunafw/common'
 
 // ── Zod pipe ─────────────────────────────────────────────────────────────────
 
