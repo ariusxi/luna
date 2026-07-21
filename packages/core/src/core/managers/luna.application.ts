@@ -36,12 +36,14 @@ export class LunaApplication {
     await LifecycleManager.executeLifecycleMethod('onModuleInit')
     await LifecycleManager.executeLifecycleMethod('onApplicationBootstrap')
 
-    const APPLICATION_EVENTS = ['SIGTERM', 'SIGINT']
-    APPLICATION_EVENTS.forEach((event) => process.on(event, async () => {
+    const onShutdown = async () => {
       await LifecycleManager.executeLifecycleMethod('onModuleDestroy')
       await LifecycleManager.executeLifecycleMethod('beforeApplicationShutdown')
       await LifecycleManager.executeLifecycleMethod('onApplicationShutdown')
-    }))
+    }
+
+    const SHUTDOWN_SIGNALS = ['SIGTERM', 'SIGINT']
+    SHUTDOWN_SIGNALS.forEach((signal) => process.on(signal, onShutdown))
   }
 
   /**

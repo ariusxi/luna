@@ -24,13 +24,13 @@ export class LunaFactory {
   private static buildContexts(modules: Function[]): Map<Function, ModuleContext> {
     const contexts = new Map<Function, ModuleContext>()
 
-    // primeira passagem — cria os containers e registra os providers locais
+    // First pass — create containers and register each module's own providers.
     for (const moduleClass of modules) {
       const metadata = ModuleManager.get(moduleClass)
       const container = new DependencyContainer(moduleClass)
 
       for (const provider of metadata?.providers ?? []) {
-        container.register(provider as any)
+        container.register(provider)
       }
 
       contexts.set(moduleClass, {
@@ -39,13 +39,12 @@ export class LunaFactory {
       })
     }
 
-    // segunda passagem — propaga exports como ValueProvider com instância já resolvida
-    // módulos estão em ordem DFS (folhas primeiro), então boot pode rodar na mesma ordem
+    // Second pass — propagate exported providers into importing modules.
+    // Modules are in DFS order (leaves first), so boot runs in dependency order.
     for (const moduleClass of modules) {
       const metadata = ModuleManager.get(moduleClass)
       const context = contexts.get(moduleClass)!
 
-      // boot do módulo atual antes de propagar
       context.container.boot()
 
       for (const importingModule of modules) {
