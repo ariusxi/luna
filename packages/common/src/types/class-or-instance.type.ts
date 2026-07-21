@@ -1,5 +1,7 @@
 /** A class constructor — used to instantiate or resolve from the DI container. */
-export type ClassConstructor<T> = new (...args: unknown[]) => T
+export interface ClassConstructor<T> {
+  new(...args: unknown[]): T
+}
 
 /**
  * A value that is either a class constructor or an already-constructed instance.

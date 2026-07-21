@@ -3,11 +3,11 @@
     {
       "metric": "lcom",
       "summary": {
-        "total": 45,
-        "max": 16,
+        "total": 34,
+        "max": 9,
         "min": 0,
-        "average": "1.15",
-        "deviation": "3.13"
+        "average": "0.83",
+        "deviation": "2.20"
       },
       "classes": [
         {
@@ -37,85 +37,85 @@
         {
           "total": 0,
           "label": "OK",
-          "value": "HttpException",
-          "file": "packages/common/src/exceptions/http.exception.ts"
-        },
-        {
-          "total": 0,
-          "label": "OK",
           "value": "BadRequestException",
-          "file": "packages/common/src/exceptions/http.exception.ts"
+          "file": "packages/common/src/exceptions/http-exceptions.ts"
         },
         {
           "total": 0,
           "label": "OK",
           "value": "UnauthorizedException",
-          "file": "packages/common/src/exceptions/http.exception.ts"
+          "file": "packages/common/src/exceptions/http-exceptions.ts"
         },
         {
           "total": 0,
           "label": "OK",
           "value": "ForbiddenException",
-          "file": "packages/common/src/exceptions/http.exception.ts"
+          "file": "packages/common/src/exceptions/http-exceptions.ts"
         },
         {
           "total": 0,
           "label": "OK",
           "value": "NotFoundException",
-          "file": "packages/common/src/exceptions/http.exception.ts"
+          "file": "packages/common/src/exceptions/http-exceptions.ts"
         },
         {
           "total": 0,
           "label": "OK",
           "value": "MethodNotAllowedException",
-          "file": "packages/common/src/exceptions/http.exception.ts"
+          "file": "packages/common/src/exceptions/http-exceptions.ts"
         },
         {
           "total": 0,
           "label": "OK",
           "value": "RequestTimeoutException",
-          "file": "packages/common/src/exceptions/http.exception.ts"
+          "file": "packages/common/src/exceptions/http-exceptions.ts"
         },
         {
           "total": 0,
           "label": "OK",
           "value": "ConflictException",
-          "file": "packages/common/src/exceptions/http.exception.ts"
+          "file": "packages/common/src/exceptions/http-exceptions.ts"
         },
         {
           "total": 0,
           "label": "OK",
           "value": "GoneException",
-          "file": "packages/common/src/exceptions/http.exception.ts"
+          "file": "packages/common/src/exceptions/http-exceptions.ts"
         },
         {
           "total": 0,
           "label": "OK",
           "value": "UnprocessableEntityException",
-          "file": "packages/common/src/exceptions/http.exception.ts"
+          "file": "packages/common/src/exceptions/http-exceptions.ts"
         },
         {
           "total": 0,
           "label": "OK",
           "value": "TooManyRequestsException",
-          "file": "packages/common/src/exceptions/http.exception.ts"
+          "file": "packages/common/src/exceptions/http-exceptions.ts"
         },
         {
           "total": 0,
           "label": "OK",
           "value": "InternalServerErrorException",
-          "file": "packages/common/src/exceptions/http.exception.ts"
+          "file": "packages/common/src/exceptions/http-exceptions.ts"
         },
         {
           "total": 0,
           "label": "OK",
           "value": "NotImplementedException",
-          "file": "packages/common/src/exceptions/http.exception.ts"
+          "file": "packages/common/src/exceptions/http-exceptions.ts"
         },
         {
           "total": 0,
           "label": "OK",
           "value": "ServiceUnavailableException",
+          "file": "packages/common/src/exceptions/http-exceptions.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "HttpException",
           "file": "packages/common/src/exceptions/http.exception.ts"
         },
         {
@@ -167,6 +167,18 @@
           "file": "packages/common/src/types/adapter.abstract.ts"
         },
         {
+          "total": 0,
+          "label": "OK",
+          "value": "ExpressAdapter",
+          "file": "packages/platform-express/src/adapters/express.adapter.ts"
+        },
+        {
+          "total": 9,
+          "label": "WARNING",
+          "value": "ExpressHandlerRegistry",
+          "file": "packages/platform-express/src/adapters/express.handler.registry.ts"
+        },
+        {
           "total": 3,
           "label": "OK",
           "value": "GrpcAdapter",
@@ -185,12 +197,6 @@
           "file": "packages/testing/src/adapters/test.adapter.ts"
         },
         {
-          "total": 16,
-          "label": "CRITICAL",
-          "value": "ExpressAdapter",
-          "file": "packages/platform-express/src/adapters/express.adapter.ts"
-        },
-        {
           "total": 0,
           "label": "OK",
           "value": "WsAdapter",
@@ -205,19 +211,19 @@
         {
           "total": 0,
           "label": "OK",
-          "value": "DependencyResolutionError",
-          "file": "packages/core/src/core/handlers/dependency-resolution.handler.ts"
-        },
-        {
-          "total": 6,
-          "label": "WARNING",
           "value": "DependencyContainer",
           "file": "packages/core/src/core/managers/dependency.container.ts"
         },
         {
-          "total": 0,
+          "total": 1,
           "label": "OK",
-          "value": "LifecycleManager",
+          "value": "InstanceResolver",
+          "file": "packages/core/src/core/managers/instance.resolver.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "LifecycleManagerImpl",
           "file": "packages/core/src/core/managers/lifecycle.manager.ts"
         },
         {
@@ -235,7 +241,7 @@
         {
           "total": 0,
           "label": "OK",
-          "value": "ModuleManager",
+          "value": "ModuleManagerImpl",
           "file": "packages/core/src/core/managers/module.manager.ts"
         },
         {
@@ -243,17 +249,23 @@
           "label": "OK",
           "value": "ModuleScanner",
           "file": "packages/core/src/core/managers/module.scanner.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "DependencyResolutionError",
+          "file": "packages/core/src/core/handlers/dependency-resolution.handler.ts"
         }
       ]
     },
     {
       "metric": "wmc",
       "summary": {
-        "total": 235,
-        "max": 40,
+        "total": 233,
+        "max": 23,
         "min": 0,
-        "average": "6.03",
-        "deviation": "7.50"
+        "average": "5.68",
+        "deviation": "5.51"
       },
       "classes": [
         {
@@ -283,85 +295,85 @@
         {
           "total": 1,
           "label": "OK",
-          "value": "HttpException",
-          "file": "packages/common/src/exceptions/http.exception.ts"
-        },
-        {
-          "total": 1,
-          "label": "OK",
           "value": "BadRequestException",
-          "file": "packages/common/src/exceptions/http.exception.ts"
+          "file": "packages/common/src/exceptions/http-exceptions.ts"
         },
         {
           "total": 1,
           "label": "OK",
           "value": "UnauthorizedException",
-          "file": "packages/common/src/exceptions/http.exception.ts"
+          "file": "packages/common/src/exceptions/http-exceptions.ts"
         },
         {
           "total": 1,
           "label": "OK",
           "value": "ForbiddenException",
-          "file": "packages/common/src/exceptions/http.exception.ts"
+          "file": "packages/common/src/exceptions/http-exceptions.ts"
         },
         {
           "total": 1,
           "label": "OK",
           "value": "NotFoundException",
-          "file": "packages/common/src/exceptions/http.exception.ts"
+          "file": "packages/common/src/exceptions/http-exceptions.ts"
         },
         {
           "total": 1,
           "label": "OK",
           "value": "MethodNotAllowedException",
-          "file": "packages/common/src/exceptions/http.exception.ts"
+          "file": "packages/common/src/exceptions/http-exceptions.ts"
         },
         {
           "total": 1,
           "label": "OK",
           "value": "RequestTimeoutException",
-          "file": "packages/common/src/exceptions/http.exception.ts"
+          "file": "packages/common/src/exceptions/http-exceptions.ts"
         },
         {
           "total": 1,
           "label": "OK",
           "value": "ConflictException",
-          "file": "packages/common/src/exceptions/http.exception.ts"
+          "file": "packages/common/src/exceptions/http-exceptions.ts"
         },
         {
           "total": 1,
           "label": "OK",
           "value": "GoneException",
-          "file": "packages/common/src/exceptions/http.exception.ts"
+          "file": "packages/common/src/exceptions/http-exceptions.ts"
         },
         {
           "total": 1,
           "label": "OK",
           "value": "UnprocessableEntityException",
-          "file": "packages/common/src/exceptions/http.exception.ts"
+          "file": "packages/common/src/exceptions/http-exceptions.ts"
         },
         {
           "total": 1,
           "label": "OK",
           "value": "TooManyRequestsException",
-          "file": "packages/common/src/exceptions/http.exception.ts"
+          "file": "packages/common/src/exceptions/http-exceptions.ts"
         },
         {
           "total": 1,
           "label": "OK",
           "value": "InternalServerErrorException",
-          "file": "packages/common/src/exceptions/http.exception.ts"
+          "file": "packages/common/src/exceptions/http-exceptions.ts"
         },
         {
           "total": 1,
           "label": "OK",
           "value": "NotImplementedException",
-          "file": "packages/common/src/exceptions/http.exception.ts"
+          "file": "packages/common/src/exceptions/http-exceptions.ts"
         },
         {
           "total": 1,
           "label": "OK",
           "value": "ServiceUnavailableException",
+          "file": "packages/common/src/exceptions/http-exceptions.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "HttpException",
           "file": "packages/common/src/exceptions/http.exception.ts"
         },
         {
@@ -413,6 +425,18 @@
           "file": "packages/common/src/types/adapter.abstract.ts"
         },
         {
+          "total": 10,
+          "label": "WARNING",
+          "value": "ExpressAdapter",
+          "file": "packages/platform-express/src/adapters/express.adapter.ts"
+        },
+        {
+          "total": 12,
+          "label": "WARNING",
+          "value": "ExpressHandlerRegistry",
+          "file": "packages/platform-express/src/adapters/express.handler.registry.ts"
+        },
+        {
           "total": 12,
           "label": "WARNING",
           "value": "GrpcAdapter",
@@ -431,12 +455,6 @@
           "file": "packages/testing/src/adapters/test.adapter.ts"
         },
         {
-          "total": 19,
-          "label": "WARNING",
-          "value": "ExpressAdapter",
-          "file": "packages/platform-express/src/adapters/express.adapter.ts"
-        },
-        {
           "total": 8,
           "label": "OK",
           "value": "WsAdapter",
@@ -449,21 +467,21 @@
           "file": "packages/platform-ws/src/adapters/ws.handler.registry.ts"
         },
         {
-          "total": 6,
-          "label": "OK",
-          "value": "DependencyResolutionError",
-          "file": "packages/core/src/core/handlers/dependency-resolution.handler.ts"
-        },
-        {
-          "total": 40,
-          "label": "CRITICAL",
+          "total": 23,
+          "label": "WARNING",
           "value": "DependencyContainer",
           "file": "packages/core/src/core/managers/dependency.container.ts"
         },
         {
+          "total": 12,
+          "label": "WARNING",
+          "value": "InstanceResolver",
+          "file": "packages/core/src/core/managers/instance.resolver.ts"
+        },
+        {
           "total": 5,
           "label": "OK",
-          "value": "LifecycleManager",
+          "value": "LifecycleManagerImpl",
           "file": "packages/core/src/core/managers/lifecycle.manager.ts"
         },
         {
@@ -481,7 +499,7 @@
         {
           "total": 4,
           "label": "OK",
-          "value": "ModuleManager",
+          "value": "ModuleManagerImpl",
           "file": "packages/core/src/core/managers/module.manager.ts"
         },
         {
@@ -489,17 +507,23 @@
           "label": "OK",
           "value": "ModuleScanner",
           "file": "packages/core/src/core/managers/module.scanner.ts"
+        },
+        {
+          "total": 6,
+          "label": "OK",
+          "value": "DependencyResolutionError",
+          "file": "packages/core/src/core/handlers/dependency-resolution.handler.ts"
         }
       ]
     },
     {
       "metric": "rfc",
       "summary": {
-        "total": 148,
+        "total": 162,
         "max": 17,
         "min": 0,
-        "average": "3.79",
-        "deviation": "4.06"
+        "average": "3.95",
+        "deviation": "4.05"
       },
       "classes": [
         {
@@ -527,87 +551,87 @@
           "file": "packages/testing/src/testing.module.ts"
         },
         {
-          "total": 0,
-          "label": "OK",
-          "value": "HttpException",
-          "file": "packages/common/src/exceptions/http.exception.ts"
-        },
-        {
           "total": 1,
           "label": "OK",
           "value": "BadRequestException",
-          "file": "packages/common/src/exceptions/http.exception.ts"
+          "file": "packages/common/src/exceptions/http-exceptions.ts"
         },
         {
           "total": 1,
           "label": "OK",
           "value": "UnauthorizedException",
-          "file": "packages/common/src/exceptions/http.exception.ts"
+          "file": "packages/common/src/exceptions/http-exceptions.ts"
         },
         {
           "total": 1,
           "label": "OK",
           "value": "ForbiddenException",
-          "file": "packages/common/src/exceptions/http.exception.ts"
+          "file": "packages/common/src/exceptions/http-exceptions.ts"
         },
         {
           "total": 1,
           "label": "OK",
           "value": "NotFoundException",
-          "file": "packages/common/src/exceptions/http.exception.ts"
+          "file": "packages/common/src/exceptions/http-exceptions.ts"
         },
         {
           "total": 1,
           "label": "OK",
           "value": "MethodNotAllowedException",
-          "file": "packages/common/src/exceptions/http.exception.ts"
+          "file": "packages/common/src/exceptions/http-exceptions.ts"
         },
         {
           "total": 1,
           "label": "OK",
           "value": "RequestTimeoutException",
-          "file": "packages/common/src/exceptions/http.exception.ts"
+          "file": "packages/common/src/exceptions/http-exceptions.ts"
         },
         {
           "total": 1,
           "label": "OK",
           "value": "ConflictException",
-          "file": "packages/common/src/exceptions/http.exception.ts"
+          "file": "packages/common/src/exceptions/http-exceptions.ts"
         },
         {
           "total": 1,
           "label": "OK",
           "value": "GoneException",
-          "file": "packages/common/src/exceptions/http.exception.ts"
+          "file": "packages/common/src/exceptions/http-exceptions.ts"
         },
         {
           "total": 1,
           "label": "OK",
           "value": "UnprocessableEntityException",
-          "file": "packages/common/src/exceptions/http.exception.ts"
+          "file": "packages/common/src/exceptions/http-exceptions.ts"
         },
         {
           "total": 1,
           "label": "OK",
           "value": "TooManyRequestsException",
-          "file": "packages/common/src/exceptions/http.exception.ts"
+          "file": "packages/common/src/exceptions/http-exceptions.ts"
         },
         {
           "total": 1,
           "label": "OK",
           "value": "InternalServerErrorException",
-          "file": "packages/common/src/exceptions/http.exception.ts"
+          "file": "packages/common/src/exceptions/http-exceptions.ts"
         },
         {
           "total": 1,
           "label": "OK",
           "value": "NotImplementedException",
-          "file": "packages/common/src/exceptions/http.exception.ts"
+          "file": "packages/common/src/exceptions/http-exceptions.ts"
         },
         {
           "total": 1,
           "label": "OK",
           "value": "ServiceUnavailableException",
+          "file": "packages/common/src/exceptions/http-exceptions.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "HttpException",
           "file": "packages/common/src/exceptions/http.exception.ts"
         },
         {
@@ -661,6 +685,18 @@
         {
           "total": 10,
           "label": "OK",
+          "value": "ExpressAdapter",
+          "file": "packages/platform-express/src/adapters/express.adapter.ts"
+        },
+        {
+          "total": 8,
+          "label": "OK",
+          "value": "ExpressHandlerRegistry",
+          "file": "packages/platform-express/src/adapters/express.handler.registry.ts"
+        },
+        {
+          "total": 10,
+          "label": "OK",
           "value": "GrpcAdapter",
           "file": "packages/platform-grpc/src/adapters/grpc.adapter.ts"
         },
@@ -677,12 +713,6 @@
           "file": "packages/testing/src/adapters/test.adapter.ts"
         },
         {
-          "total": 12,
-          "label": "OK",
-          "value": "ExpressAdapter",
-          "file": "packages/platform-express/src/adapters/express.adapter.ts"
-        },
-        {
           "total": 8,
           "label": "OK",
           "value": "WsAdapter",
@@ -695,21 +725,21 @@
           "file": "packages/platform-ws/src/adapters/ws.handler.registry.ts"
         },
         {
-          "total": 2,
-          "label": "OK",
-          "value": "DependencyResolutionError",
-          "file": "packages/core/src/core/handlers/dependency-resolution.handler.ts"
-        },
-        {
-          "total": 12,
+          "total": 14,
           "label": "OK",
           "value": "DependencyContainer",
           "file": "packages/core/src/core/managers/dependency.container.ts"
         },
         {
+          "total": 6,
+          "label": "OK",
+          "value": "InstanceResolver",
+          "file": "packages/core/src/core/managers/instance.resolver.ts"
+        },
+        {
           "total": 4,
           "label": "OK",
-          "value": "LifecycleManager",
+          "value": "LifecycleManagerImpl",
           "file": "packages/core/src/core/managers/lifecycle.manager.ts"
         },
         {
@@ -727,7 +757,7 @@
         {
           "total": 4,
           "label": "OK",
-          "value": "ModuleManager",
+          "value": "ModuleManagerImpl",
           "file": "packages/core/src/core/managers/module.manager.ts"
         },
         {
@@ -735,17 +765,23 @@
           "label": "OK",
           "value": "ModuleScanner",
           "file": "packages/core/src/core/managers/module.scanner.ts"
+        },
+        {
+          "total": 2,
+          "label": "OK",
+          "value": "DependencyResolutionError",
+          "file": "packages/core/src/core/handlers/dependency-resolution.handler.ts"
         }
       ]
     },
     {
       "metric": "cbo",
       "summary": {
-        "total": 32,
+        "total": 34,
         "max": 4,
         "min": 0,
-        "average": "0.82",
-        "deviation": "0.84"
+        "average": "0.83",
+        "deviation": "0.82"
       },
       "classes": [
         {
@@ -773,87 +809,87 @@
           "file": "packages/testing/src/testing.module.ts"
         },
         {
-          "total": 0,
-          "label": "OK",
-          "value": "HttpException",
-          "file": "packages/common/src/exceptions/http.exception.ts"
-        },
-        {
           "total": 1,
           "label": "OK",
           "value": "BadRequestException",
-          "file": "packages/common/src/exceptions/http.exception.ts"
+          "file": "packages/common/src/exceptions/http-exceptions.ts"
         },
         {
           "total": 1,
           "label": "OK",
           "value": "UnauthorizedException",
-          "file": "packages/common/src/exceptions/http.exception.ts"
+          "file": "packages/common/src/exceptions/http-exceptions.ts"
         },
         {
           "total": 1,
           "label": "OK",
           "value": "ForbiddenException",
-          "file": "packages/common/src/exceptions/http.exception.ts"
+          "file": "packages/common/src/exceptions/http-exceptions.ts"
         },
         {
           "total": 1,
           "label": "OK",
           "value": "NotFoundException",
-          "file": "packages/common/src/exceptions/http.exception.ts"
+          "file": "packages/common/src/exceptions/http-exceptions.ts"
         },
         {
           "total": 1,
           "label": "OK",
           "value": "MethodNotAllowedException",
-          "file": "packages/common/src/exceptions/http.exception.ts"
+          "file": "packages/common/src/exceptions/http-exceptions.ts"
         },
         {
           "total": 1,
           "label": "OK",
           "value": "RequestTimeoutException",
-          "file": "packages/common/src/exceptions/http.exception.ts"
+          "file": "packages/common/src/exceptions/http-exceptions.ts"
         },
         {
           "total": 1,
           "label": "OK",
           "value": "ConflictException",
-          "file": "packages/common/src/exceptions/http.exception.ts"
+          "file": "packages/common/src/exceptions/http-exceptions.ts"
         },
         {
           "total": 1,
           "label": "OK",
           "value": "GoneException",
-          "file": "packages/common/src/exceptions/http.exception.ts"
+          "file": "packages/common/src/exceptions/http-exceptions.ts"
         },
         {
           "total": 1,
           "label": "OK",
           "value": "UnprocessableEntityException",
-          "file": "packages/common/src/exceptions/http.exception.ts"
+          "file": "packages/common/src/exceptions/http-exceptions.ts"
         },
         {
           "total": 1,
           "label": "OK",
           "value": "TooManyRequestsException",
-          "file": "packages/common/src/exceptions/http.exception.ts"
+          "file": "packages/common/src/exceptions/http-exceptions.ts"
         },
         {
           "total": 1,
           "label": "OK",
           "value": "InternalServerErrorException",
-          "file": "packages/common/src/exceptions/http.exception.ts"
+          "file": "packages/common/src/exceptions/http-exceptions.ts"
         },
         {
           "total": 1,
           "label": "OK",
           "value": "NotImplementedException",
-          "file": "packages/common/src/exceptions/http.exception.ts"
+          "file": "packages/common/src/exceptions/http-exceptions.ts"
         },
         {
           "total": 1,
           "label": "OK",
           "value": "ServiceUnavailableException",
+          "file": "packages/common/src/exceptions/http-exceptions.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "HttpException",
           "file": "packages/common/src/exceptions/http.exception.ts"
         },
         {
@@ -907,6 +943,18 @@
         {
           "total": 1,
           "label": "OK",
+          "value": "ExpressAdapter",
+          "file": "packages/platform-express/src/adapters/express.adapter.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "ExpressHandlerRegistry",
+          "file": "packages/platform-express/src/adapters/express.handler.registry.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
           "value": "GrpcAdapter",
           "file": "packages/platform-grpc/src/adapters/grpc.adapter.ts"
         },
@@ -923,12 +971,6 @@
           "file": "packages/testing/src/adapters/test.adapter.ts"
         },
         {
-          "total": 0,
-          "label": "OK",
-          "value": "ExpressAdapter",
-          "file": "packages/platform-express/src/adapters/express.adapter.ts"
-        },
-        {
           "total": 1,
           "label": "OK",
           "value": "WsAdapter",
@@ -941,21 +983,21 @@
           "file": "packages/platform-ws/src/adapters/ws.handler.registry.ts"
         },
         {
-          "total": 0,
-          "label": "OK",
-          "value": "DependencyResolutionError",
-          "file": "packages/core/src/core/handlers/dependency-resolution.handler.ts"
-        },
-        {
           "total": 2,
           "label": "OK",
           "value": "DependencyContainer",
           "file": "packages/core/src/core/managers/dependency.container.ts"
         },
         {
+          "total": 1,
+          "label": "OK",
+          "value": "InstanceResolver",
+          "file": "packages/core/src/core/managers/instance.resolver.ts"
+        },
+        {
           "total": 0,
           "label": "OK",
-          "value": "LifecycleManager",
+          "value": "LifecycleManagerImpl",
           "file": "packages/core/src/core/managers/lifecycle.manager.ts"
         },
         {
@@ -973,7 +1015,7 @@
         {
           "total": 0,
           "label": "OK",
-          "value": "ModuleManager",
+          "value": "ModuleManagerImpl",
           "file": "packages/core/src/core/managers/module.manager.ts"
         },
         {
@@ -981,6 +1023,12 @@
           "label": "OK",
           "value": "ModuleScanner",
           "file": "packages/core/src/core/managers/module.scanner.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "DependencyResolutionError",
+          "file": "packages/core/src/core/handlers/dependency-resolution.handler.ts"
         }
       ]
     },
@@ -990,8 +1038,8 @@
         "total": 17,
         "max": 1,
         "min": 0,
-        "average": "0.44",
-        "deviation": "0.50"
+        "average": "0.41",
+        "deviation": "0.49"
       },
       "classes": [
         {
@@ -1019,87 +1067,87 @@
           "file": "packages/testing/src/testing.module.ts"
         },
         {
-          "total": 0,
-          "label": "OK",
-          "value": "HttpException",
-          "file": "packages/common/src/exceptions/http.exception.ts"
-        },
-        {
           "total": 1,
           "label": "OK",
           "value": "BadRequestException",
-          "file": "packages/common/src/exceptions/http.exception.ts"
+          "file": "packages/common/src/exceptions/http-exceptions.ts"
         },
         {
           "total": 1,
           "label": "OK",
           "value": "UnauthorizedException",
-          "file": "packages/common/src/exceptions/http.exception.ts"
+          "file": "packages/common/src/exceptions/http-exceptions.ts"
         },
         {
           "total": 1,
           "label": "OK",
           "value": "ForbiddenException",
-          "file": "packages/common/src/exceptions/http.exception.ts"
+          "file": "packages/common/src/exceptions/http-exceptions.ts"
         },
         {
           "total": 1,
           "label": "OK",
           "value": "NotFoundException",
-          "file": "packages/common/src/exceptions/http.exception.ts"
+          "file": "packages/common/src/exceptions/http-exceptions.ts"
         },
         {
           "total": 1,
           "label": "OK",
           "value": "MethodNotAllowedException",
-          "file": "packages/common/src/exceptions/http.exception.ts"
+          "file": "packages/common/src/exceptions/http-exceptions.ts"
         },
         {
           "total": 1,
           "label": "OK",
           "value": "RequestTimeoutException",
-          "file": "packages/common/src/exceptions/http.exception.ts"
+          "file": "packages/common/src/exceptions/http-exceptions.ts"
         },
         {
           "total": 1,
           "label": "OK",
           "value": "ConflictException",
-          "file": "packages/common/src/exceptions/http.exception.ts"
+          "file": "packages/common/src/exceptions/http-exceptions.ts"
         },
         {
           "total": 1,
           "label": "OK",
           "value": "GoneException",
-          "file": "packages/common/src/exceptions/http.exception.ts"
+          "file": "packages/common/src/exceptions/http-exceptions.ts"
         },
         {
           "total": 1,
           "label": "OK",
           "value": "UnprocessableEntityException",
-          "file": "packages/common/src/exceptions/http.exception.ts"
+          "file": "packages/common/src/exceptions/http-exceptions.ts"
         },
         {
           "total": 1,
           "label": "OK",
           "value": "TooManyRequestsException",
-          "file": "packages/common/src/exceptions/http.exception.ts"
+          "file": "packages/common/src/exceptions/http-exceptions.ts"
         },
         {
           "total": 1,
           "label": "OK",
           "value": "InternalServerErrorException",
-          "file": "packages/common/src/exceptions/http.exception.ts"
+          "file": "packages/common/src/exceptions/http-exceptions.ts"
         },
         {
           "total": 1,
           "label": "OK",
           "value": "NotImplementedException",
-          "file": "packages/common/src/exceptions/http.exception.ts"
+          "file": "packages/common/src/exceptions/http-exceptions.ts"
         },
         {
           "total": 1,
           "label": "OK",
           "value": "ServiceUnavailableException",
+          "file": "packages/common/src/exceptions/http-exceptions.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "HttpException",
           "file": "packages/common/src/exceptions/http.exception.ts"
         },
         {
@@ -1153,6 +1201,18 @@
         {
           "total": 1,
           "label": "OK",
+          "value": "ExpressAdapter",
+          "file": "packages/platform-express/src/adapters/express.adapter.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "ExpressHandlerRegistry",
+          "file": "packages/platform-express/src/adapters/express.handler.registry.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
           "value": "GrpcAdapter",
           "file": "packages/platform-grpc/src/adapters/grpc.adapter.ts"
         },
@@ -1171,12 +1231,6 @@
         {
           "total": 1,
           "label": "OK",
-          "value": "ExpressAdapter",
-          "file": "packages/platform-express/src/adapters/express.adapter.ts"
-        },
-        {
-          "total": 1,
-          "label": "OK",
           "value": "WsAdapter",
           "file": "packages/platform-ws/src/adapters/ws.adapter.ts"
         },
@@ -1189,19 +1243,19 @@
         {
           "total": 0,
           "label": "OK",
-          "value": "DependencyResolutionError",
-          "file": "packages/core/src/core/handlers/dependency-resolution.handler.ts"
-        },
-        {
-          "total": 0,
-          "label": "OK",
           "value": "DependencyContainer",
           "file": "packages/core/src/core/managers/dependency.container.ts"
         },
         {
           "total": 0,
           "label": "OK",
-          "value": "LifecycleManager",
+          "value": "InstanceResolver",
+          "file": "packages/core/src/core/managers/instance.resolver.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "LifecycleManagerImpl",
           "file": "packages/core/src/core/managers/lifecycle.manager.ts"
         },
         {
@@ -1219,7 +1273,7 @@
         {
           "total": 0,
           "label": "OK",
-          "value": "ModuleManager",
+          "value": "ModuleManagerImpl",
           "file": "packages/core/src/core/managers/module.manager.ts"
         },
         {
@@ -1227,6 +1281,12 @@
           "label": "OK",
           "value": "ModuleScanner",
           "file": "packages/core/src/core/managers/module.scanner.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "DependencyResolutionError",
+          "file": "packages/core/src/core/handlers/dependency-resolution.handler.ts"
         }
       ]
     },
@@ -1236,8 +1296,8 @@
         "total": 13,
         "max": 13,
         "min": 0,
-        "average": "0.33",
-        "deviation": "2.05"
+        "average": "0.32",
+        "deviation": "2.01"
       },
       "classes": [
         {
@@ -1263,6 +1323,84 @@
           "label": "OK",
           "value": "TestingModule",
           "file": "packages/testing/src/testing.module.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "BadRequestException",
+          "file": "packages/common/src/exceptions/http-exceptions.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "UnauthorizedException",
+          "file": "packages/common/src/exceptions/http-exceptions.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "ForbiddenException",
+          "file": "packages/common/src/exceptions/http-exceptions.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "NotFoundException",
+          "file": "packages/common/src/exceptions/http-exceptions.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "MethodNotAllowedException",
+          "file": "packages/common/src/exceptions/http-exceptions.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "RequestTimeoutException",
+          "file": "packages/common/src/exceptions/http-exceptions.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "ConflictException",
+          "file": "packages/common/src/exceptions/http-exceptions.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "GoneException",
+          "file": "packages/common/src/exceptions/http-exceptions.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "UnprocessableEntityException",
+          "file": "packages/common/src/exceptions/http-exceptions.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "TooManyRequestsException",
+          "file": "packages/common/src/exceptions/http-exceptions.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "InternalServerErrorException",
+          "file": "packages/common/src/exceptions/http-exceptions.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "NotImplementedException",
+          "file": "packages/common/src/exceptions/http-exceptions.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "ServiceUnavailableException",
+          "file": "packages/common/src/exceptions/http-exceptions.ts"
         },
         {
           "total": 13,
@@ -1273,84 +1411,6 @@
         {
           "total": 0,
           "label": "OK",
-          "value": "BadRequestException",
-          "file": "packages/common/src/exceptions/http.exception.ts"
-        },
-        {
-          "total": 0,
-          "label": "OK",
-          "value": "UnauthorizedException",
-          "file": "packages/common/src/exceptions/http.exception.ts"
-        },
-        {
-          "total": 0,
-          "label": "OK",
-          "value": "ForbiddenException",
-          "file": "packages/common/src/exceptions/http.exception.ts"
-        },
-        {
-          "total": 0,
-          "label": "OK",
-          "value": "NotFoundException",
-          "file": "packages/common/src/exceptions/http.exception.ts"
-        },
-        {
-          "total": 0,
-          "label": "OK",
-          "value": "MethodNotAllowedException",
-          "file": "packages/common/src/exceptions/http.exception.ts"
-        },
-        {
-          "total": 0,
-          "label": "OK",
-          "value": "RequestTimeoutException",
-          "file": "packages/common/src/exceptions/http.exception.ts"
-        },
-        {
-          "total": 0,
-          "label": "OK",
-          "value": "ConflictException",
-          "file": "packages/common/src/exceptions/http.exception.ts"
-        },
-        {
-          "total": 0,
-          "label": "OK",
-          "value": "GoneException",
-          "file": "packages/common/src/exceptions/http.exception.ts"
-        },
-        {
-          "total": 0,
-          "label": "OK",
-          "value": "UnprocessableEntityException",
-          "file": "packages/common/src/exceptions/http.exception.ts"
-        },
-        {
-          "total": 0,
-          "label": "OK",
-          "value": "TooManyRequestsException",
-          "file": "packages/common/src/exceptions/http.exception.ts"
-        },
-        {
-          "total": 0,
-          "label": "OK",
-          "value": "InternalServerErrorException",
-          "file": "packages/common/src/exceptions/http.exception.ts"
-        },
-        {
-          "total": 0,
-          "label": "OK",
-          "value": "NotImplementedException",
-          "file": "packages/common/src/exceptions/http.exception.ts"
-        },
-        {
-          "total": 0,
-          "label": "OK",
-          "value": "ServiceUnavailableException",
-          "file": "packages/common/src/exceptions/http.exception.ts"
-        },
-        {
-          "total": 0,
-          "label": "OK",
           "value": "HandlerBuilder",
           "file": "packages/common/src/factory/handler.builder.ts"
         },
@@ -1399,6 +1459,18 @@
         {
           "total": 0,
           "label": "OK",
+          "value": "ExpressAdapter",
+          "file": "packages/platform-express/src/adapters/express.adapter.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "ExpressHandlerRegistry",
+          "file": "packages/platform-express/src/adapters/express.handler.registry.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
           "value": "GrpcAdapter",
           "file": "packages/platform-grpc/src/adapters/grpc.adapter.ts"
         },
@@ -1417,12 +1489,6 @@
         {
           "total": 0,
           "label": "OK",
-          "value": "ExpressAdapter",
-          "file": "packages/platform-express/src/adapters/express.adapter.ts"
-        },
-        {
-          "total": 0,
-          "label": "OK",
           "value": "WsAdapter",
           "file": "packages/platform-ws/src/adapters/ws.adapter.ts"
         },
@@ -1435,19 +1501,19 @@
         {
           "total": 0,
           "label": "OK",
-          "value": "DependencyResolutionError",
-          "file": "packages/core/src/core/handlers/dependency-resolution.handler.ts"
-        },
-        {
-          "total": 0,
-          "label": "OK",
           "value": "DependencyContainer",
           "file": "packages/core/src/core/managers/dependency.container.ts"
         },
         {
           "total": 0,
           "label": "OK",
-          "value": "LifecycleManager",
+          "value": "InstanceResolver",
+          "file": "packages/core/src/core/managers/instance.resolver.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "LifecycleManagerImpl",
           "file": "packages/core/src/core/managers/lifecycle.manager.ts"
         },
         {
@@ -1465,7 +1531,7 @@
         {
           "total": 0,
           "label": "OK",
-          "value": "ModuleManager",
+          "value": "ModuleManagerImpl",
           "file": "packages/core/src/core/managers/module.manager.ts"
         },
         {
@@ -1473,22 +1539,28 @@
           "label": "OK",
           "value": "ModuleScanner",
           "file": "packages/core/src/core/managers/module.scanner.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "DependencyResolutionError",
+          "file": "packages/core/src/core/handlers/dependency-resolution.handler.ts"
         }
       ]
     },
     {
       "metric": "ce",
       "summary": {
-        "total": 146,
-        "max": 16,
+        "total": 145,
+        "max": 10,
         "min": 0,
-        "average": "1.78",
-        "deviation": "2.33"
+        "average": "1.77",
+        "deviation": "1.93"
       },
       "classes": [
         {
-          "total": 16,
-          "label": "CRITICAL",
+          "total": 10,
+          "label": "WARNING",
           "value": "packages/common/src/index.ts",
           "file": "packages/common/src/index.ts"
         },
@@ -1497,6 +1569,12 @@
           "label": "OK",
           "value": "packages/core/src/index.ts",
           "file": "packages/core/src/index.ts"
+        },
+        {
+          "total": 3,
+          "label": "OK",
+          "value": "packages/platform-express/src/index.ts",
+          "file": "packages/platform-express/src/index.ts"
         },
         {
           "total": 2,
@@ -1531,12 +1609,6 @@
         {
           "total": 3,
           "label": "OK",
-          "value": "packages/platform-express/src/index.ts",
-          "file": "packages/platform-express/src/index.ts"
-        },
-        {
-          "total": 3,
-          "label": "OK",
           "value": "packages/testing/src/index.ts",
           "file": "packages/testing/src/index.ts"
         },
@@ -1565,10 +1637,22 @@
           "file": "packages/common/src/decorators/controller.decorator.ts"
         },
         {
+          "total": 2,
+          "label": "OK",
+          "value": "packages/common/src/decorators/index.ts",
+          "file": "packages/common/src/decorators/index.ts"
+        },
+        {
           "total": 0,
           "label": "OK",
           "value": "packages/common/src/decorators/on.decorator.ts",
           "file": "packages/common/src/decorators/on.decorator.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "packages/common/src/exceptions/http-exceptions.ts",
+          "file": "packages/common/src/exceptions/http-exceptions.ts"
         },
         {
           "total": 0,
@@ -1577,7 +1661,7 @@
           "file": "packages/common/src/exceptions/http.exception.ts"
         },
         {
-          "total": 1,
+          "total": 2,
           "label": "OK",
           "value": "packages/common/src/exceptions/index.ts",
           "file": "packages/common/src/exceptions/index.ts"
@@ -1587,6 +1671,12 @@
           "label": "WARNING",
           "value": "packages/common/src/factory/handler.builder.ts",
           "file": "packages/common/src/factory/handler.builder.ts"
+        },
+        {
+          "total": 2,
+          "label": "OK",
+          "value": "packages/common/src/factory/index.ts",
+          "file": "packages/common/src/factory/index.ts"
         },
         {
           "total": 9,
@@ -1771,6 +1861,36 @@
         {
           "total": 2,
           "label": "OK",
+          "value": "packages/platform-express/src/adapters/express.adapter.ts",
+          "file": "packages/platform-express/src/adapters/express.adapter.ts"
+        },
+        {
+          "total": 2,
+          "label": "OK",
+          "value": "packages/platform-express/src/adapters/express.handler.registry.ts",
+          "file": "packages/platform-express/src/adapters/express.handler.registry.ts"
+        },
+        {
+          "total": 1,
+          "label": "OK",
+          "value": "packages/platform-express/src/adapters/index.ts",
+          "file": "packages/platform-express/src/adapters/index.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/platform-express/src/exceptions/index.ts",
+          "file": "packages/platform-express/src/exceptions/index.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/platform-express/src/types/index.ts",
+          "file": "packages/platform-express/src/types/index.ts"
+        },
+        {
+          "total": 2,
+          "label": "OK",
           "value": "packages/platform-grpc/src/adapters/grpc.adapter.ts",
           "file": "packages/platform-grpc/src/adapters/grpc.adapter.ts"
         },
@@ -1797,48 +1917,6 @@
           "label": "OK",
           "value": "packages/platform-grpc/src/types/index.ts",
           "file": "packages/platform-grpc/src/types/index.ts"
-        },
-        {
-          "total": 2,
-          "label": "OK",
-          "value": "packages/platform-express/src/adapters/express.adapter.ts",
-          "file": "packages/platform-express/src/adapters/express.adapter.ts"
-        },
-        {
-          "total": 1,
-          "label": "OK",
-          "value": "packages/platform-express/src/adapters/index.ts",
-          "file": "packages/platform-express/src/adapters/index.ts"
-        },
-        {
-          "total": 0,
-          "label": "OK",
-          "value": "packages/platform-express/src/exceptions/http.exception.ts",
-          "file": "packages/platform-express/src/exceptions/http.exception.ts"
-        },
-        {
-          "total": 1,
-          "label": "OK",
-          "value": "packages/platform-express/src/exceptions/index.ts",
-          "file": "packages/platform-express/src/exceptions/index.ts"
-        },
-        {
-          "total": 0,
-          "label": "OK",
-          "value": "packages/platform-express/src/types/express.interface.ts",
-          "file": "packages/platform-express/src/types/express.interface.ts"
-        },
-        {
-          "total": 0,
-          "label": "OK",
-          "value": "packages/platform-express/src/types/http-method.type.ts",
-          "file": "packages/platform-express/src/types/http-method.type.ts"
-        },
-        {
-          "total": 1,
-          "label": "OK",
-          "value": "packages/platform-express/src/types/index.ts",
-          "file": "packages/platform-express/src/types/index.ts"
         },
         {
           "total": 0,
@@ -1919,6 +1997,12 @@
           "file": "packages/core/src/core/managers/index.ts"
         },
         {
+          "total": 2,
+          "label": "OK",
+          "value": "packages/core/src/core/managers/instance.resolver.ts",
+          "file": "packages/core/src/core/managers/instance.resolver.ts"
+        },
+        {
           "total": 0,
           "label": "OK",
           "value": "packages/core/src/core/managers/lifecycle.manager.ts",
@@ -1961,22 +2045,10 @@
           "file": "packages/core/src/core/providers/index.ts"
         },
         {
-          "total": 2,
+          "total": 0,
           "label": "OK",
           "value": "packages/core/src/core/types/index.ts",
           "file": "packages/core/src/core/types/index.ts"
-        },
-        {
-          "total": 0,
-          "label": "OK",
-          "value": "packages/core/src/core/types/module.interface.ts",
-          "file": "packages/core/src/core/types/module.interface.ts"
-        },
-        {
-          "total": 1,
-          "label": "OK",
-          "value": "packages/core/src/core/types/provider.interface.ts",
-          "file": "packages/core/src/core/types/provider.interface.ts"
         }
       ]
     },
@@ -2005,6 +2077,12 @@
         {
           "total": 0,
           "label": "OK",
+          "value": "packages/platform-express/src/index.ts",
+          "file": "packages/platform-express/src/index.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
           "value": "packages/config/src/config.module.ts",
           "file": "packages/config/src/config.module.ts"
         },
@@ -2031,12 +2109,6 @@
           "label": "OK",
           "value": "packages/platform-grpc/src/index.ts",
           "file": "packages/platform-grpc/src/index.ts"
-        },
-        {
-          "total": 0,
-          "label": "OK",
-          "value": "packages/platform-express/src/index.ts",
-          "file": "packages/platform-express/src/index.ts"
         },
         {
           "total": 0,
@@ -2071,8 +2143,20 @@
         {
           "total": 0,
           "label": "OK",
+          "value": "packages/common/src/decorators/index.ts",
+          "file": "packages/common/src/decorators/index.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
           "value": "packages/common/src/decorators/on.decorator.ts",
           "file": "packages/common/src/decorators/on.decorator.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/common/src/exceptions/http-exceptions.ts",
+          "file": "packages/common/src/exceptions/http-exceptions.ts"
         },
         {
           "total": 0,
@@ -2091,6 +2175,12 @@
           "label": "OK",
           "value": "packages/common/src/factory/handler.builder.ts",
           "file": "packages/common/src/factory/handler.builder.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/common/src/factory/index.ts",
+          "file": "packages/common/src/factory/index.ts"
         },
         {
           "total": 0,
@@ -2275,6 +2365,36 @@
         {
           "total": 0,
           "label": "OK",
+          "value": "packages/platform-express/src/adapters/express.adapter.ts",
+          "file": "packages/platform-express/src/adapters/express.adapter.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/platform-express/src/adapters/express.handler.registry.ts",
+          "file": "packages/platform-express/src/adapters/express.handler.registry.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/platform-express/src/adapters/index.ts",
+          "file": "packages/platform-express/src/adapters/index.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/platform-express/src/exceptions/index.ts",
+          "file": "packages/platform-express/src/exceptions/index.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/platform-express/src/types/index.ts",
+          "file": "packages/platform-express/src/types/index.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
           "value": "packages/platform-grpc/src/adapters/grpc.adapter.ts",
           "file": "packages/platform-grpc/src/adapters/grpc.adapter.ts"
         },
@@ -2301,48 +2421,6 @@
           "label": "OK",
           "value": "packages/platform-grpc/src/types/index.ts",
           "file": "packages/platform-grpc/src/types/index.ts"
-        },
-        {
-          "total": 0,
-          "label": "OK",
-          "value": "packages/platform-express/src/adapters/express.adapter.ts",
-          "file": "packages/platform-express/src/adapters/express.adapter.ts"
-        },
-        {
-          "total": 0,
-          "label": "OK",
-          "value": "packages/platform-express/src/adapters/index.ts",
-          "file": "packages/platform-express/src/adapters/index.ts"
-        },
-        {
-          "total": 0,
-          "label": "OK",
-          "value": "packages/platform-express/src/exceptions/http.exception.ts",
-          "file": "packages/platform-express/src/exceptions/http.exception.ts"
-        },
-        {
-          "total": 0,
-          "label": "OK",
-          "value": "packages/platform-express/src/exceptions/index.ts",
-          "file": "packages/platform-express/src/exceptions/index.ts"
-        },
-        {
-          "total": 0,
-          "label": "OK",
-          "value": "packages/platform-express/src/types/express.interface.ts",
-          "file": "packages/platform-express/src/types/express.interface.ts"
-        },
-        {
-          "total": 0,
-          "label": "OK",
-          "value": "packages/platform-express/src/types/http-method.type.ts",
-          "file": "packages/platform-express/src/types/http-method.type.ts"
-        },
-        {
-          "total": 0,
-          "label": "OK",
-          "value": "packages/platform-express/src/types/index.ts",
-          "file": "packages/platform-express/src/types/index.ts"
         },
         {
           "total": 0,
@@ -2425,6 +2503,12 @@
         {
           "total": 0,
           "label": "OK",
+          "value": "packages/core/src/core/managers/instance.resolver.ts",
+          "file": "packages/core/src/core/managers/instance.resolver.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
           "value": "packages/core/src/core/managers/lifecycle.manager.ts",
           "file": "packages/core/src/core/managers/lifecycle.manager.ts"
         },
@@ -2469,29 +2553,17 @@
           "label": "OK",
           "value": "packages/core/src/core/types/index.ts",
           "file": "packages/core/src/core/types/index.ts"
-        },
-        {
-          "total": 0,
-          "label": "OK",
-          "value": "packages/core/src/core/types/module.interface.ts",
-          "file": "packages/core/src/core/types/module.interface.ts"
-        },
-        {
-          "total": 0,
-          "label": "OK",
-          "value": "packages/core/src/core/types/provider.interface.ts",
-          "file": "packages/core/src/core/types/provider.interface.ts"
         }
       ]
     },
     {
       "metric": "distance",
       "summary": {
-        "total": 3620,
-        "max": 100,
+        "total": 2481,
+        "max": 67,
         "min": 0,
-        "average": "44.15",
-        "deviation": "31.80"
+        "average": "30.26",
+        "deviation": "21.62"
       },
       "classes": [
         {
@@ -2507,14 +2579,20 @@
           "file": "packages/core/src/index.ts"
         },
         {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/platform-express/src/index.ts",
+          "file": "packages/platform-express/src/index.ts"
+        },
+        {
           "total": 33,
           "label": "OK",
           "value": "packages/config/src/config.module.ts",
           "file": "packages/config/src/config.module.ts"
         },
         {
-          "total": 100,
-          "label": "CRITICAL",
+          "total": 50,
+          "label": "WARNING",
           "value": "packages/config/src/config.service.ts",
           "file": "packages/config/src/config.service.ts"
         },
@@ -2535,12 +2613,6 @@
           "label": "OK",
           "value": "packages/platform-grpc/src/index.ts",
           "file": "packages/platform-grpc/src/index.ts"
-        },
-        {
-          "total": 0,
-          "label": "OK",
-          "value": "packages/platform-express/src/index.ts",
-          "file": "packages/platform-express/src/index.ts"
         },
         {
           "total": 0,
@@ -2567,20 +2639,32 @@
           "file": "packages/platform-ws/src/index.ts"
         },
         {
-          "total": 100,
-          "label": "CRITICAL",
+          "total": 0,
+          "label": "OK",
           "value": "packages/common/src/decorators/controller.decorator.ts",
           "file": "packages/common/src/decorators/controller.decorator.ts"
         },
         {
-          "total": 100,
-          "label": "CRITICAL",
+          "total": 33,
+          "label": "OK",
+          "value": "packages/common/src/decorators/index.ts",
+          "file": "packages/common/src/decorators/index.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
           "value": "packages/common/src/decorators/on.decorator.ts",
           "file": "packages/common/src/decorators/on.decorator.ts"
         },
         {
-          "total": 100,
-          "label": "CRITICAL",
+          "total": 50,
+          "label": "WARNING",
+          "value": "packages/common/src/exceptions/http-exceptions.ts",
+          "file": "packages/common/src/exceptions/http-exceptions.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
           "value": "packages/common/src/exceptions/http.exception.ts",
           "file": "packages/common/src/exceptions/http.exception.ts"
         },
@@ -2595,6 +2679,12 @@
           "label": "OK",
           "value": "packages/common/src/factory/handler.builder.ts",
           "file": "packages/common/src/factory/handler.builder.ts"
+        },
+        {
+          "total": 33,
+          "label": "OK",
+          "value": "packages/common/src/factory/index.ts",
+          "file": "packages/common/src/factory/index.ts"
         },
         {
           "total": 18,
@@ -2615,8 +2705,8 @@
           "file": "packages/common/src/factory/middleware.registry.ts"
         },
         {
-          "total": 100,
-          "label": "CRITICAL",
+          "total": 0,
+          "label": "OK",
           "value": "packages/common/src/filters/catch.decorator.ts",
           "file": "packages/common/src/filters/catch.decorator.ts"
         },
@@ -2639,8 +2729,8 @@
           "file": "packages/common/src/filters/use-filters.decorator.ts"
         },
         {
-          "total": 100,
-          "label": "CRITICAL",
+          "total": 50,
+          "label": "WARNING",
           "value": "packages/common/src/guards/guard-rejection.error.ts",
           "file": "packages/common/src/guards/guard-rejection.error.ts"
         },
@@ -2687,14 +2777,14 @@
           "file": "packages/common/src/metadata/index.ts"
         },
         {
-          "total": 100,
-          "label": "CRITICAL",
+          "total": 50,
+          "label": "WARNING",
           "value": "packages/common/src/metadata/reflector.ts",
           "file": "packages/common/src/metadata/reflector.ts"
         },
         {
-          "total": 100,
-          "label": "CRITICAL",
+          "total": 0,
+          "label": "OK",
           "value": "packages/common/src/metadata/set-metadata.decorator.ts",
           "file": "packages/common/src/metadata/set-metadata.decorator.ts"
         },
@@ -2735,14 +2825,14 @@
           "file": "packages/common/src/pipes/validation.pipe.ts"
         },
         {
-          "total": 50,
+          "total": 67,
           "label": "WARNING",
           "value": "packages/common/src/types/adapter.abstract.ts",
           "file": "packages/common/src/types/adapter.abstract.ts"
         },
         {
-          "total": 100,
-          "label": "CRITICAL",
+          "total": 0,
+          "label": "OK",
           "value": "packages/common/src/types/class-or-instance.type.ts",
           "file": "packages/common/src/types/class-or-instance.type.ts"
         },
@@ -2753,14 +2843,14 @@
           "file": "packages/common/src/types/handler-metadata.interface.ts"
         },
         {
-          "total": 25,
+          "total": 33,
           "label": "OK",
           "value": "packages/common/src/types/handler.interface.ts",
           "file": "packages/common/src/types/handler.interface.ts"
         },
         {
-          "total": 44,
-          "label": "OK",
+          "total": 50,
+          "label": "WARNING",
           "value": "packages/common/src/types/index.ts",
           "file": "packages/common/src/types/index.ts"
         },
@@ -2775,6 +2865,36 @@
           "label": "OK",
           "value": "packages/core/src/core/index.ts",
           "file": "packages/core/src/core/index.ts"
+        },
+        {
+          "total": 33,
+          "label": "OK",
+          "value": "packages/platform-express/src/adapters/express.adapter.ts",
+          "file": "packages/platform-express/src/adapters/express.adapter.ts"
+        },
+        {
+          "total": 33,
+          "label": "OK",
+          "value": "packages/platform-express/src/adapters/express.handler.registry.ts",
+          "file": "packages/platform-express/src/adapters/express.handler.registry.ts"
+        },
+        {
+          "total": 50,
+          "label": "WARNING",
+          "value": "packages/platform-express/src/adapters/index.ts",
+          "file": "packages/platform-express/src/adapters/index.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/platform-express/src/exceptions/index.ts",
+          "file": "packages/platform-express/src/exceptions/index.ts"
+        },
+        {
+          "total": 0,
+          "label": "OK",
+          "value": "packages/platform-express/src/types/index.ts",
+          "file": "packages/platform-express/src/types/index.ts"
         },
         {
           "total": 33,
@@ -2807,50 +2927,8 @@
           "file": "packages/platform-grpc/src/types/index.ts"
         },
         {
-          "total": 33,
-          "label": "OK",
-          "value": "packages/platform-express/src/adapters/express.adapter.ts",
-          "file": "packages/platform-express/src/adapters/express.adapter.ts"
-        },
-        {
           "total": 50,
           "label": "WARNING",
-          "value": "packages/platform-express/src/adapters/index.ts",
-          "file": "packages/platform-express/src/adapters/index.ts"
-        },
-        {
-          "total": 100,
-          "label": "CRITICAL",
-          "value": "packages/platform-express/src/exceptions/http.exception.ts",
-          "file": "packages/platform-express/src/exceptions/http.exception.ts"
-        },
-        {
-          "total": 50,
-          "label": "WARNING",
-          "value": "packages/platform-express/src/exceptions/index.ts",
-          "file": "packages/platform-express/src/exceptions/index.ts"
-        },
-        {
-          "total": 0,
-          "label": "OK",
-          "value": "packages/platform-express/src/types/express.interface.ts",
-          "file": "packages/platform-express/src/types/express.interface.ts"
-        },
-        {
-          "total": 100,
-          "label": "CRITICAL",
-          "value": "packages/platform-express/src/types/http-method.type.ts",
-          "file": "packages/platform-express/src/types/http-method.type.ts"
-        },
-        {
-          "total": 67,
-          "label": "WARNING",
-          "value": "packages/platform-express/src/types/index.ts",
-          "file": "packages/platform-express/src/types/index.ts"
-        },
-        {
-          "total": 100,
-          "label": "CRITICAL",
           "value": "packages/testing/src/adapters/test.adapter.ts",
           "file": "packages/testing/src/adapters/test.adapter.ts"
         },
@@ -2927,8 +3005,14 @@
           "file": "packages/core/src/core/managers/index.ts"
         },
         {
-          "total": 100,
-          "label": "CRITICAL",
+          "total": 33,
+          "label": "OK",
+          "value": "packages/core/src/core/managers/instance.resolver.ts",
+          "file": "packages/core/src/core/managers/instance.resolver.ts"
+        },
+        {
+          "total": 50,
+          "label": "WARNING",
           "value": "packages/core/src/core/managers/lifecycle.manager.ts",
           "file": "packages/core/src/core/managers/lifecycle.manager.ts"
         },
@@ -2945,8 +3029,8 @@
           "file": "packages/core/src/core/managers/luna.factory.ts"
         },
         {
-          "total": 75,
-          "label": "CRITICAL",
+          "total": 25,
+          "label": "OK",
           "value": "packages/core/src/core/managers/module.manager.ts",
           "file": "packages/core/src/core/managers/module.manager.ts"
         },
@@ -2969,22 +3053,10 @@
           "file": "packages/core/src/core/providers/index.ts"
         },
         {
-          "total": 85,
-          "label": "CRITICAL",
-          "value": "packages/core/src/core/types/index.ts",
-          "file": "packages/core/src/core/types/index.ts"
-        },
-        {
           "total": 0,
           "label": "OK",
-          "value": "packages/core/src/core/types/module.interface.ts",
-          "file": "packages/core/src/core/types/module.interface.ts"
-        },
-        {
-          "total": 50,
-          "label": "WARNING",
-          "value": "packages/core/src/core/types/provider.interface.ts",
-          "file": "packages/core/src/core/types/provider.interface.ts"
+          "value": "packages/core/src/core/types/index.ts",
+          "file": "packages/core/src/core/types/index.ts"
         }
       ]
     }

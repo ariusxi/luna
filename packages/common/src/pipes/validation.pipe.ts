@@ -1,22 +1,22 @@
 import { Injectable } from '@lunafw/core'
-import { BadRequestException } from '../exceptions/http.exception'
+import { BadRequestException } from '../exceptions'
 import { LunaMessage } from '../types/message.interface'
 import { LunaPipe } from './pipe.interface'
 
 type ClassConstructor<T> = new (...args: unknown[]) => T
+type PlainToInstance = (cls: ClassConstructor<object>, plain: unknown) => object
+type Validate = (object: object) => Promise<{ constraints?: Record<string, string> }[]>
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-let plainToInstance: ((cls: any, plain: any) => any) | undefined
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-let validate: ((object: object) => Promise<any[]>) | undefined
+let plainToInstance: PlainToInstance | undefined
+let validate: Validate | undefined
 
-const loadDeps = (): void => {
+const loadDeps = async (): Promise<void> => {
   if (plainToInstance) return
   try {
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
-    plainToInstance = require('class-transformer').plainToInstance
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
-    validate = require('class-validator').validate
+    const ct = await import('class-transformer')
+    const cv = await import('class-validator')
+    plainToInstance = ct.plainToInstance as PlainToInstance
+    validate = cv.validate as Validate
   } catch {
     throw new Error(
       'ValidationPipe requires "class-validator" and "class-transformer". ' +
@@ -41,9 +41,9 @@ export class ValidationPipe<T extends object> implements LunaPipe {
   constructor(private readonly target: ClassConstructor<T>) {}
 
   async transform(message: LunaMessage): Promise<LunaMessage> {
-    loadDeps()
+    await loadDeps()
 
-    const instance = plainToInstance!(this.target, message.payload)
+    const instance = plainToInstance!(this.target as ClassConstructor<object>, message.payload)
     const errors = await validate!(instance)
 
     if (!errors.length) return { ...message, payload: instance }

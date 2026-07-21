@@ -1,9 +1,9 @@
 import { Server } from 'http'
-import express, { Application, Request, Response, Router } from 'express'
-import { AbstractAdapter, GuardRejectionError, HandlerMetadata, HttpException, LunaHandler } from '@lunafw/common'
+import express, { Application } from 'express'
+import { AbstractAdapter, HandlerMetadata, LunaHandler } from '@lunafw/common'
 
 import { ExpressAdapterOptions, ExpressHandler } from '../types'
-import { HttpMethod } from '../types/http-method.type'
+import { ExpressHandlerRegistry } from './express.handler.registry'
 
 /**
  * HTTP adapter for Luna based on Express.
@@ -20,13 +20,9 @@ import { HttpMethod } from '../types/http-method.type'
  * await app.start()
  */
 export class ExpressAdapter extends AbstractAdapter {
-  private static readonly HTTP_METHODS: ReadonlySet<string> = new Set([
-    'get', 'post', 'put', 'patch', 'delete', 'options', 'head',
-  ])
-
   private server?: Server
-  private handlers: ExpressHandler[] = []
   private readonly app: Application = express()
+  private readonly registry = new ExpressHandlerRegistry()
 
   constructor(private readonly options: ExpressAdapterOptions) {
     super()
@@ -40,7 +36,7 @@ export class ExpressAdapter extends AbstractAdapter {
    * registered before the Express application starts accepting requests.
    */
   public register(handler: LunaHandler, metadata: HandlerMetadata): void {
-    this.handlers.push({ handler, metadata })
+    this.registry.register(handler, metadata)
   }
 
   /**
@@ -51,14 +47,7 @@ export class ExpressAdapter extends AbstractAdapter {
    * accepting connections on the configured port.
    */
   public async listen(): Promise<void> {
-    for (const { handler, metadata } of this.handlers) {
-      const { event, prefix, path } = metadata
-      if (!ExpressAdapter.HTTP_METHODS.has(event)) continue
-
-      const router = Router()
-      router[event as HttpMethod](path, this.buildRoute(handler))
-      this.app.use(`/${prefix}`, router)
-    }
+    this.registry.mountRoutes(this.app)
 
     const server = this.app.listen(this.options.port)
     this.server = server
@@ -84,7 +73,7 @@ export class ExpressAdapter extends AbstractAdapter {
 
   /** Returns the list of handlers registered so far (before or after `listen()`). */
   public getHandlers(): ExpressHandler[] {
-    return this.handlers
+    return this.registry.getHandlers()
   }
 
   /** Closes the HTTP server and releases the port. */
@@ -93,41 +82,5 @@ export class ExpressAdapter extends AbstractAdapter {
     await new Promise<void>((resolve, reject) => {
       this.server!.close((err) => (err ? reject(err) : resolve()))
     })
-  }
-
-  private buildRoute(handler: LunaHandler) {
-    return async (request: Request, response: Response) => {
-      try {
-        const result = await handler.handle({
-          context: 'http',
-          payload: request.body,
-          metadata: {
-            params: request.params,
-            query: request.query,
-            headers: request.headers,
-          },
-        })
-        response.json(result)
-      } catch (error) {
-        this.handleError(error, response)
-      }
-    }
-  }
-
-  private handleError(error: unknown, response: Response): void {
-    if (this.isHttpException(error)) {
-      response.status(error.statusCode).json({ statusCode: error.statusCode, message: error.message })
-      return
-    }
-    if (error instanceof GuardRejectionError) {
-      response.status(401).json({ statusCode: 401, message: 'Unauthorized' })
-      return
-    }
-    console.error('[LunaAdapter] Unhandled error:', error)
-    response.status(500).json({ statusCode: 500, message: 'Internal Server Error' })
-  }
-
-  private isHttpException(error: unknown): error is HttpException {
-    return error instanceof Error && typeof (error as HttpException).statusCode === 'number'
   }
 }

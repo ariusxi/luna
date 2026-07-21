@@ -1,5 +1,10 @@
 export const CONTROLLER_METADATA = 'luna:controller'
 
+/** Shape of the metadata stored by `@Controller`. */
+export interface ControllerMetadata {
+  prefix: string
+}
+
 /**
  * Marks a class as a Luna controller and associates it with a protocol context.
  *
@@ -13,7 +18,7 @@ export const CONTROLLER_METADATA = 'luna:controller'
  * class UserController { ... }
  */
 export const Controller = (context?: string): ClassDecorator => {
-  return (target: any) => {
+  return (target) => {
     Reflect.defineMetadata(CONTROLLER_METADATA, context ?? '', target)
   }
 }

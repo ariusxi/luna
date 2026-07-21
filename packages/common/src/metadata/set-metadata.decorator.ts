@@ -1,3 +1,9 @@
+/** Shape of a metadata entry stored by `@SetMetadata`. */
+export interface SetMetadataEntry<T = unknown> {
+  key: string
+  value: T
+}
+
 /**
  * Attaches arbitrary metadata to a class or method under a custom key.
  *
@@ -10,23 +16,11 @@
  * @param value - The metadata value.
  *
  * @example
- * // define a shorthand helper
  * const Roles = (...roles: string[]) => SetMetadata('roles', roles)
  *
  * @Roles('admin', 'moderator')
  * @On('delete', '/:id')
  * remove(message: LunaMessage) { ... }
- *
- * // read inside a guard
- * @Injectable()
- * class RolesGuard implements LunaGuard {
- *   constructor(private readonly reflector: Reflector) {}
- *
- *   canActivate(message: LunaMessage): boolean {
- *     const roles = this.reflector.get<string[]>('roles', message)
- *     // ...
- *   }
- * }
  */
 export const SetMetadata = (key: string, value: unknown): ClassDecorator & MethodDecorator => {
   return (target: object, propertyKey?: string | symbol) => {

@@ -1,5 +1,11 @@
 export const ON_METADATA = 'luna:on'
 
+/** Shape of the metadata stored by `@On`. */
+export interface OnMetadata {
+  event: string
+  path: string
+}
+
 /**
  * Marks a controller method as a message handler for a specific event and path.
  *
