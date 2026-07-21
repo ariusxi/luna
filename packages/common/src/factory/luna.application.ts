@@ -2,21 +2,12 @@ import { LunaApplication as CoreApplication } from '@lunafw/core'
 
 import { CONTROLLER_METADATA } from '../decorators/controller.decorator'
 import { ON_METADATA } from '../decorators/on.decorator'
-import { CATCH_METADATA } from '../filters/catch.decorator'
-import { LunaExceptionFilter, } from '../filters/filter.interface'
-import { USE_FILTERS_METADATA } from '../filters/use-filters.decorator'
-import { GuardRejectionError, LunaGuard, USE_GUARDS_METADATA } from '../guards'
-import { LunaExecutionContext, LunaInterceptor, USE_INTERCEPTORS_METADATA } from '../interceptors'
-import { PARAM_METADATA, ParamMetadata, resolveParams } from '../params/param.decorator'
-import { LunaPipe, USE_PIPES_METADATA } from '../pipes'
-import { AbstractAdapter, ClassConstructor, ClassOrInstance, HandlerMetadata, LunaHandler, LunaMessage } from '../types'
-
-interface ControllerMiddleware {
-  guards: ClassOrInstance<LunaGuard>[]
-  pipes: ClassOrInstance<LunaPipe>[]
-  interceptors: ClassOrInstance<LunaInterceptor>[]
-  filters: ClassOrInstance<LunaExceptionFilter>[]
-}
+import { LunaExceptionFilter } from '../filters/filter.interface'
+import { LunaGuard } from '../guards'
+import { LunaInterceptor } from '../interceptors'
+import { LunaPipe } from '../pipes'
+import { AbstractAdapter, ClassConstructor, ClassOrInstance, HandlerMetadata, LunaMessage } from '../types'
+import { MiddlewareRegistry } from './middleware.registry'
 
 /**
  * The running Luna application instance returned by `LunaFactory.createApplication`.
@@ -28,15 +19,14 @@ interface ControllerMiddleware {
  * route in the application.
  */
 export class LunaApplication {
-  private globalGuards: ClassOrInstance<LunaGuard>[] = []
-  private globalPipes: ClassOrInstance<LunaPipe>[] = []
-  private globalInterceptors: ClassOrInstance<LunaInterceptor>[] = []
-  private globalFilters: ClassOrInstance<LunaExceptionFilter>[] = []
+  private readonly middlewareRegistry: MiddlewareRegistry
 
   constructor(
     private readonly core: CoreApplication,
     private readonly adapters: AbstractAdapter[],
-  ) {}
+  ) {
+    this.middlewareRegistry = new MiddlewareRegistry((items) => this.resolve(items))
+  }
 
   /**
    * Starts the application.
@@ -80,7 +70,7 @@ export class LunaApplication {
    * await app.start()
    */
   public useGlobalGuards(...guards: ClassOrInstance<LunaGuard>[]): this {
-    this.globalGuards.push(...guards)
+    this.middlewareRegistry.addGuards(...guards)
     return this
   }
 
@@ -91,7 +81,7 @@ export class LunaApplication {
    * Must be called before `start()`.
    */
   public useGlobalPipes(...pipes: ClassOrInstance<LunaPipe>[]): this {
-    this.globalPipes.push(...pipes)
+    this.middlewareRegistry.addPipes(...pipes)
     return this
   }
 
@@ -102,7 +92,7 @@ export class LunaApplication {
    * Must be called before `start()`.
    */
   public useGlobalInterceptors(...interceptors: ClassOrInstance<LunaInterceptor>[]): this {
-    this.globalInterceptors.push(...interceptors)
+    this.middlewareRegistry.addInterceptors(...interceptors)
     return this
   }
 
@@ -113,7 +103,7 @@ export class LunaApplication {
    * Must be called before `start()`.
    */
   public useGlobalFilters(...filters: ClassOrInstance<LunaExceptionFilter>[]): this {
-    this.globalFilters.push(...filters)
+    this.middlewareRegistry.addFilters(...filters)
     return this
   }
 
@@ -139,113 +129,6 @@ export class LunaApplication {
   }
 
   /**
-   * Finds the first filter in `filters` whose `@Catch` metadata matches the
-   * given exception, then calls `filter.catch()`. Returns the filter's return
-   * value if handled, or re-throws the original exception if no filter matches.
-   */
-  private async runFilters(
-    exception: unknown,
-    message: LunaMessage,
-    filters: LunaExceptionFilter[],
-  ): Promise<unknown> {
-    for (const filter of filters) {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const caughtTypes: (abstract new (...args: any[]) => unknown)[] =
-        Reflect.getMetadata(CATCH_METADATA, filter.constructor) ?? []
-
-      const matches =
-        caughtTypes.length === 0 ||
-        caughtTypes.some((ExType) => exception instanceof ExType)
-
-      if (matches) return filter.catch(exception, message)
-    }
-    throw exception
-  }
-
-  /**
-   * Collects and merges global + controller + method middleware for a single handler.
-   */
-  private collectMiddleware(
-    token: Function,
-    prototype: object,
-    methodName: string,
-  ): ControllerMiddleware {
-    const controllerGuards: ClassOrInstance<LunaGuard>[] = Reflect.getMetadata(USE_GUARDS_METADATA, token) ?? []
-    const controllerPipes: ClassOrInstance<LunaPipe>[] = Reflect.getMetadata(USE_PIPES_METADATA, token) ?? []
-    const controllerInterceptors: ClassOrInstance<LunaInterceptor>[] = Reflect.getMetadata(USE_INTERCEPTORS_METADATA, token) ?? []
-    const controllerFilters: ClassOrInstance<LunaExceptionFilter>[] = Reflect.getMetadata(USE_FILTERS_METADATA, token) ?? []
-
-    const methodGuards: ClassOrInstance<LunaGuard>[] = Reflect.getMetadata(USE_GUARDS_METADATA, prototype, methodName) ?? []
-    const methodPipes: ClassOrInstance<LunaPipe>[] = Reflect.getMetadata(USE_PIPES_METADATA, prototype, methodName) ?? []
-    const methodInterceptors: ClassOrInstance<LunaInterceptor>[] = Reflect.getMetadata(USE_INTERCEPTORS_METADATA, prototype, methodName) ?? []
-    const methodFilters: ClassOrInstance<LunaExceptionFilter>[] = Reflect.getMetadata(USE_FILTERS_METADATA, prototype, methodName) ?? []
-
-    return {
-      guards: [...this.globalGuards, ...controllerGuards, ...methodGuards],
-      pipes: [...this.globalPipes, ...controllerPipes, ...methodPipes],
-      interceptors: [...this.globalInterceptors, ...controllerInterceptors, ...methodInterceptors],
-      filters: [...methodFilters, ...controllerFilters, ...this.globalFilters],
-    }
-  }
-
-  /**
-   * Builds a `LunaHandler` that runs the full middleware pipeline for one
-   * controller method:
-   *
-   * ```
-   * Guards → Pipes → Interceptors → Handler (with param extraction)
-   *                                          ↑ Filters wrap everything
-   * ```
-   */
-  private buildHandler(
-    instance: Record<string, (...args: unknown[]) => unknown>,
-    methodName: string,
-    prototype: object,
-    middleware: ControllerMiddleware,
-  ): LunaHandler {
-    const guards = this.resolve<LunaGuard>(middleware.guards)
-    const pipes = this.resolve<LunaPipe>(middleware.pipes)
-    const interceptors = this.resolve<LunaInterceptor>(middleware.interceptors)
-    const filters = this.resolve<LunaExceptionFilter>(middleware.filters)
-
-    const paramsMeta: ParamMetadata[] =
-      Reflect.getMetadata(PARAM_METADATA, prototype, methodName) ?? []
-
-    return {
-      handle: async (message: LunaMessage) => {
-        try {
-          for (const guard of guards) {
-            const allowed = await guard.canActivate(message)
-            if (!allowed) throw new GuardRejectionError()
-          }
-
-          let transformedMessage = message
-          for (const pipe of pipes) {
-            transformedMessage = await pipe.transform(transformedMessage)
-          }
-
-          const context: LunaExecutionContext = {
-            getMessage: () => transformedMessage,
-            getHandler: () => methodName,
-          }
-
-          const chain = interceptors.reduceRight<() => Promise<unknown>>(
-            (next, interceptor) => () => interceptor.intercept(context, next),
-            async () => {
-              const args = resolveParams(transformedMessage, paramsMeta)
-              return instance[methodName](...args)
-            },
-          )
-
-          return await chain()
-        } catch (error) {
-          return this.runFilters(error, message, filters)
-        }
-      },
-    }
-  }
-
-  /**
    * Scans all DI tokens for `@Controller`-decorated classes, reads their `@On`
    * handler methods, collects guard/pipe/interceptor/filter metadata, and
    * registers one `LunaHandler` per method on every adapter.
@@ -268,7 +151,7 @@ export class LunaApplication {
           | undefined
         if (!onMetadata) continue
 
-        const middleware = this.collectMiddleware(token, prototype, methodName)
+        const middleware = this.middlewareRegistry.collect(token, prototype, methodName)
 
         const handlerMetadata: HandlerMetadata = {
           event: onMetadata.event,
@@ -276,7 +159,13 @@ export class LunaApplication {
           path: onMetadata.path,
         }
 
-        const handler = this.buildHandler(instance, methodName, prototype, middleware)
+        const handler = this.middlewareRegistry.buildHandler(
+          instance,
+          methodName,
+          prototype,
+          middleware,
+          handlerMetadata,
+        )
 
         for (const adapter of this.adapters) {
           adapter.register(handler, handlerMetadata)

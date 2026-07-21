@@ -1,5 +1,3 @@
-import { DependencyContainer } from "../managers/dependency.container"
-
 export enum ProviderScope {
   Singleton = 'singleton',
   Transient = 'transient',
@@ -88,7 +86,16 @@ export interface ModuleProperties {
   exports?: Token[]
 }
 
+export interface IContainer {
+  register(provider: ProviderDefinition): void
+  getProvider(token: Token): ProviderDefinition | undefined
+  resolve<T>(token: Token, dependencyOf?: Token): T
+  getTokens(): Token[]
+  boot(): void
+  inspect(token: Token): object
+}
+
 export interface ModuleContext {
-  container: DependencyContainer
+  container: IContainer
   exports: Token[]
 }

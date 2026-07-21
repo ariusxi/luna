@@ -3,12 +3,7 @@ import * as protoLoader from '@grpc/proto-loader'
 import { AbstractAdapter, HandlerMetadata, LunaHandler } from '@lunafw/common'
 
 import { GrpcAdapterOptions } from '../types'
-
-interface GrpcHandlerEntry {
-  handler: LunaHandler
-  service: string
-  method: string
-}
+import { GrpcHandlerRegistry } from './grpc.handler.registry'
 
 /**
  * gRPC adapter for Luna based on `@grpc/grpc-js`.
@@ -30,7 +25,7 @@ interface GrpcHandlerEntry {
 export class GrpcAdapter extends AbstractAdapter {
   private server?: grpc.Server
   private boundPort?: number
-  private readonly entries: GrpcHandlerEntry[] = []
+  private readonly registry = new GrpcHandlerRegistry()
 
   constructor(private readonly options: GrpcAdapterOptions) {
     super()
@@ -44,11 +39,7 @@ export class GrpcAdapter extends AbstractAdapter {
    * in the proto are silently skipped at `listen()` time.
    */
   public register(handler: LunaHandler, metadata: HandlerMetadata): void {
-    this.entries.push({
-      handler,
-      service: metadata.prefix,
-      method: metadata.event,
-    })
+    this.registry.register(handler, metadata)
   }
 
   /**
@@ -56,34 +47,9 @@ export class GrpcAdapter extends AbstractAdapter {
    * registered handlers, and starts the server.
    */
   public async listen(): Promise<void> {
-    const protoPaths = Array.isArray(this.options.protoPath)
-      ? this.options.protoPath
-      : [this.options.protoPath]
-
-    const packageDef = protoLoader.loadSync(protoPaths, {
-      keepCase: true,
-      longs: String,
-      enums: String,
-      defaults: true,
-      oneofs: true,
-    })
-
-    const grpcObject = grpc.loadPackageDefinition(packageDef)
-    const pkg = grpcObject[this.options.packageName] as Record<string, unknown>
-
-    if (!pkg) throw new Error(`gRPC package "${this.options.packageName}" not found in proto definition`)
-
+    const pkg = this.loadProtoPackage()
     this.server = new grpc.Server()
-
-    const servicesByName = this.groupByService()
-    for (const [serviceName, methods] of Object.entries(servicesByName)) {
-      const ServiceCtor = pkg[serviceName] as grpc.ServiceClientConstructor | undefined
-      if (!ServiceCtor?.service) continue
-
-      const impl = this.buildServiceImpl(methods)
-      this.server.addService(ServiceCtor.service, impl)
-    }
-
+    this.registry.buildServices(pkg, this.server)
     await this.bindServer()
   }
 
@@ -107,30 +73,25 @@ export class GrpcAdapter extends AbstractAdapter {
     })
   }
 
-  private buildUnaryHandler(handler: LunaHandler): grpc.handleUnaryCall<unknown, unknown> {
-    return async (call, callback) => {
-      try {
-        const result = await handler.handle({
-          context: 'grpc',
-          payload: call.request,
-          metadata: { grpcMetadata: call.metadata.getMap() },
-        })
-        callback(null, result as object)
-      } catch (error) {
-        callback({
-          code: grpc.status.INTERNAL,
-          message: error instanceof Error ? error.message : 'Internal error',
-        })
-      }
-    }
-  }
+  private loadProtoPackage(): Record<string, unknown> {
+    const protoPaths = Array.isArray(this.options.protoPath)
+      ? this.options.protoPath
+      : [this.options.protoPath]
 
-  private buildServiceImpl(methods: Record<string, LunaHandler>): grpc.UntypedServiceImplementation {
-    const impl: grpc.UntypedServiceImplementation = {}
-    for (const [methodName, handler] of Object.entries(methods)) {
-      impl[methodName] = this.buildUnaryHandler(handler)
-    }
-    return impl
+    const packageDef = protoLoader.loadSync(protoPaths, {
+      keepCase: true,
+      longs: String,
+      enums: String,
+      defaults: true,
+      oneofs: true,
+    })
+
+    const grpcObject = grpc.loadPackageDefinition(packageDef)
+    const pkg = grpcObject[this.options.packageName] as Record<string, unknown>
+
+    if (!pkg) throw new Error(`gRPC package "${this.options.packageName}" not found in proto definition`)
+
+    return pkg
   }
 
   private bindServer(): Promise<void> {
@@ -145,14 +106,5 @@ export class GrpcAdapter extends AbstractAdapter {
         },
       )
     })
-  }
-
-  private groupByService(): Record<string, Record<string, LunaHandler>> {
-    const result: Record<string, Record<string, LunaHandler>> = {}
-    for (const { service, method, handler } of this.entries) {
-      if (!result[service]) result[service] = {}
-      result[service][method] = handler
-    }
-    return result
   }
 }
