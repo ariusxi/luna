@@ -63,10 +63,10 @@ export class MiddlewareRegistry {
     const methodFilters: ClassOrInstance<LunaExceptionFilter>[] = Reflect.getMetadata(USE_FILTERS_METADATA, prototype, methodName) ?? []
 
     return {
-      guards:       [...this.globalGuards,       ...controllerGuards,       ...methodGuards],
-      pipes:        [...this.globalPipes,        ...controllerPipes,        ...methodPipes],
+      guards: [...this.globalGuards, ...controllerGuards, ...methodGuards],
+      pipes: [...this.globalPipes, ...controllerPipes, ...methodPipes],
       interceptors: [...this.globalInterceptors, ...controllerInterceptors, ...methodInterceptors],
-      filters:      [...methodFilters, ...controllerFilters, ...this.globalFilters],
+      filters: [...methodFilters, ...controllerFilters, ...this.globalFilters],
     }
   }
 
@@ -125,8 +125,7 @@ export class MiddlewareRegistry {
     filters: LunaExceptionFilter[],
   ): Promise<unknown> {
     for (const filter of filters) {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const caughtTypes: (abstract new (...args: any[]) => unknown)[] =
+      const caughtTypes: (abstract new (...args: unknown[]) => unknown)[] =
         Reflect.getMetadata(CATCH_METADATA, filter.constructor) ?? []
 
       const matches =
