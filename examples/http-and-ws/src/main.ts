@@ -1,4 +1,3 @@
-import 'reflect-metadata'
 import { LunaFactory } from '@lunafw/common'
 import { ExpressAdapter } from '@lunafw/platform-express'
 import { WsAdapter } from '@lunafw/platform-ws'

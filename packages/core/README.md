@@ -30,102 +30,165 @@ Add to your `tsconfig.json`:
 }
 ```
 
-## Modules
+---
+
+## Module system
+
+Modules are the building blocks of a Luna application. Each module groups related providers and controls what is visible to the rest of the application via `exports`.
+
+```
+AppModule
+  ├── imports: [UsersModule, DatabaseModule]
+  │
+  ├── UsersModule
+  │     providers: [UsersService, UsersController]
+  │     exports:   [UsersService]   ← visible to importers
+  │
+  └── DatabaseModule
+        providers: [DbConnection]
+        exports:   [DbConnection]
+```
+
+### Declaring a module
 
 ```ts
 import { Module } from '@lunafw/core'
 
 @Module({
-  imports: [DatabaseModule],
-  providers: [UserService, UserController],
-  exports: [UserService],
+  imports:   [DatabaseModule],   // modules whose exports become available here
+  providers: [UsersService, UsersController],
+  exports:   [UsersService],     // make UsersService available to importers
 })
-export class UserModule {}
+export class UsersModule {}
 ```
 
+### Root module
+
+The root module is the entry point passed to `LunaFactory`. It imports every feature module that the application needs:
+
+```ts
+import { Module } from '@lunafw/core'
+import { UsersModule } from './users/users.module'
+import { PostsModule } from './posts/posts.module'
+
+@Module({
+  imports: [UsersModule, PostsModule],
+})
+export class AppModule {}
+```
+
+---
+
 ## Dependency Injection
+
+### @Injectable
+
+Mark any class as an injectable provider. Luna resolves its constructor dependencies automatically using TypeScript metadata:
 
 ```ts
 import { Injectable } from '@lunafw/core'
 
 @Injectable()
-export class UserService {
+export class UsersService {
   constructor(private readonly db: DatabaseService) {}
+  // DatabaseService is resolved from the same module's container
 }
 ```
 
-### Provider Scopes
+### Provider scopes
 
 ```ts
 import { Injectable, ProviderScope } from '@lunafw/core'
 
-@Injectable(ProviderScope.Singleton)  // default
-@Injectable(ProviderScope.Transient)
+@Injectable(ProviderScope.Singleton)   // default — one instance per module
+@Injectable(ProviderScope.Transient)   // new instance every time it is requested
 ```
 
-### Custom Providers
+### @Inject
+
+Use `@Inject` when a token is a string or symbol — TypeScript cannot infer these automatically:
+
+```ts
+import { Inject, Injectable } from '@lunafw/core'
+
+@Injectable()
+export class AppService {
+  constructor(
+    private readonly userService: UserService,         // resolved by type
+    @Inject('API_URL') private readonly apiUrl: string, // resolved by string token
+    @Inject(DB_TOKEN) private readonly db: DbClient,   // resolved by symbol token
+  ) {}
+}
+```
+
+### Custom providers
+
+Three factory styles are available for cases where simple class injection is not enough:
 
 ```ts
 @Module({
   providers: [
-    { provide: 'API_KEY', useValue: process.env.API_KEY },
-    { provide: ConfigService, useClass: ProductionConfigService },
+    // Value provider — inject a literal value or pre-built object
+    { provide: 'API_URL', useValue: process.env.API_URL ?? 'http://localhost' },
+
+    // Class provider — swap implementations without changing consumers
+    { provide: LoggerService, useClass: ProductionLoggerService },
+
+    // Factory provider — build the instance with injected dependencies
     {
       provide: 'DB_CONNECTION',
-      useFactory: (config: ConfigService) => createConnection(config.dbUrl),
       inject: [ConfigService],
+      useFactory: (config: ConfigService) => createConnection(config.get('DATABASE_URL')),
     },
   ],
 })
 export class AppModule {}
 ```
 
-### @Inject
+### defineProvider helper
 
-Use `@Inject` when a dependency token is a string or symbol (cases where TypeScript cannot infer the type automatically):
-
-```ts
-import { Inject, Injectable } from '@lunafw/core'
-
-@Injectable()
-export class UserController {
-  constructor(
-    private readonly userService: UserService,           // resolved by type
-    @Inject('API_KEY') private readonly apiKey: string,  // resolved by token
-  ) {}
-}
-```
-
-### Functional Providers
+`defineProvider` gives you auto-complete and type safety when defining factory providers:
 
 ```ts
 import { defineProvider } from '@lunafw/core'
 
-const cacheProvider = defineProvider({
+export const cacheProvider = defineProvider({
   inject: [ConfigService],
-  useFactory: (config) => new CacheClient(config.redisUrl),
+  useFactory: (config: ConfigService) => new CacheClient(config.get('REDIS_URL', 'redis://localhost')),
 })
+
+@Module({ providers: [ConfigService, cacheProvider] })
+export class CacheModule {}
 ```
 
-### Conditional & Lazy Providers
+### Conditional providers
+
+Register a provider only when a runtime condition is met:
 
 ```ts
-// only registered when condition is true
 defineProvider({
   useFactory: () => new DevLogger(),
   when: () => process.env.NODE_ENV === 'development',
 })
+```
 
-// resolved on first use, not during boot
+### Lazy providers
+
+Defer instantiation to the first time the token is resolved (useful for expensive connections):
+
+```ts
 defineProvider({
-  useFactory: () => new HeavyService(),
+  inject: [ConfigService],
+  useFactory: (config) => new SearchClient(config.get('ELASTIC_URL')),
   lazy: true,
 })
 ```
 
+---
+
 ## Error handling
 
-`DependencyResolutionError` is thrown when a provider token cannot be resolved (missing registration, circular dependency, etc.):
+`DependencyResolutionError` is thrown when a provider cannot be resolved. Common causes: missing registration, wrong token, or a circular dependency.
 
 ```ts
 import { DependencyResolutionError } from '@lunafw/core'
@@ -134,32 +197,64 @@ try {
   const service = app.get(UnregisteredService)
 } catch (e) {
   if (e instanceof DependencyResolutionError) {
-    console.error('DI error:', e.message)
+    console.error('[DI]', e.message)
+    // e.g. "[Luna] Cannot resolve UserService: DatabaseService is not registered"
   }
 }
 ```
 
-## Debugging
+---
 
-`app.inspect(token)` returns a serialisable snapshot of the provider registered under `token`:
+## Lifecycle hooks
+
+Any provider can implement one or more lifecycle interfaces. Luna calls them in the documented order:
+
+| Hook | When it runs |
+|---|---|
+| `onModuleInit()` | After all providers in all modules are instantiated |
+| `onApplicationBootstrap()` | After all `onModuleInit` hooks complete |
+| `onModuleDestroy()` | On SIGTERM / SIGINT, before shutdown |
+| `beforeApplicationShutdown()` | After all `onModuleDestroy` hooks |
+| `onApplicationShutdown()` | Last hook before the process exits |
 
 ```ts
-const app = await LunaFactory.create(AppModule)
-console.log(JSON.stringify(app.inspect(UserController), null, 2))
-```
+import { Injectable } from '@lunafw/core'
 
-## Lifecycle Hooks
-
-```ts
 @Injectable()
-export class AppService {
-  onModuleInit() {}
-  onApplicationBootstrap() {}
-  onModuleDestroy() {}
-  beforeApplicationShutdown() {}
-  onApplicationShutdown() {}
+export class DatabaseService {
+  async onModuleInit() {
+    await this.connect()
+    console.log('Database connected')
+  }
+
+  async onModuleDestroy() {
+    await this.disconnect()
+    console.log('Database disconnected')
+  }
 }
 ```
+
+---
+
+## Debugging
+
+`app.inspect(token)` returns a serialisable snapshot of the provider dependency tree — useful for tracing unexpected resolutions:
+
+```ts
+import { LunaFactory } from '@lunafw/core'
+
+const app = await LunaFactory.create(AppModule)
+console.log(JSON.stringify(app.inspect(UsersController), null, 2))
+// {
+//   "token": "UsersController",
+//   "scope": "singleton",
+//   "dependencies": [
+//     { "token": "UsersService", "scope": "singleton", "dependencies": [...] }
+//   ]
+// }
+```
+
+---
 
 ## License
 

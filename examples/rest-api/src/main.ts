@@ -1,4 +1,3 @@
-import 'reflect-metadata'
 import { ConfigModule } from '@lunafw/config'
 
 ConfigModule.load()

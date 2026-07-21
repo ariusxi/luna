@@ -5,7 +5,7 @@
 <h1 align="center">@lunafw/config</h1>
 
 <p align="center">
-  Environment-based configuration module for the Luna framework.
+  Environment-based configuration module for the Luna framework — zero dependencies, no runtime overhead.
 </p>
 
 <p align="center">
@@ -19,27 +19,37 @@
 npm install @lunafw/config
 ```
 
-## Quick Start
+---
 
-Call `ConfigModule.load()` at the very top of your entry file, before bootstrap:
+## How it works
+
+`ConfigModule.load()` reads a `.env` file synchronously using Node's built-in `fs` module and merges the values into `process.env`. It **never overwrites** variables that are already set — the OS environment always takes priority.
+
+Call it at the very top of your entry file, before any imports that might read from `process.env`:
 
 ```ts
 // main.ts
-import 'reflect-metadata'
 import { ConfigModule } from '@lunafw/config'
 
-ConfigModule.load() // loads .env before any module is instantiated
+ConfigModule.load()   // ← must run before anything reads process.env
 
 import { LunaFactory } from '@lunafw/common'
 import { ExpressAdapter } from '@lunafw/platform-express'
 import { AppModule } from './app.module'
 
-const adapter = new ExpressAdapter({ port: 3000 })
-const app = await LunaFactory.createApplication(AppModule, adapter)
-await app.start()
+const bootstrap = async () => {
+  const adapter = new ExpressAdapter({ port: Number(process.env.PORT ?? 3000) })
+  const app = await LunaFactory.createApplication(AppModule, adapter)
+  await app.start()
+}
+bootstrap()
 ```
 
-Add `ConfigModule` to your root module's `imports`:
+---
+
+## Module setup
+
+Import `ConfigModule` in your root module to make `ConfigService` available via DI across the entire application:
 
 ```ts
 // app.module.ts
@@ -52,7 +62,9 @@ import { ConfigModule } from '@lunafw/config'
 export class AppModule {}
 ```
 
-Inject `ConfigService` wherever you need config values:
+---
+
+## Injecting ConfigService
 
 ```ts
 import { Injectable } from '@lunafw/core'
@@ -62,60 +74,152 @@ import { ConfigService } from '@lunafw/config'
 export class DatabaseService {
   constructor(private readonly config: ConfigService) {}
 
-  connect() {
-    const url = this.config.get('DATABASE_URL')
-    const poolSize = this.config.get<number>('DB_POOL_SIZE', 10)
-    // ...
+  getConnectionUrl(): string {
+    return this.config.get('DATABASE_URL', 'postgres://localhost:5432/mydb')
+  }
+
+  getPoolSize(): number {
+    return Number(this.config.get<number>('DB_POOL_SIZE', 10))
   }
 }
 ```
 
-## ConfigModule.load(options?)
-
-Synchronously reads the `.env` file and merges it into `process.env`. Existing environment variables are never overridden (process wins over file).
-
-| Option | Type | Default | Description |
-|---|---|---|---|
-| `envFilePath` | `string \| string[]` | `'.env'` | Path(s) to `.env` file(s), resolved relative to `process.cwd()`. |
-| `ignoreEnvFile` | `boolean` | `false` | Skip file loading entirely; read only from the OS environment. |
-
-```ts
-// Multiple files — loaded in order; first definition wins
-ConfigModule.load({ envFilePath: ['.env', '.env.local'] })
-
-// CI / production: skip the file, trust the OS environment
-ConfigModule.load({ ignoreEnvFile: true })
-```
-
-## ConfigService.get(key, default?)
-
-```ts
-// Returns string | undefined
-config.get('OPTIONAL_KEY')
-
-// Returns string (falls back to default when key is missing)
-config.get('HOST', 'localhost')
-
-// Generic type for non-string values (value is still a string at runtime)
-config.get<number>('PORT', 3000)
-config.get<boolean>('FEATURE_FLAG', false)
-```
-
-> **Note**: all environment variables are strings. When you use a generic type (`get<number>`) you are responsible for the conversion if you need the actual primitive type.
+---
 
 ## .env file format
 
 ```ini
-# Comments are ignored
-DATABASE_URL=postgres://localhost:5432/mydb
+# Comments (lines starting with #) are ignored
 
-# Quoted values — quotes are stripped
-SECRET="my secret value"
-TOKEN='another token'
+# Plain key=value
+DATABASE_URL=postgres://localhost:5432/myapp
+PORT=3000
 
-# Values already set in the OS environment take priority
+# Quoted values — single or double quotes are stripped
+SECRET="my secret value with spaces"
+TOKEN='another-token'
+
+# Empty value is valid
+OPTIONAL_FEATURE=
+
+# Variables already set in the OS environment are NOT overwritten
 NODE_ENV=development
 ```
+
+---
+
+## ConfigModule.load(options?)
+
+| Option | Type | Default | Description |
+|---|---|---|---|
+| `envFilePath` | `string \| string[]` | `'.env'` | Path(s) to `.env` file(s), relative to `process.cwd()`. |
+| `ignoreEnvFile` | `boolean` | `false` | Skip file loading entirely and rely on the OS environment. |
+
+### Multiple files
+
+Files are loaded in order. For each key, the **first** file that defines it wins (later files do not override earlier ones, and the OS environment wins over all files):
+
+```ts
+// loads .env first, then .env.local — .env.local cannot override .env
+ConfigModule.load({ envFilePath: ['.env', '.env.local'] })
+```
+
+### Environment-specific files
+
+```ts
+const env = process.env.NODE_ENV ?? 'development'
+ConfigModule.load({ envFilePath: ['.env', `.env.${env}`] })
+```
+
+### Skip file loading (production / CI)
+
+When all environment variables are injected by the platform (Docker, Kubernetes, CI), skip the file entirely:
+
+```ts
+ConfigModule.load({ ignoreEnvFile: process.env.NODE_ENV === 'production' })
+```
+
+---
+
+## ConfigService.get(key, defaultValue?)
+
+```ts
+// Returns string | undefined when no default is given
+const value = config.get('OPTIONAL_KEY')
+
+// Returns string, falls back to default when the key is missing
+const host = config.get('HOST', 'localhost')
+
+// Generic type annotation for convenience — value is still a string at runtime
+const port = config.get<number>('PORT', 3000)
+const debug = config.get<boolean>('DEBUG', false)
+```
+
+> **Note**: environment variables are always strings. When you annotate with a generic type (`get<number>`), you are responsible for converting the string to the actual type when you need it (`Number(config.get('PORT', 3000))`).
+
+---
+
+## Full example
+
+```
+.env
+DATABASE_URL=postgres://localhost:5432/myapp
+PORT=4000
+JWT_SECRET=supersecret
+```
+
+```ts
+// main.ts
+import { ConfigModule } from '@lunafw/config'
+
+ConfigModule.load()
+
+import { LunaFactory } from '@lunafw/common'
+import { ExpressAdapter } from '@lunafw/platform-express'
+import { AppModule } from './app.module'
+
+const bootstrap = async () => {
+  const port = Number(process.env.PORT ?? 3000)
+  const adapter = new ExpressAdapter({ port })
+  const app = await LunaFactory.createApplication(AppModule, adapter)
+  await app.start()
+  console.log(`Server on :${adapter.getPort()}`)
+}
+bootstrap()
+```
+
+```ts
+// app.module.ts
+import { Module } from '@lunafw/core'
+import { ConfigModule } from '@lunafw/config'
+import { AuthModule } from './auth/auth.module'
+import { UsersModule } from './users/users.module'
+
+@Module({ imports: [ConfigModule, AuthModule, UsersModule] })
+export class AppModule {}
+```
+
+```ts
+// auth/auth.service.ts
+import { Injectable } from '@lunafw/core'
+import { ConfigService } from '@lunafw/config'
+
+@Injectable()
+export class AuthService {
+  private readonly secret: string
+
+  constructor(config: ConfigService) {
+    this.secret = config.get('JWT_SECRET', 'fallback-secret')
+  }
+
+  sign(payload: object): string {
+    // use this.secret to sign a JWT
+    return `signed.${JSON.stringify(payload)}`
+  }
+}
+```
+
+---
 
 ## License
 
