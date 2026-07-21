@@ -16,7 +16,7 @@
 ## Installation
 
 ```bash
-npm install @lunafw/core @lunafw/common @lunafw/platform-grpc @grpc/grpc-js @grpc/proto-loader reflect-metadata
+npm install @lunafw/core @lunafw/common @lunafw/platform-grpc
 ```
 
 ## Usage
@@ -127,11 +127,11 @@ All middleware from `@lunafw/common` works identically over gRPC. Errors thrown 
 
 ### `new GrpcAdapter(options)`
 
-| Option | Type | Description |
-|---|---|---|
-| `port` | `number` | Port to listen on. Pass `0` to let the OS assign a free port. |
-| `protoPath` | `string \| string[]` | Absolute path(s) to `.proto` files. |
-| `packageName` | `string` | Name of the protobuf package (`package` statement in the `.proto`). |
+| Option          | Type                  | Description                                                             |
+| --------------- | --------------------- | ----------------------------------------------------------------------- |
+| `port`        | `number`            | Port to listen on. Pass`0` to let the OS assign a free port.          |
+| `protoPath`   | `string \| string[]` | Absolute path(s) to`.proto` files.                                    |
+| `packageName` | `string`            | Name of the protobuf package (`package` statement in the `.proto`). |
 
 ### `adapter.getPort(): number`
 

@@ -16,7 +16,7 @@
 ## Installation
 
 ```bash
-npm install @lunafw/core @lunafw/common @lunafw/platform-express reflect-metadata express
+npm install @lunafw/core @lunafw/common @lunafw/platform-express
 ```
 
 ## Usage
@@ -146,9 +146,9 @@ export class PaymentRequiredException extends HttpException {
 
 ### `new ExpressAdapter(options)`
 
-| Option | Type | Description |
-|--------|------|-------------|
-| `port` | `number` | Port to listen on. Pass `0` to let the OS assign a free port. |
+| Option   | Type       | Description                                                    |
+| -------- | ---------- | -------------------------------------------------------------- |
+| `port` | `number` | Port to listen on. Pass`0` to let the OS assign a free port. |
 
 ### `adapter.getPort(): number`
 
