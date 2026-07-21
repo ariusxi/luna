@@ -251,7 +251,7 @@ export class LunaApplication {
    * registers one `LunaHandler` per method on every adapter.
    */
   private registerControllers(): void {
-    const tokens = this.core.getTokens()
+    const tokens = this.core.getAllTokens()
 
     for (const token of tokens) {
       if (typeof token !== 'function') continue
@@ -259,7 +259,7 @@ export class LunaApplication {
       const prefix = Reflect.getMetadata(CONTROLLER_METADATA, token)
       if (prefix === undefined) continue
 
-      const instance = this.core.get<Record<string, (...args: unknown[]) => unknown>>(token)
+      const instance = this.core.resolveFromAny<Record<string, (...args: unknown[]) => unknown>>(token)
       const prototype = Object.getPrototypeOf(instance) as object
 
       for (const methodName of Object.getOwnPropertyNames(prototype)) {

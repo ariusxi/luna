@@ -115,7 +115,7 @@ export class ExpressAdapter extends AbstractAdapter {
   }
 
   private handleError(error: unknown, response: Response): void {
-    if (error instanceof HttpException) {
+    if (this.isHttpException(error)) {
       response.status(error.statusCode).json({ statusCode: error.statusCode, message: error.message })
       return
     }
@@ -125,5 +125,9 @@ export class ExpressAdapter extends AbstractAdapter {
     }
     console.error('[LunaAdapter] Unhandled error:', error)
     response.status(500).json({ statusCode: 500, message: 'Internal Server Error' })
+  }
+
+  private isHttpException(error: unknown): error is HttpException {
+    return error instanceof Error && typeof (error as HttpException).statusCode === 'number'
   }
 }

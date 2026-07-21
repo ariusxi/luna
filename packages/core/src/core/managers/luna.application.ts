@@ -64,6 +64,25 @@ export class LunaApplication {
   }
 
   /**
+   * Resolves a token by searching all module contexts in registration order.
+   *
+   * Unlike `get()`, which enforces module-boundary isolation by only searching
+   * the root module, this method is used internally during controller discovery
+   * to instantiate controllers that live in non-root modules.
+   *
+   * @internal
+   */
+  public resolveFromAny<T>(token: Token): T {
+    for (const context of this.contexts.values()) {
+      if (context.container.getTokens().includes(token)) {
+        return context.container.resolve<T>(token)
+      }
+    }
+    const root = this.contexts.get(this.rootModule)!
+    return root.container.resolve<T>(token)
+  }
+
+  /**
    * Returns all registered tokens in the root module's container.
    *
    * Used by `@lunafw/common` to scan for controllers and register handlers
@@ -72,6 +91,23 @@ export class LunaApplication {
   public getTokens(): Token[] {
     const context = this.contexts.get(this.rootModule)!
     return context.container.getTokens()
+  }
+
+  /**
+   * Returns all registered tokens across every module in the application.
+   *
+   * Unlike `getTokens()`, which is scoped to the root module, this method
+   * walks all module contexts so controllers defined in child modules are
+   * discovered during handler registration.
+   */
+  public getAllTokens(): Token[] {
+    const seen = new Set<Token>()
+    for (const context of this.contexts.values()) {
+      for (const token of context.container.getTokens()) {
+        seen.add(token)
+      }
+    }
+    return [...seen]
   }
 
   /**
