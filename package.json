@@ -11,7 +11,7 @@
   "license": "MIT",
   "scripts": {
     "start:dev": "ts-node tests/main.ts",
-    "build": "yarn workspace @lunafw/core build && yarn workspace @lunafw/common build && yarn workspace @lunafw/config build && yarn workspace @lunafw/platform-express build && yarn workspace @lunafw/platform-ws build && yarn workspace @lunafw/platform-grpc build && yarn workspace @lunafw/testing build",
+    "build": "yarn workspace @lunafw/core build && yarn workspace @lunafw/common build && yarn workspace @lunafw/config build && yarn workspace @lunafw/platform-express build && yarn workspace @lunafw/platform-ws build && yarn workspace @lunafw/platform-grpc build && yarn workspace @lunafw/testing build && yarn workspace @lunafw/swagger build",
     "test": "yarn workspaces run test",
     "test:coverage": "yarn workspaces run test:coverage",
     "quality": "artie run .",
