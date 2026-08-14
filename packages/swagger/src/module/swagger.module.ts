@@ -1,52 +1,54 @@
+import { Injectable, Module } from '@lunafw/core'
+import type { AbstractAdapter, OnAdapterInit } from '@lunafw/common'
 import swaggerUi from 'swagger-ui-express'
 
 import {
   buildOpenApiDocument,
   type BuildOpenApiDocumentOptions,
-  type OpenApiDocument,
 } from '../document/build-open-api-document'
 
-/** Minimal response surface used to serve the raw document as JSON. */
-interface SwaggerResponse {
-  json(body: unknown): unknown
-}
-
-/**
- * The subset of an Express application `SwaggerModule` needs. Satisfied by
- * `ExpressAdapter.getApp()`; kept structural so the module never hard-depends on
- * a specific Express version.
- */
-export interface SwaggerApp {
-  use(path: string, ...handlers: unknown[]): unknown
-  get(path: string, handler: (request: unknown, response: SwaggerResponse) => unknown): unknown
-}
-
-export interface SwaggerSetupOptions extends BuildOpenApiDocumentOptions {
-  /** The Express app, e.g. `expressAdapter.getApp()`. */
-  app: SwaggerApp
+/** Options passed to `SwaggerModule.forRoot`. The Express app is resolved from the adapter at boot. */
+export interface SwaggerForRootOptions extends BuildOpenApiDocumentOptions {
   /** Base route for the UI (default `/docs`); the raw JSON is served at `<route>-json`. */
   route?: string
 }
 
-export class SwaggerModule {
-  /**
-   * Builds the OpenAPI document from the given controllers/schemas and mounts the
-   * interactive Swagger UI at `route` plus the raw document at `<route>-json`.
-   *
-   * @returns the generated document (useful for tests or exporting to a file).
-   *
-   * @example
-   * const adapter = new ExpressAdapter({ port })
-   * const app = await LunaFactory.createApplication(AppModule, [adapter])
-   * await app.start()
-   * SwaggerModule.forRoot({
-   *   app: adapter.getApp(),
-   *   info: { title: 'Mokafi API', version: '1.0.0' },
-   *   controllers: [HealthController, MindMapController],
-   *   schemas: [MindMapNodeDto],
-   * })
-   */
-  public static forRoot(options: SwaggerSetupOptions): OpenApiDocument {
+interface SwaggerResponse {
+  json(body: unknown): unknown
+}
+
+interface ExpressLikeApp {
+  use(path: string, ...handlers: unknown[]): unknown
+  get(path: string, handler: (request: unknown, response: SwaggerResponse) => unknown): unknown
+}
+
+interface HttpAdapterWithApp {
+  getApp(): ExpressLikeApp
+}
+
+// One docs configuration per process, set by forRoot() and consumed by the
+// bootstrap provider once the adapters are available.
+let registeredOptions: SwaggerForRootOptions | undefined
+
+function hasGetApp(adapter: AbstractAdapter): adapter is AbstractAdapter & HttpAdapterWithApp {
+  return typeof (adapter as unknown as HttpAdapterWithApp).getApp === 'function'
+}
+
+/**
+ * Mounts the Swagger UI (`/docs`) and the raw OpenAPI document (`/docs-json`) on
+ * the HTTP adapter's Express app once the application has resolved. Runs through
+ * the `onAdapterInit` lifecycle hook so `SwaggerModule` can live in a module's
+ * `imports` like any other module.
+ */
+@Injectable()
+export class SwaggerBootstrap implements OnAdapterInit {
+  public onAdapterInit(adapters: AbstractAdapter[]): void {
+    if (!registeredOptions) return
+
+    const httpAdapter = adapters.find(hasGetApp)
+    if (!httpAdapter) return
+
+    const options = registeredOptions
     const route = options.route ?? '/docs'
     const document = buildOpenApiDocument({
       info: options.info,
@@ -55,13 +57,34 @@ export class SwaggerModule {
       schemas: options.schemas,
     })
 
-    options.app.get(`${route}-json`, (_request, response) => response.json(document))
-    options.app.use(
+    const app = httpAdapter.getApp()
+    app.get(`${route}-json`, (_request, response) => response.json(document))
+    app.use(
       route,
       ...swaggerUi.serve,
       swaggerUi.setup(document as unknown as Parameters<typeof swaggerUi.setup>[0]),
     )
+  }
+}
 
-    return document
+@Module({ providers: [SwaggerBootstrap] })
+export class SwaggerModule {
+  /**
+   * Registers the documentation configuration and returns the module so it can
+   * be added to another module's `imports`.
+   *
+   * @example
+   * @Module({
+   *   imports: [SwaggerModule.forRoot({
+   *     info: { title: 'Mokafi API', version: '1.0.0' },
+   *     controllers: [HealthController, MindMapController],
+   *     schemas: [HealthResponseDto],
+   *   })],
+   * })
+   * export class AppModule {}
+   */
+  public static forRoot(options: SwaggerForRootOptions): typeof SwaggerModule {
+    registeredOptions = options
+    return SwaggerModule
   }
 }
