@@ -6,7 +6,7 @@ import { LunaExceptionFilter } from '../filters/filter.interface'
 import { LunaGuard } from '../guards'
 import { LunaInterceptor } from '../interceptors'
 import { LunaPipe } from '../pipes'
-import { AbstractAdapter, ClassConstructor, ClassOrInstance, HandlerMetadata } from '../types'
+import { AbstractAdapter, ClassConstructor, ClassOrInstance, HandlerMetadata, OnAdapterInit } from '../types'
 import { HandlerBuilder } from './handler.builder'
 import { MiddlewareRegistry } from './middleware.registry'
 
@@ -43,8 +43,26 @@ export class LunaApplication {
   public async start(): Promise<void> {
     this.registerControllers()
     await this.core.start()
+    await this.initializeAdapterAwareProviders()
     for (const adapter of this.adapters) {
       await adapter.listen()
+    }
+  }
+
+  /**
+   * Runs the `onAdapterInit` hook on every provider that implements it, handing
+   * over the live adapters after the DI graph is ready but before the adapters
+   * start listening. Lets an integration enrich an adapter (e.g. mount an API
+   * docs UI) without coupling the core pipeline to a specific protocol.
+   */
+  private async initializeAdapterAwareProviders(): Promise<void> {
+    for (const token of this.core.getAllTokens()) {
+      if (typeof token !== 'function') continue
+
+      const instance = this.core.resolveFromAny<Partial<OnAdapterInit>>(token)
+      if (instance && typeof instance.onAdapterInit === 'function') {
+        await instance.onAdapterInit(this.adapters)
+      }
     }
   }
 
