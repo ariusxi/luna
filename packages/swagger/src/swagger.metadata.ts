@@ -2,6 +2,7 @@
 export const SWAGGER_OPERATION = 'luna:swagger:operation'
 export const SWAGGER_RESPONSES = 'luna:swagger:responses'
 export const SWAGGER_QUERIES = 'luna:swagger:queries'
+export const SWAGGER_BODY = 'luna:swagger:body'
 export const SWAGGER_SCHEMA = 'luna:swagger:schema'
 export const SWAGGER_PROPERTIES = 'luna:swagger:properties'
 
@@ -30,6 +31,14 @@ export interface ApiQueryOptions {
   description?: string
   required?: boolean
   type?: ApiScalarType
+}
+
+/** Options for `@ApiBody` (the request body of a handler). */
+export interface ApiBodyOptions {
+  /** Name of a schema registered with `@ApiSchema` to reference in the request body. */
+  schema: string
+  description?: string
+  required?: boolean
 }
 
 /** Options for `@ApiSchema` (marks a DTO class as a reusable schema). */

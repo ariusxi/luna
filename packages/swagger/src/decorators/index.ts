@@ -1,5 +1,6 @@
 export { ApiOperation } from './api-operation.decorator'
 export { ApiResponse } from './api-response.decorator'
 export { ApiQuery } from './api-query.decorator'
+export { ApiBody } from './api-body.decorator'
 export { ApiSchema } from './api-schema.decorator'
 export { ApiProperty } from './api-property.decorator'

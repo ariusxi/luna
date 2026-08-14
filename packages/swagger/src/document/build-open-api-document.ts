@@ -1,10 +1,12 @@
 import { CONTROLLER_METADATA, ON_METADATA, type OnMetadata } from '@lunafw/common'
 
 import {
+  type ApiBodyOptions,
   type ApiOperationOptions,
   type ApiPropertyOptions,
   type ApiQueryOptions,
   type ApiResponseOptions,
+  SWAGGER_BODY,
   SWAGGER_OPERATION,
   SWAGGER_PROPERTIES,
   SWAGGER_QUERIES,
@@ -92,6 +94,17 @@ function toPropertySchema(options: ApiPropertyOptions): Record<string, unknown> 
   }
 }
 
+function toRequestBody(body: ApiBodyOptions | undefined): Record<string, unknown> | undefined {
+  if (!body) return undefined
+  return {
+    required: body.required ?? true,
+    description: body.description,
+    content: {
+      'application/json': { schema: { $ref: `#/components/schemas/${body.schema}` } },
+    },
+  }
+}
+
 function toResponses(responses: ApiResponseOptions[]): Record<string, unknown> {
   if (responses.length === 0) {
     return { 200: { description: 'Successful response' } }
@@ -160,6 +173,7 @@ export function buildOpenApiDocument(options: BuildOpenApiDocumentOptions): Open
       const operation = (Reflect.getMetadata(SWAGGER_OPERATION, controller.prototype, handlerName) as ApiOperationOptions) ?? {}
       const responses = (Reflect.getMetadata(SWAGGER_RESPONSES, controller.prototype, handlerName) as ApiResponseOptions[]) ?? []
       const queries = (Reflect.getMetadata(SWAGGER_QUERIES, controller.prototype, handlerName) as ApiQueryOptions[]) ?? []
+      const body = Reflect.getMetadata(SWAGGER_BODY, controller.prototype, handlerName) as ApiBodyOptions | undefined
 
       if (operation.isAuthenticated) requiresBearer = true
 
@@ -173,6 +187,7 @@ export function buildOpenApiDocument(options: BuildOpenApiDocumentOptions): Open
           tags: operation.tags,
           security: operation.isAuthenticated ? [{ bearerAuth: [] }] : undefined,
           parameters: parameters.length > 0 ? parameters : undefined,
+          requestBody: toRequestBody(body),
           responses: toResponses(responses),
         },
       }

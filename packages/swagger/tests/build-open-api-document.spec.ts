@@ -2,7 +2,7 @@ import 'reflect-metadata'
 
 import { Controller, On } from '@lunafw/common'
 
-import { ApiOperation, ApiProperty, ApiQuery, ApiResponse, ApiSchema } from '../src/decorators'
+import { ApiBody, ApiOperation, ApiProperty, ApiQuery, ApiResponse, ApiSchema } from '../src/decorators'
 import { buildOpenApiDocument } from '../src/document/build-open-api-document'
 
 @ApiSchema()
@@ -21,6 +21,12 @@ class UsersController {
   @ApiResponse({ status: 200, description: 'The users', schema: 'UserDto' })
   @On('get', '/')
   findAll(): void {}
+
+  @ApiOperation({ summary: 'Create user', tags: ['users'] })
+  @ApiBody({ schema: 'UserDto' })
+  @ApiResponse({ status: 201, description: 'Created', schema: 'UserDto' })
+  @On('post', '/')
+  create(): void {}
 
   @ApiOperation({ summary: 'Get user' })
   @ApiResponse({ status: 404, description: 'Not found' })
@@ -63,6 +69,12 @@ describe('buildOpenApiDocument', () => {
       expect.objectContaining({ name: 'id', in: 'path', required: true }),
     ]))
     expect(one.responses['404']).toBeDefined()
+  })
+
+  it('documents the request body from @ApiBody as a schema $ref', () => {
+    const create = (document.paths['/users'] as any).post
+    expect(create.requestBody.required).toBe(true)
+    expect(create.requestBody.content['application/json'].schema.$ref).toBe('#/components/schemas/UserDto')
   })
 
   it('adds the bearer security scheme when any operation is authenticated', () => {
