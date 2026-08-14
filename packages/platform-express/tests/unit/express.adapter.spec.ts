@@ -97,4 +97,22 @@ describe('ExpressAdapter', () => {
       await adapter.close()
     })
   })
+
+  describe('getApp', () => {
+    it('exposes the underlying express app for raw (non-JSON) middleware', async () => {
+      adapter.getApp().get('/raw-docs', (_request, response) => {
+        response.status(200).type('html').send('<h1>docs</h1>')
+      })
+
+      await adapter.listen()
+
+      const res = await fetch(`http://localhost:${adapter.getPort()}/raw-docs`)
+      const text = await res.text()
+      expect(res.status).toBe(200)
+      expect(res.headers.get('content-type')).toContain('text/html')
+      expect(text).toContain('<h1>docs</h1>')
+
+      await adapter.close()
+    })
+  })
 })

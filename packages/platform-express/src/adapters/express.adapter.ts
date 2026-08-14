@@ -76,6 +76,17 @@ export class ExpressAdapter extends AbstractAdapter {
     return this.registry.getHandlers()
   }
 
+  /**
+   * Returns the underlying Express application.
+   *
+   * Lets integrations mount raw Express middleware or static assets that the
+   * message/handler pipeline does not cover — for example serving an interactive
+   * API documentation UI (`@lunafw/swagger`).
+   */
+  public getApp(): Application {
+    return this.app
+  }
+
   /** Closes the HTTP server and releases the port. */
   public async close(): Promise<void> {
     if (!this.server) return
