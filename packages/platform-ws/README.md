@@ -61,6 +61,25 @@ Clients send JSON with an `event` field and an optional `data` field:
 
 The adapter routes the message to the handler registered for that event and sends the return value back as JSON.
 
+## Server-originated events
+
+Use `send` when an application keeps its own authorized subscription map and
+needs to notify one connection. Use `broadcast` for events intended for every
+connected client. Both methods send an `{ event, data }` envelope and return
+delivery information without throwing when a socket has already disconnected.
+
+```ts
+adapter.send(socketId, {
+  event: 'mind-map.changed',
+  data: { room: 'study-room', version: 12 },
+})
+
+const delivered = adapter.broadcast(
+  { event: 'system.notice', data: { message: 'Maintenance soon' } },
+  { excludeSocketId: senderSocketId },
+)
+```
+
 ---
 
 ## Routing

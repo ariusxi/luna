@@ -18,6 +18,10 @@ interface SumResponse {
   result: number
 }
 
+interface SocketIdentityResponse {
+  socketId: string
+}
+
 @Injectable()
 class ChatService {
   echo(data: unknown): EchoResponse {
@@ -42,6 +46,11 @@ class ChatController {
   @On('sum', '/')
   sum(message: LunaMessage): SumResponse {
     return this.chatService.sum(message.payload as SumPayload)
+  }
+
+  @On('identity', '/')
+  identity(message: LunaMessage): SocketIdentityResponse {
+    return { socketId: message.metadata.socketId as string }
   }
 }
 
@@ -163,6 +172,49 @@ describe('WsAdapter integration', () => {
 
     clientA.close()
     clientB.close()
+  })
+
+  it('broadcasts server-originated events to connected clients', async () => {
+    const clientA = await connect(adapter.getPort())
+    const clientB = await connect(adapter.getPort())
+
+    const delivered = adapter.broadcast({
+      event: 'mind-map.changed',
+      data: { room: 'study-room' },
+    })
+    const [rawA, rawB] = await Promise.all([clientA.nextMessage(), clientB.nextMessage()])
+
+    expect(delivered).toBe(2)
+    expect(JSON.parse(rawA)).toEqual({
+      event: 'mind-map.changed',
+      data: { room: 'study-room' },
+    })
+    expect(JSON.parse(rawB)).toEqual({
+      event: 'mind-map.changed',
+      data: { room: 'study-room' },
+    })
+
+    clientA.close()
+    clientB.close()
+  })
+
+  it('sends a server-originated event to one socket', async () => {
+    const client = await connect(adapter.getPort())
+    client.send('chat.identity', null)
+    const identity = JSON.parse(await client.nextMessage()) as SocketIdentityResponse
+
+    const delivered = adapter.send(identity.socketId, {
+      event: 'mind-map.changed',
+      data: { room: 'study-room' },
+    })
+
+    expect(delivered).toBe(true)
+    expect(JSON.parse(await client.nextMessage())).toEqual({
+      event: 'mind-map.changed',
+      data: { room: 'study-room' },
+    })
+
+    client.close()
   })
 
   it('getPort returns the OS-assigned port', () => {

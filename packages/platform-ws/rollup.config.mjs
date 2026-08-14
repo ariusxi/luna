@@ -10,7 +10,7 @@ export default [
       { file: 'dist/index.cjs.js', format: 'cjs', sourcemap: true },
       { file: 'dist/index.esm.js', format: 'esm', sourcemap: true },
     ],
-    external: ['reflect-metadata', '@lunafw/core', '@lunafw/common', 'ws'],
+    external: ['node:crypto', 'reflect-metadata', '@lunafw/core', '@lunafw/common', 'ws'],
     plugins: [typescript({ tsconfig: './tsconfig.json' })],
   },
   {

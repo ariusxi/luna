@@ -1,7 +1,8 @@
+import { randomUUID } from 'node:crypto'
 import { WebSocket, WebSocketServer } from 'ws'
 import { AbstractAdapter, HandlerMetadata, LunaHandler } from '@lunafw/common'
 
-import { WsAdapterOptions } from '../types'
+import { WsAdapterOptions, WsBroadcastOptions, WsOutboundMessage } from '../types'
 import { WsHandlerRegistry } from './ws.handler.registry'
 
 /**
@@ -24,6 +25,7 @@ import { WsHandlerRegistry } from './ws.handler.registry'
 export class WsAdapter extends AbstractAdapter {
   private wss?: WebSocketServer
   private readonly registry = new WsHandlerRegistry()
+  private readonly sockets = new Map<string, WebSocket>()
 
   constructor(private readonly options: WsAdapterOptions) {
     super()
@@ -57,12 +59,43 @@ export class WsAdapter extends AbstractAdapter {
     })
 
     this.wss.on('connection', (socket: WebSocket) => {
-      const socketId = Math.random().toString(36).slice(2)
+      const socketId = randomUUID()
+      this.sockets.set(socketId, socket)
 
       socket.on('message', (raw: Buffer | string) => {
         void this.registry.dispatch(socket, socketId, raw)
       })
+
+      socket.once('close', () => {
+        this.sockets.delete(socketId)
+      })
     })
+  }
+
+  /** Sends a server-originated event to one connected socket. */
+  public send<Data>(socketId: string, message: WsOutboundMessage<Data>): boolean {
+    const socket = this.sockets.get(socketId)
+    if (!socket || socket.readyState !== WebSocket.OPEN) return false
+
+    socket.send(JSON.stringify(message))
+    return true
+  }
+
+  /** Broadcasts a server-originated event to all matching connected sockets. */
+  public broadcast<Data>(
+    message: WsOutboundMessage<Data>,
+    options: WsBroadcastOptions = {},
+  ): number {
+    let delivered = 0
+
+    for (const [socketId, socket] of this.sockets.entries()) {
+      if (socketId === options.excludeSocketId || socket.readyState !== WebSocket.OPEN) continue
+
+      socket.send(JSON.stringify(message))
+      delivered += 1
+    }
+
+    return delivered
   }
 
   /**
@@ -86,8 +119,17 @@ export class WsAdapter extends AbstractAdapter {
    * @returns A promise that resolves once the server is fully closed.
    */
   public async close(): Promise<void> {
+    const server = this.wss
+    if (!server) return
+
+    for (const socket of this.sockets.values()) {
+      socket.close()
+    }
+
     await new Promise<void>((resolve, reject) => {
-      this.wss?.close((err) => (err ? reject(err) : resolve()))
+      server.close((err) => (err ? reject(err) : resolve()))
     })
+    this.sockets.clear()
+    if (this.wss === server) this.wss = undefined
   }
 }
