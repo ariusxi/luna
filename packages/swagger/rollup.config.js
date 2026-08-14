@@ -2,7 +2,7 @@ import typescript from '@rollup/plugin-typescript'
 import dts from 'rollup-plugin-dts'
 
 const input = 'src/index.ts'
-const external = ['fs', 'path', 'reflect-metadata', '@lunafw/core', '@lunafw/common', 'swagger-ui-dist']
+const external = ['fs', 'path', 'reflect-metadata', '@lunafw/core', '@lunafw/common', 'swagger-ui-express']
 
 export default [
   {
