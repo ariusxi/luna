@@ -75,4 +75,20 @@ describe('Module scope isolation', () => {
     const user = app.get<UserService>(UserService)
     expect(user.db).toBeInstanceOf(DbService)
   })
+
+  it('should discover and resolve providers across imported modules', async () => {
+    @Injectable()
+    class FeatureController {}
+
+    @Module({ providers: [FeatureController] })
+    class FeatureModule {}
+
+    @Module({ imports: [FeatureModule] })
+    class AppModule {}
+
+    const app = await LunaFactory.create(AppModule)
+
+    expect(app.getAllTokens()).toContain(FeatureController)
+    expect(app.resolveFromAny(FeatureController)).toBeInstanceOf(FeatureController)
+  })
 })
