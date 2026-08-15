@@ -1,6 +1,7 @@
 import { LunaApplication as CoreApplication } from '@lunafw/core'
 
 import { CONTROLLER_METADATA } from '../decorators/controller.decorator'
+import { HTTP_CODE_METADATA } from '../decorators/http-code.decorator'
 import { ON_METADATA } from '../decorators/on.decorator'
 import { LunaExceptionFilter } from '../filters/filter.interface'
 import { LunaGuard } from '../guards'
@@ -161,10 +162,15 @@ export class LunaApplication {
 
         const middleware = this.middlewareRegistry.collect(token, prototype, methodName)
 
+        const successStatusCode = Reflect.getMetadata(HTTP_CODE_METADATA, prototype, methodName) as
+          | number
+          | undefined
+
         const handlerMetadata: HandlerMetadata = {
           event: onMetadata.event,
           prefix,
           path: onMetadata.path,
+          successStatusCode,
         }
 
         const handler = this.handlerBuilder.build(instance, methodName, prototype, middleware)

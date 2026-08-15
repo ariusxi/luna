@@ -11,4 +11,6 @@ export interface HandlerMetadata {
   prefix: string
   /** Method-level path from `@On` (e.g. `'/'`, `'/:id'`). */
   path: string
+  /** Success status code from `@HttpCode`, if set; adapters default to 200. */
+  successStatusCode?: number
 }
