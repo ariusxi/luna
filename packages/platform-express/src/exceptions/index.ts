@@ -19,4 +19,6 @@ export {
 export interface HttpExceptionResponse {
   statusCode: number
   message: string
+  /** Extra fields merged from `HttpException.details` (e.g. `currentVersion`). */
+  [key: string]: unknown
 }

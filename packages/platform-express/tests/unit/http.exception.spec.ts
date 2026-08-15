@@ -107,4 +107,53 @@ describe('ExpressAdapter exception handling', () => {
 
     await adapter.close()
   })
+
+  it('merges HttpException details into the error body', async () => {
+    adapter.register(
+      { handle: async () => { throw new ConflictException('stale', { currentVersion: 7 }) } },
+      { event: 'patch', prefix: 'mesas', path: '/' },
+    )
+
+    await adapter.listen()
+
+    const res = await fetch(`http://localhost:${adapter.getPort()}/mesas/`, { method: 'PATCH' })
+    const body = await res.json()
+
+    expect(res.status).toBe(409)
+    expect(body).toEqual({ statusCode: 409, message: 'stale', currentVersion: 7 })
+
+    await adapter.close()
+  })
+
+  it('uses the configured success status code', async () => {
+    adapter.register(
+      { handle: async () => ({ created: true }) },
+      { event: 'post', prefix: 'things', path: '/', successStatusCode: 201 },
+    )
+
+    await adapter.listen()
+
+    const res = await fetch(`http://localhost:${adapter.getPort()}/things/`, { method: 'POST' })
+    const body = await res.json()
+
+    expect(res.status).toBe(201)
+    expect(body).toEqual({ created: true })
+
+    await adapter.close()
+  })
+
+  it('defaults to status 200 when no success status is configured', async () => {
+    adapter.register(
+      { handle: async () => ({ ok: true }) },
+      { event: 'get', prefix: 'plain', path: '/' },
+    )
+
+    await adapter.listen()
+
+    const res = await fetch(`http://localhost:${adapter.getPort()}/plain/`)
+
+    expect(res.status).toBe(200)
+
+    await adapter.close()
+  })
 })

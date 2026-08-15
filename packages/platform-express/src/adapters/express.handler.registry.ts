@@ -34,12 +34,12 @@ export class ExpressHandlerRegistry {
       if (!HTTP_METHODS.has(event)) continue
 
       const router = Router()
-      router[event as HttpMethod](path, this.buildRoute(handler))
+      router[event as HttpMethod](path, this.buildRoute(handler, metadata.successStatusCode))
       app.use(`/${prefix}`, router)
     }
   }
 
-  private buildRoute(handler: LunaHandler) {
+  private buildRoute(handler: LunaHandler, successStatusCode?: number) {
     return async (request: Request, response: Response) => {
       try {
         const result = await handler.handle({
@@ -51,7 +51,7 @@ export class ExpressHandlerRegistry {
             headers: request.headers,
           },
         })
-        response.json(result)
+        response.status(successStatusCode ?? 200).json(result)
       } catch (error) {
         this.handleError(error, response)
       }
@@ -60,7 +60,7 @@ export class ExpressHandlerRegistry {
 
   private handleError(error: unknown, response: Response): void {
     if (this.isHttpException(error)) {
-      const body: HttpExceptionResponse = { statusCode: error.statusCode, message: error.message }
+      const body: HttpExceptionResponse = { statusCode: error.statusCode, message: error.message, ...error.details }
       response.status(error.statusCode).json(body)
       return
     }
