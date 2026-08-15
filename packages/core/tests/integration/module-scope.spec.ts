@@ -76,6 +76,32 @@ describe('Module scope isolation', () => {
     expect(user.db).toBeInstanceOf(DbService)
   })
 
+  it('boots a provider that injects an exported provider from an imported module', async () => {
+    @Injectable()
+    class WsService {}
+
+    @Module({ providers: [WsService], exports: [WsService] })
+    class WsModule {}
+
+    @Injectable()
+    class LiveService {
+      constructor(public ws: WsService) {}
+    }
+
+    // FeatureModule imports WsModule and has a provider that injects the export.
+    // Before the leaves-first scan fix, FeatureModule booted before WsModule's
+    // export was propagated, throwing "Cannot resolve WsService in FeatureModule".
+    @Module({ imports: [WsModule], providers: [LiveService] })
+    class FeatureModule {}
+
+    @Module({ imports: [FeatureModule] })
+    class AppModule {}
+
+    const app = await LunaFactory.create(AppModule)
+    const live = app.resolveFromAny<LiveService>(LiveService)
+    expect(live.ws).toBeInstanceOf(WsService)
+  })
+
   it('should discover and resolve providers across imported modules', async () => {
     @Injectable()
     class FeatureController {}

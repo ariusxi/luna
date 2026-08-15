@@ -32,6 +32,18 @@ describe('ModuleScanner', () => {
     expect(discovered).toContain(LeafModule)
   })
 
+  it('should return modules in dependency order (leaves first, root last)', () => {
+    class LeafModule {}
+    class ChildModule {}
+    class RootModule {}
+
+    ModuleManager.register(LeafModule, {})
+    ModuleManager.register(ChildModule, { imports: [LeafModule] })
+    ModuleManager.register(RootModule, { imports: [ChildModule] })
+
+    expect(scanner.scan(RootModule)).toEqual([LeafModule, ChildModule, RootModule])
+  })
+
   it('should not visit the same module twice (circular guard)', () => {
     class ModA {}
     class ModB {}

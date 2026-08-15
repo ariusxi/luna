@@ -9,10 +9,9 @@ import { ModuleManager } from './module.manager'
  * This is an internal service used by `LunaFactory` during bootstrap.
  */
 export class ModuleScanner {
-  private visit(discovered: Set<Function>, moduleClass: Function): void {
-    if (discovered.has(moduleClass)) return
-
-    discovered.add(moduleClass)
+  private visit(seen: Set<Function>, ordered: Function[], moduleClass: Function): void {
+    if (seen.has(moduleClass)) return
+    seen.add(moduleClass)
 
     const metadata = ModuleManager.get(moduleClass)
     if (!metadata) {
@@ -21,20 +20,27 @@ export class ModuleScanner {
 
     const imports = metadata.imports ?? []
     for (const imported of imports) {
-      this.visit(discovered, imported)
+      this.visit(seen, ordered, imported)
     }
+
+    // Post-order: a module is appended only after its imports, so the returned
+    // list is leaves-first / root-last. Bootstrap relies on this so a module's
+    // imported exports are already resolved before the module itself boots.
+    ordered.push(moduleClass)
   }
 
   /**
    * Scans the module tree from `rootModule` and returns the ordered list of
-   * discovered module classes (each class appears exactly once).
+   * discovered module classes (each class appears exactly once), in dependency
+   * order: imported modules before the modules that import them, root last.
    *
    * @param rootModule - The top-level module to start scanning from.
    */
   public scan(rootModule: Function): Function[] {
-    const discovered = new Set<Function>()
-    this.visit(discovered, rootModule)
-    return [...discovered]
+    const seen = new Set<Function>()
+    const ordered: Function[] = []
+    this.visit(seen, ordered, rootModule)
+    return ordered
   }
 
   /**
