@@ -79,6 +79,13 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
+      - name: Release @lunafw/platform-schedule
+        working-directory: packages/platform-schedule
+        run: npx semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
       - name: Release @lunafw/testing
         working-directory: packages/testing
         run: npx semantic-release
