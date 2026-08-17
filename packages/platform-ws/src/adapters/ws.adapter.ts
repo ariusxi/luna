@@ -51,12 +51,21 @@ export class WsAdapter extends AbstractAdapter {
    * @returns A promise that resolves once the server is fully listening.
    */
   public async listen(): Promise<void> {
-    this.wss = new WebSocketServer({ port: this.options.port })
-
-    await new Promise<void>((resolve, reject) => {
-      this.wss!.once('listening', resolve)
-      this.wss!.once('error', reject)
-    })
+    const sharedServer = this.options.server?.()
+    if (sharedServer) {
+      // Share an existing HTTP server (single port). It is already listening,
+      // so there is no separate 'listening' event to await.
+      this.wss = new WebSocketServer({ server: sharedServer, path: this.options.path ?? '/ws' })
+    } else {
+      if (this.options.port === undefined) {
+        throw new Error('WsAdapter: provide `port` for a standalone server or `server` to share an existing one')
+      }
+      this.wss = new WebSocketServer({ port: this.options.port })
+      await new Promise<void>((resolve, reject) => {
+        this.wss!.once('listening', resolve)
+        this.wss!.once('error', reject)
+      })
+    }
 
     this.wss.on('connection', (socket: WebSocket) => {
       const socketId = randomUUID()

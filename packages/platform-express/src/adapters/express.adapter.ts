@@ -87,6 +87,17 @@ export class ExpressAdapter extends AbstractAdapter {
     return this.app
   }
 
+  /**
+   * Returns the underlying Node HTTP server, available after {@link listen}.
+   *
+   * Lets another adapter share this server and port — e.g. `@lunafw/platform-ws`
+   * attaching its WebSocket server so upgrades happen on the same HTTP port,
+   * which single-port hosts (Render, Heroku, …) require.
+   */
+  public getHttpServer(): Server | undefined {
+    return this.server
+  }
+
   /** Closes the HTTP server and releases the port. */
   public async close(): Promise<void> {
     if (!this.server) return
