@@ -1,10 +1,14 @@
-import { Application, Router, Request, Response } from 'express'
+import { Application, Router, Request, RequestHandler, Response } from 'express'
+import multer from 'multer'
 import { GuardRejectionError, HttpException, HandlerMetadata, LunaHandler } from '@lunafw/common'
 
 import { ExpressHandler } from '../types'
 import { HttpExceptionResponse } from '../exceptions'
 
 type HttpMethod = 'get' | 'post' | 'put' | 'patch' | 'delete' | 'options' | 'head'
+
+/** Shared in-memory multipart parser; files land on `req.file` as Buffers. */
+const upload = multer()
 
 const HTTP_METHODS: ReadonlySet<string> = new Set([
   'get', 'post', 'put', 'patch', 'delete', 'options', 'head',
@@ -34,9 +38,16 @@ export class ExpressHandlerRegistry {
       if (!HTTP_METHODS.has(event)) continue
 
       const router = Router()
-      router[event as HttpMethod](path, this.buildRoute(handler, metadata.successStatusCode))
+      const middleware = this.uploadMiddleware(metadata.uploadField)
+      router[event as HttpMethod](path, ...middleware, this.buildRoute(handler, metadata.successStatusCode))
       app.use(`/${prefix}`, router)
     }
+  }
+
+  /** Multipart parser for routes with an `@UploadedFile` param; empty otherwise. */
+  private uploadMiddleware(uploadField?: string): RequestHandler[] {
+    if (!uploadField) return []
+    return [upload.single(uploadField)]
   }
 
   private buildRoute(handler: LunaHandler, successStatusCode?: number) {
@@ -49,6 +60,7 @@ export class ExpressHandlerRegistry {
             params: request.params,
             query: request.query,
             headers: request.headers,
+            file: request.file,
           },
         })
         response.status(successStatusCode ?? 200).json(result)
