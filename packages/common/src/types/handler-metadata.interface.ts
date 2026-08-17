@@ -13,4 +13,6 @@ export interface HandlerMetadata {
   path: string
   /** Success status code from `@HttpCode`, if set; adapters default to 200. */
   successStatusCode?: number
+  /** Multipart form field to parse a single upload from, if the handler has an `@UploadedFile` param. */
+  uploadField?: string
 }

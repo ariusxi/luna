@@ -3,6 +3,7 @@ import { LunaApplication as CoreApplication } from '@lunafw/core'
 import { CONTROLLER_METADATA } from '../decorators/controller.decorator'
 import { HTTP_CODE_METADATA } from '../decorators/http-code.decorator'
 import { ON_METADATA } from '../decorators/on.decorator'
+import { PARAM_METADATA, ParamMetadata } from '../params/param.decorator'
 import { LunaExceptionFilter } from '../filters/filter.interface'
 import { LunaGuard } from '../guards'
 import { LunaInterceptor } from '../interceptors'
@@ -166,11 +167,15 @@ export class LunaApplication {
           | number
           | undefined
 
+        const params = (Reflect.getMetadata(PARAM_METADATA, prototype, methodName) ?? []) as ParamMetadata[]
+        const uploadField = params.find((param) => param.type === 'file')?.key
+
         const handlerMetadata: HandlerMetadata = {
           event: onMetadata.event,
           prefix,
           path: onMetadata.path,
           successStatusCode,
+          uploadField,
         }
 
         const handler = this.handlerBuilder.build(instance, methodName, prototype, middleware)

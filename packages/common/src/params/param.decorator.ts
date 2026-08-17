@@ -3,7 +3,16 @@ import { LunaMessage } from '../types/message.interface'
 export const PARAM_METADATA = 'luna:params'
 
 /** The source from which a parameter value is extracted. */
-export type ParamType = 'body' | 'query' | 'param' | 'headers' | 'message'
+export type ParamType = 'body' | 'query' | 'param' | 'headers' | 'message' | 'file'
+
+/** A file parsed from a multipart request and exposed to an `@UploadedFile()` param. */
+export interface UploadedFileData {
+  fieldname: string
+  originalname: string
+  mimetype: string
+  size: number
+  buffer: Buffer
+}
 
 /** Describes a single decorated parameter on a handler method. */
 export interface ParamMetadata {
@@ -78,6 +87,23 @@ export const Headers = (key?: string): ParameterDecorator => createParamDecorato
 export const Message = (): ParameterDecorator => createParamDecorator('message')
 
 /**
+ * Injects a single uploaded file parsed from a `multipart/form-data` request.
+ *
+ * The `field` names the form field carrying the file (default `'file'`). Adapters
+ * that support uploads parse the multipart body and expose the file on
+ * `message.metadata.file`; on HTTP with `@lunafw/platform-express` the value is
+ * the multer file (`{ buffer, mimetype, size, originalname, ... }`), or
+ * `undefined` when no file was sent.
+ *
+ * @param field - Form field name to read the file from (default `'file'`).
+ *
+ * @example
+ * @On('post', '/')
+ * upload(@UploadedFile('image') image?: UploadedFile) { ... }
+ */
+export const UploadedFile = (field = 'file'): ParameterDecorator => createParamDecorator('file', field)
+
+/**
  * Builds the argument list for a handler method call based on stored param
  * metadata. Falls back to passing the full `LunaMessage` as the first argument
  * when no param decorators are present.
@@ -116,6 +142,9 @@ export function resolveParams(
         break
       case 'message':
         value = message
+        break
+      case 'file':
+        value = message.metadata.file
         break
     }
 
