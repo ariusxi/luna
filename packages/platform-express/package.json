@@ -1,6 +1,6 @@
 {
   "name": "@lunafw/platform-express",
-  "version": "0.1.0",
+  "version": "1.10.0",
   "description": "Express adapter for the Luna framework — HTTP routing and exception handling",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
