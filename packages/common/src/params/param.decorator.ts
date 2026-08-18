@@ -3,7 +3,7 @@ import { LunaMessage } from '../types/message.interface'
 export const PARAM_METADATA = 'luna:params'
 
 /** The source from which a parameter value is extracted. */
-export type ParamType = 'body' | 'query' | 'param' | 'headers' | 'message' | 'file'
+export type ParamType = 'body' | 'query' | 'param' | 'headers' | 'message' | 'file' | 'rawBody'
 
 /** A file parsed from a multipart request and exposed to an `@UploadedFile()` param. */
 export interface UploadedFileData {
@@ -104,6 +104,21 @@ export const Message = (): ParameterDecorator => createParamDecorator('message')
 export const UploadedFile = (field = 'file'): ParameterDecorator => createParamDecorator('file', field)
 
 /**
+ * Injects the unparsed request body as a `Buffer` (`message.metadata.rawBody`).
+ *
+ * Needed when a signature must be verified over the exact received bytes — e.g.
+ * Stripe/GitHub webhooks — which a parsed body cannot reproduce. Adapters that
+ * support it capture the raw bytes before body parsing; on HTTP with
+ * `@lunafw/platform-express` the value is the `Buffer` seen by the JSON parser,
+ * or `undefined` when the body was empty.
+ *
+ * @example
+ * @On('post', '/webhook')
+ * receive(@RawBody() raw: Buffer, @Headers('stripe-signature') signature: string) { ... }
+ */
+export const RawBody = (): ParameterDecorator => createParamDecorator('rawBody')
+
+/**
  * Builds the argument list for a handler method call based on stored param
  * metadata. Falls back to passing the full `LunaMessage` as the first argument
  * when no param decorators are present.
@@ -145,6 +160,9 @@ export function resolveParams(
         break
       case 'file':
         value = message.metadata.file
+        break
+      case 'rawBody':
+        value = message.metadata.rawBody
         break
     }
 

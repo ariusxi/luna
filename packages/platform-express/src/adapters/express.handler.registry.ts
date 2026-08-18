@@ -61,6 +61,7 @@ export class ExpressHandlerRegistry {
             query: request.query,
             headers: request.headers,
             file: request.file,
+            rawBody: request.rawBody,
           },
         })
         response.status(successStatusCode ?? 200).json(result)

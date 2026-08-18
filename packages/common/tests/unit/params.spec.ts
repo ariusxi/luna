@@ -8,6 +8,7 @@ import {
   Param,
   ParamMetadata,
   Query,
+  RawBody,
   resolveParams,
 } from '../../src/params/param.decorator'
 
@@ -73,6 +74,14 @@ describe('Parameter decorator metadata', () => {
     expect(meta).toContainEqual({ index: 0, type: 'message', key: undefined })
   })
 
+  it('@RawBody() stores metadata', () => {
+    class Ctrl {
+      handle(@RawBody() _raw: Buffer) {}
+    }
+    const meta: ParamMetadata[] = Reflect.getMetadata(PARAM_METADATA, Ctrl.prototype, 'handle')
+    expect(meta).toContainEqual({ index: 0, type: 'rawBody', key: undefined })
+  })
+
   it('multiple decorators on the same method store multiple entries', () => {
     class Ctrl {
       handle(@Body() _b: unknown, @Param('id') _id: string, @Query('page') _p: string) {}
@@ -125,6 +134,13 @@ describe('resolveParams', () => {
   it('@Message() injects the full message', () => {
     const args = resolveParams(message, [{ index: 0, type: 'message' }])
     expect(args[0]).toBe(message)
+  })
+
+  it('extracts the raw body buffer from metadata', () => {
+    const rawBody = Buffer.from('{"a":1}')
+    const withRaw = msg({ metadata: { rawBody } })
+    const args = resolveParams(withRaw, [{ index: 0, type: 'rawBody' }])
+    expect(args[0]).toBe(rawBody)
   })
 
   it('places values at correct indices for mixed decorators', () => {

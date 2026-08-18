@@ -1,5 +1,5 @@
 import { Server } from 'http'
-import express, { Application } from 'express'
+import express, { Application, Request } from 'express'
 import { AbstractAdapter, HandlerMetadata, LunaHandler } from '@lunafw/common'
 
 import { ExpressAdapterOptions, ExpressHandler } from '../types'
@@ -26,7 +26,14 @@ export class ExpressAdapter extends AbstractAdapter {
 
   constructor(private readonly options: ExpressAdapterOptions) {
     super()
-    this.app.use(express.json())
+    // Keep the raw bytes alongside the parsed JSON so handlers can verify a
+    // signature over the exact payload (webhooks) via `@RawBody()`. `verify`
+    // runs before parsing, so the buffer is the untouched request body.
+    this.app.use(express.json({
+      verify: (request: Request, _response, buffer: Buffer) => {
+        request.rawBody = buffer
+      },
+    }))
   }
 
   /**
