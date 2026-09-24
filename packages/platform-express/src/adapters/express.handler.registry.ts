@@ -4,7 +4,7 @@ import { GuardRejectionError, HttpException, HandlerMetadata, LunaHandler } from
 
 import { ExpressHandler } from '../types'
 import { HttpExceptionResponse } from '../exceptions'
-import { compileExpressRoutePath } from '../routing'
+import { compileExpressRoutePath } from '../routing/express-route-path'
 
 type HttpMethod = 'get' | 'post' | 'put' | 'patch' | 'delete' | 'options' | 'head'
 
@@ -26,7 +26,15 @@ export class ExpressHandlerRegistry {
   private readonly handlers: ExpressHandler[] = []
 
   register(handler: LunaHandler, metadata: HandlerMetadata): void {
-    this.handlers.push({ handler, metadata })
+    const entry = { handler, metadata }
+    if (metadata.path.includes('*')) {
+      this.handlers.push(entry)
+      return
+    }
+
+    const firstWildcard = this.handlers.findIndex(({ metadata: item }) => item.path.includes('*'))
+    if (firstWildcard === -1) this.handlers.push(entry)
+    else this.handlers.splice(firstWildcard, 0, entry)
   }
 
   getHandlers(): ExpressHandler[] {
@@ -34,13 +42,7 @@ export class ExpressHandlerRegistry {
   }
 
   mountRoutes(app: Application): void {
-    const handlers = [...this.handlers].sort((left, right) => {
-      const leftWildcard = left.metadata.path.includes('*') ? 1 : 0
-      const rightWildcard = right.metadata.path.includes('*') ? 1 : 0
-      return leftWildcard - rightWildcard
-    })
-
-    for (const { handler, metadata } of handlers) {
+    for (const { handler, metadata } of this.handlers) {
       const { event, prefix, path } = metadata
       if (!HTTP_METHODS.has(event)) continue
 

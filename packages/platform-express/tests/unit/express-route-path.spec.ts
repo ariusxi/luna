@@ -1,4 +1,4 @@
-import { compileExpressRoutePath } from '../../src/routing'
+import { compileExpressRoutePath } from '../../src/routing/express-route-path'
 
 describe('compileExpressRoutePath', () => {
   it('leaves ordinary Express paths unchanged', () => {
