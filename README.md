@@ -230,6 +230,30 @@ GET  http://localhost:3000/users/99     → 404 { statusCode: 404, message: 'Use
 POST http://localhost:3000/users        → { id: '2', name: '...' }
 ```
 
+### Wildcard routes
+
+The Express adapter supports terminal wildcards with the same behavior on
+Express 4 and Express 5. Use an anonymous wildcard when the default parameter
+name `wildcard` is sufficient, or append a name after `*`:
+
+```ts
+@Controller('files')
+export class FilesController {
+  @On('get', '/*filepath')
+  findFile(@Param('filepath') filepath: string) {
+    return { filepath }
+  }
+}
+```
+
+`GET /files/images/avatar.png` sets `filepath` to
+`'images/avatar.png'`. Wildcards must be the final part of a route and may span
+multiple path segments. `@On('get', '*')` and `@On('get', '/*')` create a
+controller-wide catch-all and expose the matched value as `@Param('wildcard')`.
+
+Concrete routes are registered before wildcard routes, so a route such as
+`/health` takes precedence over `/*path` regardless of declaration order.
+
 ## Packages
 
 | Package | Description |

@@ -4,6 +4,7 @@ import { GuardRejectionError, HttpException, HandlerMetadata, LunaHandler } from
 
 import { ExpressHandler } from '../types'
 import { HttpExceptionResponse } from '../exceptions'
+import { compileExpressRoutePath } from '../routing/express-route-path'
 
 type HttpMethod = 'get' | 'post' | 'put' | 'patch' | 'delete' | 'options' | 'head'
 
@@ -25,7 +26,15 @@ export class ExpressHandlerRegistry {
   private readonly handlers: ExpressHandler[] = []
 
   register(handler: LunaHandler, metadata: HandlerMetadata): void {
-    this.handlers.push({ handler, metadata })
+    const entry = { handler, metadata }
+    if (metadata.path.includes('*')) {
+      this.handlers.push(entry)
+      return
+    }
+
+    const firstWildcard = this.handlers.findIndex(({ metadata: item }) => item.path.includes('*'))
+    if (firstWildcard === -1) this.handlers.push(entry)
+    else this.handlers.splice(firstWildcard, 0, entry)
   }
 
   getHandlers(): ExpressHandler[] {
@@ -39,7 +48,13 @@ export class ExpressHandlerRegistry {
 
       const router = Router()
       const middleware = this.uploadMiddleware(metadata.uploadField)
-      router[event as HttpMethod](path, ...middleware, this.buildRoute(handler, metadata.successStatusCode))
+      const route = compileExpressRoutePath(path)
+      router[event as HttpMethod](
+        route.path,
+        ...route.paramsMiddleware,
+        ...middleware,
+        this.buildRoute(handler, metadata.successStatusCode),
+      )
       app.use(`/${prefix}`, router)
     }
   }
